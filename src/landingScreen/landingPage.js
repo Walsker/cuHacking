@@ -1,20 +1,107 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Alert, Button, Text, TextInput, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 
 export default class LandingPage extends Component
 {
-    render()
-    {
-        return (
-            <View style = {[containerStyle.screen, {backgroundColor: colors.primarySpaceColor}]}>
-                <View style = {containerStyle.screenSection}>
-                    <Text style = {{fontFamily: 'Roboto-Medium'}}>February 16th - 17th 2019</Text>
-                </View>
-            </View>
-        );
-    }
+	constructor(props)
+	{
+		super(props);
+		this.state = 
+		{
+			email: "",
+			emailSubmitted: false
+		}
+	}
+
+	emailBox()
+	{
+		const submitEmail = (email) =>
+		{
+			const validate = (text) =>
+			{
+				var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				if(emailRegex.test(text) === false)
+				{
+					Alert.alert(
+						"Invalid Email",
+						"Please enter a valid email address.",
+						[{text: 'OK', onPress: () => {}}],
+						{cancelable: true}
+					);
+					return false;
+				}
+				else
+					return true;
+
+			}
+
+			if (validate(email))
+				this.setState({emailSubmitted: true});
+		}
+
+		if (!this.state.emailSubmitted)
+		{
+			return (
+				<View style = {containerStyle.inputArea}>
+					<View style = {containerStyle.inputBox}>
+						<Text style = {textStyle.regular(20, 'center', 'white')}>
+							Sign up for updates.{'\n'}
+							<Text style = {{fontSize: 16}}>
+								No spam, we promise.
+							</Text>
+						</Text>
+						<View style = {{marginTop: 5, marginBottom: 15}}>
+							<TextInput
+								style = {textStyle.light(22, 'center', 'white')}
+								onChangeText = {(newText) => this.setState({email: newText})}
+								keyboardType = 'email-address'
+								placeholder = "fullname@email.com"
+								placeholderTextColor = 'rgba(255, 255, 255, 0.5)'
+								underlineColorAndroid = 'white'
+							/>
+							<Text style = {textStyle.regular(14, 'center', 'white')}>
+								Email Address
+							</Text>
+						</View>
+						<Button
+							title = "Submit"
+							color = {colors.primaryColor}
+							onPress = {() => submitEmail(this.state.email)}
+						/>
+					</View>
+				</View>
+			);
+		}
+		else
+		{
+			return (
+				<View style = {containerStyle.inputArea}>
+					<View style = {containerStyle.inputBox}>
+						<Text style = {textStyle.regular(20, 'center', 'white')}>
+							You are now in our email list!
+						</Text>
+					</View>
+				</View>
+			);
+		}
+	}
+
+	render()
+	{
+		return (
+			<View style = {[containerStyle.screen, {backgroundColor: colors.primarySpaceColor}]}>
+				<View style = {containerStyle.screenSection}>
+					<View style = {containerStyle.textBox}>
+						<Text style = {textStyle.bold(24, 'center')}>February 16th - 17th 2019</Text>
+						<Text style = {textStyle.regular(24, 'center')}>@ Carleton University</Text>
+					</View>
+					{this.emailBox()}
+				</View>
+			</View>
+		);
+	}
 }

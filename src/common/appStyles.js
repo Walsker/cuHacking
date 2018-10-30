@@ -18,7 +18,22 @@ export const containerStyle = StyleSheet.create(
 	default: 
 	{
 		flex: 1,
-		backgroundColor: colors.primarySpaceColor
+		// backgroundColor: colors.primarySpaceColor
+	},
+	inputArea:
+	{
+		justifyContent: 'center',
+		alignSelf: 'stretch',
+		minHeight: 250
+	},
+	inputBox:
+	{
+		backgroundColor: 'rgba(35, 35, 35, 0.9)',
+		paddingVertical: 10,
+		paddingHorizontal: 15,
+		marginVertical: 10,
+		marginHorizontal: 25,
+		borderRadius: 10
 	},
 	screen:
 	{
@@ -28,6 +43,10 @@ export const containerStyle = StyleSheet.create(
 	{
 		margin: 5,
 		alignItems: 'center'
+	},
+	textBox:
+	{
+		marginVertical: 15
 	}
 });
 
@@ -49,20 +68,20 @@ const createFont = (size, alignment, color) =>
 
 export const textStyle =
 {
-	// light: (size, alignment, color) =>
-	// {
-	// 	return Object.assign({fontFamily: 'Lato-Light'}, createFont(size, alignment, color));
-	// },
-	// regular: (size, alignment, color) =>
-	// {
-	// 	return Object.assign({fontFamily: 'Lato-Regular'}, createFont(size, alignment, color));
-	// },
-	// bold: (size, alignment, color) =>
-	// {
-	// 	return Object.assign({fontFamily: 'Lato-Black'}, createFont(size, alignment, color));
-	// },
-	// italic: (size, alignment, color) =>
-	// {
-	// 	return Object.assign({fontFamily: 'Lato-Italic'}, createFont(size, alignment, color));
-	// }
+	light: (size, alignment, color) =>
+	{
+		return Object.assign({fontFamily: 'Roboto-Light'}, createFont(size, alignment, color));
+	},
+	regular: (size, alignment, color) =>
+	{
+		return Object.assign({fontFamily: 'Roboto-Regular'}, createFont(size, alignment, color));
+	},
+	bold: (size, alignment, color) =>
+	{
+		return Object.assign({fontFamily: 'Roboto-Black'}, createFont(size, alignment, color));
+	},
+	italic: (size, alignment, color) =>
+	{
+		return Object.assign({fontFamily: 'Roboto-Italic'}, createFont(size, alignment, color));
+	}
 }
