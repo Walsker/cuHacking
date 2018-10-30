@@ -18,13 +18,12 @@ export const containerStyle = StyleSheet.create(
 	default: 
 	{
 		flex: 1,
-		// backgroundColor: colors.primarySpaceColor
+		backgroundColor: colors.primarySpaceColor
 	},
 	inputArea:
 	{
 		justifyContent: 'center',
-		alignSelf: 'stretch',
-		minHeight: 250
+		alignSelf: 'stretch'
 	},
 	inputBox:
 	{

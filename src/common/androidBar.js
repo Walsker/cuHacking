@@ -9,7 +9,7 @@ export default class AndroidBar extends Component
 		return(
 			<View style =
 			{{
-				backgroundColor: colors.transparent,
+				backgroundColor: colors.primarySpaceColor,
 				height: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
 			}}/>
 		);

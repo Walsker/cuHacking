@@ -13,7 +13,7 @@ export default class App extends Component
     {
         return(
             <View style = {containerStyle.default}>
-                <ScrollView>    
+                <ScrollView contentContainerStyle = {containerStyle.default}>    
                     <AndroidBar/>
                     <StatusBar
                         translucent

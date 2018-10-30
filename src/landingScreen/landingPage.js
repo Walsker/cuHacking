@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Alert, Button, Text, TextInput, View} from 'react-native';
+import {Alert, Button, Image, Text, TextInput, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
@@ -10,7 +10,7 @@ export default class LandingPage extends Component
 	constructor(props)
 	{
 		super(props);
-		this.state = 
+		this.state =
 		{
 			email: "",
 			emailSubmitted: false
@@ -93,14 +93,30 @@ export default class LandingPage extends Component
 	render()
 	{
 		return (
-			<View style = {[containerStyle.screen, {backgroundColor: colors.primarySpaceColor}]}>
+			<View style = {[
+				containerStyle.screen,
+				{
+					backgroundColor: colors.primarySpaceColor,
+					justifyContent: 'center',
+					flex: 1
+				}
+			]}>
+				<View style = {containerStyle.screenSection}>
+					<Image
+						source = {require('cuHacking/assets/images/logoWithText.png')}
+						resizeMode = 'contain'
+						fadeDuration = {0}
+						style = {{width: 250, height: 250}}
+					/>
+				</View>
 				<View style = {containerStyle.screenSection}>
 					<View style = {containerStyle.textBox}>
 						<Text style = {textStyle.bold(24, 'center')}>February 16th - 17th 2019</Text>
 						<Text style = {textStyle.regular(24, 'center')}>@ Carleton University</Text>
 					</View>
-					{this.emailBox()}
 				</View>
+				<View style = {{marginVertical: 30}}/>
+				{this.emailBox()}
 			</View>
 		);
 	}
