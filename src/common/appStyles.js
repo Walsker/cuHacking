@@ -46,7 +46,8 @@ export const containerStyle = StyleSheet.create(
 	},
 	textBox:
 	{
-		margin: 15
+		marginVertical: 15,
+		marginHorizontal: 20
 	},
 	timeUnitBox1:
 	{

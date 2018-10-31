@@ -7,6 +7,7 @@ import {containerStyle} from 'cuHacking/src/common/appStyles';
 import {AndroidBar} from 'cuHacking/src/common';
 import LandingPage from './landingScreen/landingPage';
 import CountdownPage from './countdownScreen/countdownPage';
+import SponsorsPage from './sponsorsScreen/sponsorsPage';
 
 export default class App extends Component
 {
@@ -14,7 +15,7 @@ export default class App extends Component
 	{
 		return(
 			<View style = {containerStyle.default}>
-				<ScrollView>
+				<ScrollView showsVerticalScrollIndicator = {false} showsHorizontalScrollIndicator = {false}>
 					{/* <AndroidBar/> */}
 					<StatusBar
 						translucent
@@ -23,6 +24,7 @@ export default class App extends Component
 					/>
 					<LandingPage/>
 					<CountdownPage/>
+					<SponsorsPage/>
 				</ScrollView>
 			</View>
 		);
