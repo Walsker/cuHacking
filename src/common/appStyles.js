@@ -7,7 +7,6 @@ export const colors =
 	primarySpaceColor: '#FDEDB2',
 	lightSpaceColor: '#FAFAFA',
 	darkSpaceColor: '#222222',
-	black: '#000000',
 	primaryTextColor: '#212121',
 	secondaryTextColor: '#757575',
 	transparent: 'rgba(0, 0, 0, 0)'
@@ -18,7 +17,7 @@ export const containerStyle = StyleSheet.create(
 	default: 
 	{
 		flex: 1,
-		backgroundColor: colors.primarySpaceColor
+		// backgroundColor: colors.primarySpaceColor
 	},
 	inputArea:
 	{
@@ -36,6 +35,7 @@ export const containerStyle = StyleSheet.create(
 	},
 	screen:
 	{
+		justifyContent: 'center',
 		paddingVertical: 20
 	},
 	screenSection:
