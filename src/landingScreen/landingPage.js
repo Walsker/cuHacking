@@ -100,7 +100,7 @@ export default class LandingPage extends Component
 				containerStyle.screen,
 				{
 					backgroundColor: colors.primarySpaceColor,
-					height: height + StatusBar.currentHeight
+					minHeight: height + StatusBar.currentHeight
 				}
 			]}>
 				<View style = {containerStyle.screenSection}>

@@ -41,11 +41,20 @@ export const containerStyle = StyleSheet.create(
 	screenSection:
 	{
 		margin: 5,
-		alignItems: 'center'
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	textBox:
 	{
-		marginVertical: 15
+		margin: 15
+	},
+	timeUnitBox1:
+	{
+		marginHorizontal: 20
+	},
+	timeUnitBox2:
+	{
+		marginHorizontal: 15
 	}
 });
 

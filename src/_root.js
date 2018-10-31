@@ -19,9 +19,7 @@ export default class App extends Component
 					<StatusBar
 						translucent
 						animated
-						barStyle = "dark-content"
-						// backgroundColor = "rgba(0, 0, 0, 0.2)"
-						backgroundColor = "rgba(0, 0, 0, 0)"
+						backgroundColor = "rgba(0, 0, 0, 0.2)"
 					/>
 					<LandingPage/>
 					<CountdownPage/>
