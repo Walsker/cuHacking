@@ -8,6 +8,8 @@ import {AndroidBar} from 'cuHacking/src/common';
 import LandingPage from './landingScreen/landingPage';
 import CountdownPage from './countdownScreen/countdownPage';
 import SponsorsPage from './sponsorsScreen/sponsorsPage';
+import FAQPage from './faqScreen/faqPage';
+import ContactPage from './contactScreen/contactPage';
 
 export default class App extends Component
 {
@@ -25,6 +27,8 @@ export default class App extends Component
 					<LandingPage/>
 					<CountdownPage/>
 					<SponsorsPage/>
+					<FAQPage/>
+					<ContactPage/>
 				</ScrollView>
 			</View>
 		);

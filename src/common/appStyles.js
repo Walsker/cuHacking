@@ -26,7 +26,7 @@ export const containerStyle = StyleSheet.create(
 	},
 	inputBox:
 	{
-		backgroundColor: 'rgba(35, 35, 35, 0.9)',
+		backgroundColor: 'rgba(0, 0, 0, 0.8)',
 		paddingVertical: 10,
 		paddingHorizontal: 15,
 		marginVertical: 10,
