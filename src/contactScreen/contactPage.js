@@ -6,6 +6,7 @@ import {Dimensions, Image, Text, View} from 'react-native';
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 
 // TODO: Add links to MLH Code of Conduct and GitHub
+// TODO: Add direct email contact
 export default class ContactPage extends Component
 {
     divider()
