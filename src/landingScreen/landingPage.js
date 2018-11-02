@@ -105,7 +105,7 @@ export default class LandingPage extends Component
 			]}>
 				<View style = {containerStyle.screenSection}>
 					<Image
-						source = {require('cuHacking/assets/images/logoWithText.png')}
+						source = {require('cuHacking/assets/images/cuHacking-t.png')}
 						resizeMode = 'contain'
 						fadeDuration = {0}
 						style = {{width: imageSize, height: imageSize}}

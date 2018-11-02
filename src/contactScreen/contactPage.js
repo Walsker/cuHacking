@@ -1,10 +1,11 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Dimensions, Image, Text, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 
+// TODO: Add links to MLH Code of Conduct and GitHub
 export default class ContactPage extends Component
 {
     divider()
@@ -20,41 +21,41 @@ export default class ContactPage extends Component
         );
     }
 
-    composeEmailBox()
-    {
-        return (
-            <View style = {containerStyle.inputArea}>
-                <View style =
-                {[
-                    containerStyle.inputBox,
-                    {
-                        backgroundColor: 'rgba(0, 0, 0, 0)',
-                        borderColor: 'rgba(255, 255, 255, 0.5)',
-                        borderWidth: 1.1,
-                        borderRadius: 10
-                    }
-                ]}>
-                    <View style = {{height: 500}}/>
-                </View>
-            </View>
-        );
-    }
-
     render()
     {
+        var {height, width} = Dimensions.get('window');
+        var imageSize = width / 2;
+        
         return (
             <View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor}]}>
-                <View style = {containerStyle.screenSection}>
-                    <View style = {containerStyle.textBox}>
-                        <Text style = {textStyle.bold(42, 'center', 'white')}>Contact Us</Text>
-                    </View>
+                <View style = {containerStyle.textBox}>
+                    <Text style = {textStyle.bold(42, 'center', 'white')}>Contact Us</Text>
                 </View>
                 {this.divider()}
                 <View style = {containerStyle.screenSection}>
+					<Image
+						source = {require('cuHacking/assets/images/cuHacking-t.png')}
+						resizeMode = 'contain'
+						fadeDuration = {0}
+						style = {{width: imageSize, height: imageSize}}
+					/>
+				</View>
+                <View style = {containerStyle.screenSection}>
                     <View style = {containerStyle.textBox}>
-                        <Text style = {textStyle.light(18, 'center', 'white')}>Have a question? Use the form below and we'll get back to you ASAP.</Text>
+                        <Text style = {textStyle.regular(24, 'center', 'white')}>Carleton University</Text>
+                        <Text style = {textStyle.light(18, 'center', 'white')}>1125 Colonel By Dr,</Text>
+                        <Text style = {textStyle.light(18, 'center', 'white')}>Ottawa, ON K1S 5B6</Text>
                     </View>
-                    {this.composeEmailBox()}
+                </View>
+                <View style = {containerStyle.screenSection}>
+                    <View style = {containerStyle.textBox}>
+                        <Text style = {textStyle.regular(24, 'center', 'white')}>MLH Code of Conduct</Text>
+                    </View>
+                </View>
+                <View style = {containerStyle.screenSection}>
+                    <View style = {containerStyle.textBox}>
+                        <Text style = {textStyle.regular(20, 'center', 'white')}>View us on GitHub</Text>
+                    </View>
                 </View>
             </View>
         );

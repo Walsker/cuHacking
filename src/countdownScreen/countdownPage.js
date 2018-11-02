@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
 // Custom imports
-import {containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 
 const MILLS_PER_WEEK = 6.048e+8;
 const MILLS_PER_DAY = 8.64e+7;
@@ -50,7 +50,7 @@ export default class CountdownPage extends Component
 	countdownTimer()
 	{
 		return (
-			<View style = {{paddingBottom: 5}}>
+			<View style = {{paddingBottom: 35}}>
 				<View style = {[containerStyle.screenSection, {flexDirection: 'row'}]}>
 					<View style = {containerStyle.timeUnitBox1}>
 						<Text style = {textStyle.light(100, 'center', 'white')}>{this.state.weeksUntilHackDay}</Text>
@@ -82,15 +82,13 @@ export default class CountdownPage extends Component
 	{
 		return (
 			<View style = {[containerStyle.screen, {backgroundColor: 'black'}]}>
-				{this.countdownTimer()}
 				<View style = {containerStyle.screenSection}>
 					<View style = {containerStyle.textBox}>
-						<Text style = {textStyle.bold(40, 'center', 'white')}>What is cuHacking?</Text>
-						<Text style = {textStyle.light(18, 'center', 'white')}>
-							Carleton University's cuHacking is the largest hackathon in Ottawa. The hackathon takes place over 24 hours, non-stop! Students can compete against each other and themselves to take their projects from concept to reality.
-						</Text>
+						<Text style = {textStyle.bold(62, 'center', 'white')}>cuHacking</Text>
+						<Text style = {textStyle.light(28, 'center', 'white')}>starts in</Text>
 					</View>
 				</View>
+				{this.countdownTimer()}
 			</View>
 		);
 	}
