@@ -26,7 +26,6 @@ export default class App extends Component
 					<LandingPage/>
 					<CountdownPage/>
 					<SponsorsPage/>
-					<FAQPage/>
 					<ContactPage/>
 				</ScrollView>
 			</View>

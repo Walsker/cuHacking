@@ -48,9 +48,10 @@ export default class SponsorsPage extends Component
 							style = {{width: teraTierSize, height: teraTierSize}}
 						/>
 					</View>
-					{this.divider()}
-					<View style = {containerStyle.textBox}>
-						<Text style = {textStyle.bold(42, 'center')}>Partners</Text>
+					<View style = {[containerStyle.screen, {backgroundColor: colors.primaryColor}]}>
+						<View style = {containerStyle.textBox}>
+							<Text style = {textStyle.bold(42, 'center', 'white')}>Partners</Text>
+						</View>
 					</View>
 					<View style = {containerStyle.screenSection}>
 						<Image
