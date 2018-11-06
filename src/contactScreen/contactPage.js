@@ -1,12 +1,11 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, Image, Text, View} from 'react-native';
+import {Dimensions, Image, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 
 // TODO: Add links to MLH Code of Conduct and GitHub
-// TODO: Add direct email contact
 export default class ContactPage extends Component
 {
     divider()
@@ -28,7 +27,7 @@ export default class ContactPage extends Component
         var imageSize = width / 2;
         
         return (
-            <View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor}]}>
+            <View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor, minHeight: height + StatusBar.currentHeight + 10}]}>
                 <View style = {containerStyle.textBox}>
                     <Text style = {textStyle.bold(42, 'center', 'white')}>Contact Us</Text>
                 </View>
@@ -48,15 +47,29 @@ export default class ContactPage extends Component
                         <Text style = {textStyle.light(18, 'center', 'white')}>Ottawa, ON K1S 5B6</Text>
                     </View>
                 </View>
+                {this.divider()}
                 <View style = {containerStyle.screenSection}>
                     <View style = {containerStyle.textBox}>
-                        <Text style = {textStyle.regular(24, 'center', 'white')}>MLH Code of Conduct</Text>
+                        <Text style = {textStyle.light(20, 'center', 'white')}>Questions?</Text>
+                        <TouchableOpacity onPress = {() => alert("Test")}>
+                            <Text style = {textStyle.regular(24, 'center', 'white')}>info@cuHacking.com</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
+                {this.divider()}
                 <View style = {containerStyle.screenSection}>
-                    <View style = {containerStyle.textBox}>
-                        <Text style = {textStyle.regular(20, 'center', 'white')}>View us on GitHub</Text>
-                    </View>
+                    <TouchableOpacity onPress = {() => alert("test")}>
+                        <View style = {containerStyle.textBox}>
+                            <Text style = {textStyle.regular(24, 'center', 'white')}>MLH Code of Conduct</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style = {containerStyle.screenSection}>
+                    <TouchableOpacity onPress = {() => alert()}>
+                        <View style = {containerStyle.textBox}>
+                            <Text style = {textStyle.regular(20, 'center', 'white')}>View us on GitHub</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, Image, Text, View} from 'react-native';
+import {Dimensions, Image, Linking, Text, TouchableOpacity, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
@@ -13,7 +13,7 @@ export default class SponsorsPage extends Component
 		return (
 			<View style =
 			{{
-				height: 1.1,
+				height: 1.2,
 				marginVertical: 25,
 				marginHorizontal: 50,
 				backgroundColor: colors.primaryTextColor
@@ -21,10 +21,26 @@ export default class SponsorsPage extends Component
 		);
 	}
 
+	createImage(image, dimensions, url)
+	{
+		var hyperlink = url ? url : {};
+
+		return (
+			<TouchableOpacity onPress = {() => alert(hyperlink)}>
+				<Image
+					source = {image}
+					resizeMode = 'contain'
+					fadeDuration = {0}
+					style = {dimensions}
+				/>
+			</TouchableOpacity>
+		);
+	}
+
 	render()
 	{
 		var {height, width} = Dimensions.get('window');
-		var teraTierSize = width / 1.2;
+		var largestSize = width / 1.2;
 
 		return (
 			<View>
@@ -35,43 +51,18 @@ export default class SponsorsPage extends Component
 				</View>
 				<View style = {containerStyle.screen}>
 					<View style = {containerStyle.screenSection}>
-						<Image
-							source = {require('cuHacking/assets/images/ea.png')}
-							resizeMode = 'contain'
-							fadeDuration = {0}
-							style = {{width: teraTierSize, height: teraTierSize}}
-						/>
-						<Image
-							source = {require('cuHacking/assets/images/invisionapp.png')}
-							resizeMode = 'contain'
-							fadeDuration = {0}
-							style = {{width: teraTierSize, height: teraTierSize}}
-						/>
+						{this.createImage(require('cuHacking/assets/images/ea.png'), {width: largestSize, height: largestSize}, "EA website")}
+						{this.createImage(require('cuHacking/assets/images/invision-logo.png'), {width: largestSize}, "InVision Website")}
 					</View>
-					<View style = {[containerStyle.screen, {backgroundColor: colors.primaryColor}]}>
-						<View style = {containerStyle.textBox}>
-							<Text style = {textStyle.bold(42, 'center', 'white')}>Partners</Text>
-						</View>
+					{this.divider()}
+					<View style = {containerStyle.textBox}>
+						<Text style = {textStyle.bold(42, 'center')}>Partners</Text>
 					</View>
+					{this.divider()}
 					<View style = {containerStyle.screenSection}>
-						<Image
-							source = {require('cuHacking/assets/images/carleton_sce.png')}
-							resizeMode = 'contain'
-							fadeDuration = {0}
-							style = {{width: teraTierSize}}
-						/>
-						<Image
-							source = {require('cuHacking/assets/images/carleton_scs.png')}
-							resizeMode = 'contain'
-							fadeDuration = {0}
-							style = {{width: teraTierSize}}
-						/>
-						<Image
-							source = {require('cuHacking/assets/images/mlh.png')}
-							resizeMode = 'contain'
-							fadeDuration = {0}
-							style = {{width: teraTierSize, height: teraTierSize / 1.8}}
-						/>
+						{this.createImage(require('cuHacking/assets/images/carleton_sce.png'), {width: largestSize}, "SCE Link")}
+						{this.createImage(require('cuHacking/assets/images/carleton_scs.png'), {width: largestSize}, "SCS Link")}
+						{this.createImage(require('cuHacking/assets/images/mlh.png'), {width: largestSize, height: largestSize / 1.8}, "MLH Link")}
 					</View>
 				</View>
 			</View>
