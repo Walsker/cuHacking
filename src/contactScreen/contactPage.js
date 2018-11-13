@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, Image, StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, Linking, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
@@ -39,25 +39,30 @@ export default class ContactPage extends Component
                 <View style = {containerStyle.screenSection}>
                     <View style = {containerStyle.textBox}>
                         <Text style = {textStyle.light(20, 'center', 'white')}>Questions?</Text>
-                        <TouchableOpacity onPress = {() => alert("Test")}>
+                        <TouchableOpacity onPress = {() => Linking.openURL('mailto:info@cuHacking.com?subject=[Question]').catch(err => console.error('Could not go to github', err))}>
                             <Text style = {textStyle.regular(24, 'center', 'white')}>info@cuHacking.com</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <Divider color = 'white'/>
                 <View style = {containerStyle.screenSection}>
-                    <TouchableOpacity onPress = {() => alert("test")}>
+                    <TouchableOpacity onPress = {() => Linking.openURL('https://static.mlh.io/docs/mlh-code-of-conduct.pdf').catch(err => console.error('Could not go to github', err))}>
                         <View style = {containerStyle.textBox}>
                             <Text style = {textStyle.regular(24, 'center', 'white')}>MLH Code of Conduct</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style = {containerStyle.screenSection}>
-                    <TouchableOpacity onPress = {() => alert()}>
+                    <TouchableOpacity onPress = {() => Linking.openURL('https://github.com/cuHacking').catch(err => console.error('Could not go to github', err))}>
                         <View style = {containerStyle.textBox}>
                             <Text style = {textStyle.regular(20, 'center', 'white')}>View us on GitHub</Text>
                         </View>
                     </TouchableOpacity>
+                    {/* <TouchableOpacity onPress = {() => Linking.openURL('https://cuhacking.com/').catch(err => console.error('Could not go to github', err))}>
+                        <View style = {containerStyle.textBox}>
+                            <Text style = {textStyle.regular(20, 'center', 'white')}>Go to cuhacking.com</Text>
+                        </View>
+                    </TouchableOpacity> */}
                 </View>
             </View>
         );
