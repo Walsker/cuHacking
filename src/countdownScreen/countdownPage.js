@@ -83,10 +83,9 @@ export default class CountdownPage extends Component
 	{
 		return (
 			<View style = {[containerStyle.screen, {backgroundColor: 'black'}]}>
-				<View style = {containerStyle.screenSection}>
+				<View style = {[containerStyle.screenSection, {marginBottom: -10}]}>
 					<View style = {containerStyle.textBox}>
-						<Text style = {textStyle.bold(62, 'center', colors.primaryColor)}>cuHacking</Text>
-						<Text style = {textStyle.light(28, 'center', 'white')}>starts in</Text>
+						<Text style = {textStyle.light(28, 'center', 'white')}>Event starts in</Text>
 					</View>
 				</View>
 				{this.countdownTimer()}
