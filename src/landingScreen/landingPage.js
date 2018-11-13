@@ -19,75 +19,15 @@ export default class LandingPage extends Component
 
 	emailBox()
 	{
-		const submitEmail = (email) =>
-		{
-			const validate = (text) =>
-			{
-				var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-				if(emailRegex.test(text) === false)
-				{
-					Alert.alert(
-						"Invalid Email",
-						"Please enter a valid email address.",
-						[{text: 'OK', onPress: () => {}}],
-						{cancelable: true}
-					);
-					return false;
-				}
-				else
-					return true;
-
-			}
-
-			if (validate(email))
-				this.setState({emailSubmitted: true});
-		}
-
-		if (!this.state.emailSubmitted)
-		{
-			return (
-				<View style = {containerStyle.inputArea}>
-					<View style = {containerStyle.inputBox}>
-						<Text style = {textStyle.regular(20, 'center', 'white')}>
-							Sign up for updates.{'\n'}
-							<Text style = {{fontSize: 16}}>
-								No spam, we promise.
-							</Text>
-						</Text>
-						<View style = {{marginTop: 5, marginBottom: 15}}>
-							<TextInput
-								style = {textStyle.light(22, 'center', 'white')}
-								onChangeText = {(newText) => this.setState({email: newText})}
-								keyboardType = 'email-address'
-								placeholder = "fullname@email.com"
-								placeholderTextColor = 'rgba(255, 255, 255, 0.5)'
-								underlineColorAndroid = 'white'
-							/>
-							<Text style = {textStyle.regular(14, 'center', 'white')}>
-								Email Address
-							</Text>
-						</View>
-						<Button
-							title = "Submit"
-							color = {colors.primaryColor}
-							onPress = {() => submitEmail(this.state.email)}
-						/>
-					</View>
+		return (
+			<View style = {containerStyle.inputArea}>
+				<View style = {containerStyle.inputBox}>
+					<Text style = {textStyle.regular(20, 'center', 'white')}>
+						Registration opens November 19th!
+					</Text>
 				</View>
-			);
-		}
-		else
-		{
-			return (
-				<View style = {containerStyle.inputArea}>
-					<View style = {containerStyle.inputBox}>
-						<Text style = {textStyle.regular(20, 'center', 'white')}>
-							You are now in our email list!
-						</Text>
-					</View>
-				</View>
-			);
-		}
+			</View>
+		);
 	}
 
 	render()
@@ -105,21 +45,24 @@ export default class LandingPage extends Component
 			]}>
 				<View style = {containerStyle.screenSection}>
 					<Image
-						source = {require('cuHacking/assets/images/cuHacking-t.png')}
+						source = {require('cuHacking/assets/images/cuHacking-logo.png')}
 						resizeMode = 'contain'
 						fadeDuration = {0}
 						style = {{width: imageSize, height: imageSize}}
 					/>
 				</View>
 				<View style = {containerStyle.screenSection}>
+					<View style = {[containerStyle.textBox, {marginTop: -15}]}>
+						<Text style = {textStyle.bold(62, 'center', colors.primaryColor)}>cuHacking</Text>
+					</View>
 					<View style = {containerStyle.textBox}>
 						<Text style = {textStyle.bold(24, 'center')}>February 16th - 17th 2019</Text>
-						<Text style = {textStyle.regular(24, 'center')}>@ Carleton University</Text>
+						<Text style = {textStyle.light(24, 'center')}>@ Carleton University</Text>
 					</View>
 				</View>
-				<View style = {{marginVertical: 5}}/>
 				{this.emailBox()}
 			</View>
+			
 		);
 	}
 }

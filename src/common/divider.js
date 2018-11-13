@@ -2,9 +2,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 
-// Custom imports
-import {colors} from './appStyles';
-
 export default class Divider extends Component
 {
     render()

@@ -23,7 +23,7 @@ export default class App extends Component
 						animated
 						backgroundColor = "rgba(0, 0, 0, 0.2)"
 					/>
-					{/* <LandingPage/> */}
+					<LandingPage/>
 					<CountdownPage/>
 					<SponsorsPage/>
 					<ContactPage/>
