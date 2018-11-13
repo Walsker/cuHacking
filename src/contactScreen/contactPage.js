@@ -4,23 +4,11 @@ import {Dimensions, Image, StatusBar, Text, TouchableOpacity, View} from 'react-
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {Divider} from 'cuHacking/src/common';
 
 // TODO: Add links to MLH Code of Conduct and GitHub
 export default class ContactPage extends Component
 {
-    divider()
-    {
-        return (
-            <View style = 
-            {{
-                height: 1.1,
-                marginVertical: 25,
-                marginHorizontal: 50,
-                backgroundColor: 'white'
-            }}/>
-        );
-    }
-
     render()
     {
         var {height, width} = Dimensions.get('window');
@@ -31,7 +19,7 @@ export default class ContactPage extends Component
                 <View style = {containerStyle.textBox}>
                     <Text style = {textStyle.bold(42, 'center', 'white')}>Contact Us</Text>
                 </View>
-                {this.divider()}
+                <Divider color = 'white'/>
                 <View style = {containerStyle.screenSection}>
 					<Image
 						source = {require('cuHacking/assets/images/cuHacking-t.png')}
@@ -47,7 +35,7 @@ export default class ContactPage extends Component
                         <Text style = {textStyle.light(18, 'center', 'white')}>Ottawa, ON K1S 5B6</Text>
                     </View>
                 </View>
-                {this.divider()}
+                <Divider color = 'white'/>
                 <View style = {containerStyle.screenSection}>
                     <View style = {containerStyle.textBox}>
                         <Text style = {textStyle.light(20, 'center', 'white')}>Questions?</Text>
@@ -56,7 +44,7 @@ export default class ContactPage extends Component
                         </TouchableOpacity>
                     </View>
                 </View>
-                {this.divider()}
+                <Divider color = 'white'/>
                 <View style = {containerStyle.screenSection}>
                     <TouchableOpacity onPress = {() => alert("test")}>
                         <View style = {containerStyle.textBox}>

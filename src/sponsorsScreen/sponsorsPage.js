@@ -4,23 +4,11 @@ import {Dimensions, Image, Linking, Text, TouchableOpacity, View} from 'react-na
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {Divider} from 'cuHacking/src/common';
 
 // TODO: Make add links (contact us, logos)
 export default class SponsorsPage extends Component
 {
-	divider()
-	{
-		return (
-			<View style =
-			{{
-				height: 1.2,
-				marginVertical: 25,
-				marginHorizontal: 50,
-				backgroundColor: colors.primaryTextColor
-			}}/>
-		);
-	}
-
 	createImage(image, dimensions, url)
 	{
 		var hyperlink = url ? url : {};
@@ -54,11 +42,11 @@ export default class SponsorsPage extends Component
 						{this.createImage(require('cuHacking/assets/images/ea.png'), {width: largestSize, height: largestSize}, "EA website")}
 						{this.createImage(require('cuHacking/assets/images/invision-logo.png'), {width: largestSize}, "InVision Website")}
 					</View>
-					{this.divider()}
+					<Divider color = {colors.primaryTextColor}/>
 					<View style = {containerStyle.textBox}>
 						<Text style = {textStyle.bold(42, 'center')}>Partners</Text>
 					</View>
-					{this.divider()}
+					<Divider color = {colors.primaryTextColor}/>
 					<View style = {containerStyle.screenSection}>
 						{this.createImage(require('cuHacking/assets/images/carleton_sce.png'), {width: largestSize}, "SCE Link")}
 						{this.createImage(require('cuHacking/assets/images/carleton_scs.png'), {width: largestSize}, "SCS Link")}

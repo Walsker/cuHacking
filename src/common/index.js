@@ -1,3 +1,4 @@
 import AndroidBar from './androidBar';
+import Divider from './divider'
 
-export {AndroidBar};
+export {AndroidBar, Divider};
