@@ -1,9 +1,10 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Alert, Button, Dimensions, Image, StatusBar, Text, TextInput, View} from 'react-native';
+import {Dimensions, Image, Linking, StatusBar, Text, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {Button} from 'cuHacking/src/common';
 
 export default class LandingPage extends Component
 {
@@ -60,9 +61,17 @@ export default class LandingPage extends Component
 						<Text style = {textStyle.light(24, 'center')}>@ Carleton University</Text>
 					</View>
 				</View>
-				{this.emailBox()}
-			</View>
-			
+				{/* {this.emailBox()} */}
+				<View style = {containerStyle.screenSection}>
+					<Button
+						label = "SIGN UP"
+						labelColor = {'white'}
+						color = {colors.primaryColor}
+						inverted = {false}
+						action = {() => Linking.openURL('https://cuhacking-apply.typeform.com/to/JWKRUZ').catch(err => console.error('Could not open form', err))}
+					/>
+				</View>
+			</View>	
 		);
 	}
 }
