@@ -85,7 +85,7 @@ export default class CountdownPage extends Component
 			<View style = {[containerStyle.screen, {backgroundColor: 'black'}]}>
 				<View style = {[containerStyle.screenSection, {marginBottom: -10}]}>
 					<View style = {containerStyle.textBox}>
-						<Text style = {textStyle.light(28, 'center', 'white')}>Event starts in</Text>
+						<Text style = {textStyle.light(28, 'center', 'white')}>The hacking begins in</Text>
 					</View>
 				</View>
 				{this.countdownTimer()}

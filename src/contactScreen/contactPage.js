@@ -58,11 +58,6 @@ export default class ContactPage extends Component
                             <Text style = {textStyle.regular(20, 'center', 'white')}>View us on GitHub</Text>
                         </View>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity onPress = {() => Linking.openURL('https://cuhacking.com/').catch(err => console.error('Could not go to github', err))}>
-                        <View style = {containerStyle.textBox}>
-                            <Text style = {textStyle.regular(20, 'center', 'white')}>Go to cuhacking.com</Text>
-                        </View>
-                    </TouchableOpacity> */}
                 </View>
             </View>
         );

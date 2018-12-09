@@ -1,16 +1,42 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, Image, Linking, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Dimensions, Image, Linking, Text, TouchableOpacity, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 import {Divider} from 'cuHacking/src/common';
 
-// TODO: Make add links (contact us, logos)
 export default class SponsorsPage extends Component
 {
-	createImage(image, dimensions, url)
+	constructor(props)
 	{
+		super(props);
+		
+		var {height, width} = Dimensions.get('window');
+		this.state = 
+		{
+			screenWidth: width,
+			screenHeight: height
+		}
+	}
+
+	hyperlinkError()
+	{
+		Alert.alert(
+			"Uh oh!",
+			"Could not open browser.",
+			[{text: 'OK', onPress: () => {}}],
+			{cancelable: true}
+		);
+	}
+
+	createMegaImage(image, url, customHeight)
+	{
+		var size = this.state.screenWidth / 1.2;
+		dimensions = {width: this.state.screenWidth / 1.2};
+		if (customHeight)
+			dimensions.height = customHeight;
+
 		var hyperlink = url ?
 			() => Linking.openURL(url).catch(err => console.error('Could not open link', err))
 			: () => {};
@@ -21,7 +47,27 @@ export default class SponsorsPage extends Component
 					source = {image}
 					resizeMode = 'contain'
 					fadeDuration = {0}
-					style = {dimensions}
+					style = {{width: size}}
+				/>
+			</TouchableOpacity>
+		);
+	}
+
+	createMicroImage(image, url)
+	{
+		var size = this.state.screenWidth / 1.5;
+		console.log(size);
+		var hyperlink = url ?
+			() => Linking.openURL(url).catch(() => this.hyperlinkError())
+			: () => {};
+
+		return (
+			<TouchableOpacity onPress = {hyperlink}>
+				<Image
+					source = {image}
+					resizeMode = 'contain'
+					fadeDuration = {0}
+					style = {{width: size}}
 				/>
 			</TouchableOpacity>
 		);
@@ -29,9 +75,6 @@ export default class SponsorsPage extends Component
 
 	render()
 	{
-		var {height, width} = Dimensions.get('window');
-		var largestSize = width / 1.2;
-
 		return (
 			<View>
 				<View style = {[containerStyle.screen, {backgroundColor: colors.primaryColor}]}>
@@ -41,8 +84,11 @@ export default class SponsorsPage extends Component
 				</View>
 				<View style = {containerStyle.screen}>
 					<View style = {containerStyle.screenSection}>
-						{this.createImage(require('cuHacking/assets/images/sponsors/ea.png'), {width: largestSize, height: largestSize}, 'https://www.ea.com/en-ca')}
-						{this.createImage(require('cuHacking/assets/images/sponsors/invision-logo.png'), {width: largestSize}, 'https://www.invisionapp.com/')}
+					{this.createMegaImage(require('cuHacking/assets/images/sponsors/MN-Logo-Black.png'), 'https://www.google.ca')}
+					</View>
+					<View style = {containerStyle.screenSection}>
+						{this.createMicroImage(require('cuHacking/assets/images/sponsors/ea.png'), 'https://www.ea.com/en-ca')}
+						{this.createMicroImage(require('cuHacking/assets/images/sponsors/invision-logo.png'), 'https://www.invisionapp.com/')}
 					</View>
 					<Divider color = {colors.primaryTextColor}/>
 					<View style = {containerStyle.textBox}>
@@ -50,9 +96,9 @@ export default class SponsorsPage extends Component
 					</View>
 					<Divider color = {colors.primaryTextColor}/>
 					<View style = {containerStyle.screenSection}>
-						{this.createImage(require('cuHacking/assets/images/partners/carleton_sce.png'), {width: largestSize}, 'https://carleton.ca/sce/')}
-						{this.createImage(require('cuHacking/assets/images/partners/carleton_scs.png'), {width: largestSize}, 'https://carleton.ca/scs/')}
-						{this.createImage(require('cuHacking/assets/images/partners/mlh.png'), {width: largestSize, height: largestSize / 1.8}, 'https://mlh.io/')}
+						{this.createMicroImage(require('cuHacking/assets/images/partners/carleton_sce.png'), 'https://carleton.ca/sce/')}
+						{this.createMicroImage(require('cuHacking/assets/images/partners/carleton_scs.png'), 'https://carleton.ca/scs/')}
+						{this.createMicroImage(require('cuHacking/assets/images/partners/mlh.png'), 'https://mlh.io/')}
 					</View>
 				</View>
 			</View>

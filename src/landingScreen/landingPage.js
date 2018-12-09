@@ -18,19 +18,6 @@ export default class LandingPage extends Component
 		}
 	}
 
-	emailBox()
-	{
-		return (
-			<View style = {containerStyle.inputArea}>
-				<View style = {containerStyle.inputBox}>
-					<Text style = {textStyle.regular(20, 'center', 'white')}>
-						Registration opens November 19th!
-					</Text>
-				</View>
-			</View>
-		);
-	}
-
 	render()
 	{
 		var {height, width} = Dimensions.get('window');
@@ -61,7 +48,6 @@ export default class LandingPage extends Component
 						<Text style = {textStyle.light(24, 'center')}>@ Carleton University</Text>
 					</View>
 				</View>
-				{/* {this.emailBox()} */}
 				<View style = {containerStyle.screenSection}>
 					<Button
 						label = "SIGN UP"

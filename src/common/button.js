@@ -2,7 +2,7 @@
 // Template:
 //	<Button
 //		label = <string>
-//		labelColor = <color> *only works if inverted = false
+//      labelColor = <color>
 //		color = <color>
 //		inverted = <bool>
 //		action = <method>
@@ -10,14 +10,14 @@
 // --------------------------------------------------------------------------------------
 // React Native imports
 import React, {Component} from 'react';
-import {Animated, TouchableWithoutFeedback, View} from 'react-native';
+import {Animated, Text, TouchableWithoutFeedback, TouchableOpacity, View} from 'react-native';
 
 // Custom imports
 import {containerStyle, textStyle, colors} from './appStyles';
 
 export default class Button extends Component
 {
-	constructor(props)
+    constructor(props)
 	{
 		super(props);
 
@@ -28,9 +28,9 @@ export default class Button extends Component
 			ACTIVE_VALUE: 1,
 			duration: 75
 		};
-	}
-
-	onPressIn()
+    }
+    
+    onPressIn()
 	{
 		Animated.timing(this.state.pressValue,
 		{
@@ -48,29 +48,46 @@ export default class Button extends Component
 			delay: 150
 		}).start();
 		this.props.action()
-	}
-
-	render()
+    }
+    
+    render()
 	{
 		return (
 			<View style = {containerStyle.rowBox}>
-				<TouchableWithoutFeedback
+                <TouchableOpacity
+					style = {{alignItems: 'center', alignSelf: 'stretch', paddingVertical: 5}}
+					onPress = {this.props.action}
+				>
+                    <View style =
+                    {{
+                        backgroundColor: this.props.color,
+						paddingVertical: 5,
+						paddingHorizontal: 35,
+						elevation: 2,
+						borderRadius: 30,
+						borderWidth: 2,
+						borderColor: this.props.color
+					}}>
+                        <Text style = {[textStyle.bold(20), {color: this.props.labelColor}]}>
+							{this.props.label}
+						</Text>
+                    </View>
+                </TouchableOpacity>
+				{/* <TouchableWithoutFeedback
 					style = {{alignItems: 'center', alignSelf: 'stretch', flex: 1, paddingVertical: 5}}
 					onPressIn = {this.onPressIn.bind(this)}
 					onPressOut = {this.onRelease.bind(this)}
 				>
-					<Animated.View style = {{
-						// backgroundColor: this.props.inverted ?
-						// 	this.state.pressValue.interpolate({
-						// 		inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-						// 		outputRange: [colors.spaceColor, this.props.color]
-						// 	})
-						// 	:
-						// 	this.state.pressValue.interpolate({
-						// 		inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-						// 		outputRange: [this.props.color, colors.spaceColor]
-						// 	}),
-						backgroundColor: this.props.color,
+					<Animated.View style = {{backgroundColor: this.props.inverted ?
+							this.state.pressValue.interpolate({
+								inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
+								outputRange: [colors.spaceColor, this.props.color]
+							})
+							:
+							this.state.pressValue.interpolate({
+								inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
+								outputRange: [this.props.color, colors.spaceColor]
+							}),
 						paddingVertical: 5,
 						paddingHorizontal: 35,
 						elevation: 2,
@@ -90,7 +107,7 @@ export default class Button extends Component
 										:
 										this.state.pressValue.interpolate({
 											inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-											outputRange: [this.props.labelColor, this.props.color]
+											outputRange: [colors.spaceColor, this.props.color]
 										})
 								}
 							]}
@@ -98,7 +115,7 @@ export default class Button extends Component
 							{this.props.label}
 						</Animated.Text>
 					</Animated.View>
-				</TouchableWithoutFeedback>
+				</TouchableWithoutFeedback> */}
 			</View>
 		);
 	}
