@@ -1,10 +1,9 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, Image, Linking, StatusBar, Text, View} from 'react-native';
+import {Dimensions, Image, Linking, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
-import {Button} from 'cuHacking/src/common';
 
 export default class LandingPage extends Component
 {
@@ -16,6 +15,55 @@ export default class LandingPage extends Component
 			email: "",
 			emailSubmitted: false
 		}
+	}
+
+	socialLinks()
+	{
+		const clickableIcon = (platform, hyperlink) =>
+		{
+			var icon;
+			const iconSize = 50;
+
+			switch (platform)
+			{
+				case 'FB':
+					icon = require('cuHacking/assets/images/socials/facebook_icon.png');
+					break;
+				case 'IG':
+					icon = require('cuHacking/assets/images/socials/instagram_icon.png');
+					break;
+				case 'T':
+					icon = require('cuHacking/assets/images/socials/twitter_icon.png');
+					break;
+			}
+
+			return (
+				<View>
+					<TouchableOpacity
+						onPress = {() => Linking.openURL(hyperlink).catch(err => console.error('Could not open form', err))}
+						style = {{marginVertical: 20, marginHorizontal: 20}}
+					>
+						<Image source = {icon}
+							resizeMode = 'contain'
+							fadeDuration = {0}
+							style = {{width: iconSize, height: iconSize}}
+						/>
+					</TouchableOpacity>
+				</View>
+			);
+		}
+		
+		
+		return(
+			<View style = {{marginVertical: 25}}> 
+				<Text style = {textStyle.light(28, 'center', colors.primaryTextColor)}>Stay tuned!</Text>
+				<View style = {{flexDirection: 'row'}}>
+					{clickableIcon('T', 'https://twitter.com/cuhacking')}
+					{clickableIcon('FB', 'https://www.facebook.com/cuhacking/')}
+					{clickableIcon('IG', 'https://www.instagram.com/cuhacking/')}
+				</View>
+			</View>
+		);
 	}
 
 	render()
@@ -45,17 +93,11 @@ export default class LandingPage extends Component
 					</View>
 					<View style = {containerStyle.textBox}>
 						<Text style = {textStyle.bold(24, 'center')}>February 16th - 17th 2019</Text>
-						<Text style = {textStyle.light(24, 'center')}>@ Carleton University</Text>
+						<Text style = {textStyle.light(24, 'center')}>Carleton University</Text>
 					</View>
 				</View>
 				<View style = {containerStyle.screenSection}>
-					<Button
-						label = "SIGN UP"
-						labelColor = {'white'}
-						color = {colors.primaryColor}
-						inverted = {false}
-						action = {() => Linking.openURL('https://cuhacking-apply.typeform.com/to/JWKRUZ').catch(err => console.error('Could not open form', err))}
-					/>
+					{this.socialLinks()}
 				</View>
 			</View>	
 		);
