@@ -4,7 +4,6 @@ import {Alert, Dimensions, Image, Linking, Text, TouchableOpacity, View} from 'r
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
-import {Divider} from 'cuHacking/src/common';
 
 export default class SponsorsPage extends Component
 {
@@ -16,7 +15,37 @@ export default class SponsorsPage extends Component
 		this.state = 
 		{
 			screenWidth: width,
-			screenHeight: height
+			screenHeight: height,
+			marchLogo:
+			{
+				image: require('cuHacking/assets/images/sponsors/MN-Logo-Black.png'),
+				link: 'https://www.google.ca'
+			},
+			eaLogo: 
+			{
+				image: require('cuHacking/assets/images/sponsors/ea.png'),
+				link: 'https://www.ea.com/en-ca'
+			},
+			inVisionLogo: 
+			{
+				image: require('cuHacking/assets/images/sponsors/invision-logo.png'),
+				link: 'https://www.invisionapp.com/'
+			},
+			sceLogo: 
+			{
+				image: require('cuHacking/assets/images/partners/carleton_sce.png'),
+				link: 'https://carleton.ca/sce/'
+			},
+			scsLogo: 
+			{
+				image: require('cuHacking/assets/images/partners/carleton_scs.png'),
+				link: 'https://carleton.ca/scs/'
+			},
+			mlhLogo: 
+			{
+				image: require('cuHacking/assets/images/partners/mlh.png'),
+				link: 'https://mlh.io/'
+			}
 		}
 	}
 
@@ -27,6 +56,41 @@ export default class SponsorsPage extends Component
 			"Could not open browser.",
 			[{text: 'OK', onPress: () => {}}],
 			{cancelable: true}
+		);
+	}
+
+	createImageTier(logos)
+	{
+		var logoHeight = this.state.screenHeight / 4;
+		var logoWidth = this.state.screenWidth / 1.2;
+		var logosOnTier = logos.length;
+
+		const createImage = (logo) =>
+		{
+			return (
+				<TouchableOpacity
+					key = {logo.link}
+					onPress = {() => Linking.openURL(logo.link).catch(err => console.error('Could not open link', err))}
+					style = {{marginHorizontal: 10}}
+				>
+					<Image
+						source = {logo.image}
+						resizeMode = 'contain'
+						fadeDuration = {0}
+						style = {{width: logoWidth / logosOnTier, height: logoHeight}}
+					/>
+				</TouchableOpacity>
+			);
+		}
+
+		var tier = [];
+		for (i in logos)
+			tier[i] = createImage(logos[i]);
+
+		return (
+			<View style = {{marginVertical: 10, flexDirection: 'row'}}>
+				{tier}
+			</View>
 		);
 	}
 
@@ -56,7 +120,7 @@ export default class SponsorsPage extends Component
 	createMicroImage(image, url)
 	{
 		var size = this.state.screenWidth / 1.5;
-		console.log(size);
+		// console.log(size);
 		var hyperlink = url ?
 			() => Linking.openURL(url).catch(() => this.hyperlinkError())
 			: () => {};
@@ -84,21 +148,20 @@ export default class SponsorsPage extends Component
 				</View>
 				<View style = {containerStyle.screen}>
 					<View style = {containerStyle.screenSection}>
-					{this.createMegaImage(require('cuHacking/assets/images/sponsors/MN-Logo-Black.png'), 'https://www.google.ca')}
-					</View>
-					<View style = {containerStyle.screenSection}>
-						{this.createMicroImage(require('cuHacking/assets/images/sponsors/ea.png'), 'https://www.ea.com/en-ca')}
-						{this.createMicroImage(require('cuHacking/assets/images/sponsors/invision-logo.png'), 'https://www.invisionapp.com/')}
-					</View>
-					<Divider color = {colors.primaryTextColor}/>
+						{this.createImageTier([this.state.marchLogo])}
+						{this.createImageTier([this.state.eaLogo, this.state.inVisionLogo])}
+					</View>					
+				</View>
+				<View style = {[containerStyle.screen, {backgroundColor: colors.primaryColor}]}>
 					<View style = {containerStyle.textBox}>
-						<Text style = {textStyle.bold(42, 'center')}>Partners</Text>
+						<Text style = {textStyle.bold(42, 'center', 'white')}>Partners</Text>
 					</View>
-					<Divider color = {colors.primaryTextColor}/>
+				</View>
+				<View style = {containerStyle.screen}>
 					<View style = {containerStyle.screenSection}>
-						{this.createMicroImage(require('cuHacking/assets/images/partners/carleton_sce.png'), 'https://carleton.ca/sce/')}
-						{this.createMicroImage(require('cuHacking/assets/images/partners/carleton_scs.png'), 'https://carleton.ca/scs/')}
-						{this.createMicroImage(require('cuHacking/assets/images/partners/mlh.png'), 'https://mlh.io/')}
+						{this.createImageTier([this.state.mlhLogo])}
+						{this.createImageTier([this.state.sceLogo])}
+						{this.createImageTier([this.state.scsLogo])}
 					</View>
 				</View>
 			</View>

@@ -56,7 +56,7 @@ export default class LandingPage extends Component
 		
 		return(
 			<View style = {{marginVertical: 25}}> 
-				<Text style = {textStyle.light(28, 'center', colors.primaryTextColor)}>Stay tuned!</Text>
+				<Text style = {textStyle.light(28, 'center', colors.primaryTextColor)}>Stay in the loop!</Text>
 				<View style = {{flexDirection: 'row'}}>
 					{clickableIcon('T', 'https://twitter.com/cuhacking')}
 					{clickableIcon('FB', 'https://www.facebook.com/cuhacking/')}
