@@ -19,7 +19,7 @@ export default class SponsorsPage extends Component
 			marchLogo:
 			{
 				image: require('cuHacking/assets/images/sponsors/MN-Logo-Black.png'),
-				link: 'https://www.google.ca'
+				link: 'https://www.marchnetworks.com'
 			},
 			eaLogo: 
 			{

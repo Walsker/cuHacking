@@ -17,7 +17,6 @@ export default class App extends Component
 		return(
 			<View style = {containerStyle.default}>
 				<ScrollView showsVerticalScrollIndicator = {false} showsHorizontalScrollIndicator = {false}>
-					{/* <AndroidBar/> */}
 					<StatusBar
 						translucent
 						animated
