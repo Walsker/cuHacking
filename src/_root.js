@@ -24,7 +24,7 @@ export default class App extends Component
 					/>
 					<LandingPage/>
 					<CountdownPage/>
-					<SponsorsPage/>
+					{/* <SponsorsPage/> */}
 					<ContactPage/>
 				</ScrollView>
 			</View>

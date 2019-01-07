@@ -14,11 +14,7 @@ export const colors =
 
 export const containerStyle = StyleSheet.create(
 {
-	default: 
-	{
-		flex: 1,
-		// backgroundColor: colors.primarySpaceColor
-	},
+	default: {flex: 1},
 	inputArea:
 	{
 		justifyContent: 'center',
@@ -35,12 +31,13 @@ export const containerStyle = StyleSheet.create(
 	},
 	screen:
 	{
+		flex: 1,
 		justifyContent: 'center',
 		paddingVertical: 20
 	},
 	screenSection:
 	{
-		margin: 5,
+		padding: 5,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},

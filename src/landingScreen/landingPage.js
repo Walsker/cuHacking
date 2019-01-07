@@ -4,6 +4,7 @@ import {Dimensions, Image, Linking, StatusBar, Text, TouchableOpacity, View} fro
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {Button} from 'cuHacking/src/common';
 
 export default class LandingPage extends Component
 {
@@ -55,13 +56,28 @@ export default class LandingPage extends Component
 		
 		
 		return(
-			<View style = {{marginVertical: 25}}> 
+			<View style = {{paddingVertical: 25}}> 
 				<Text style = {textStyle.light(28, 'center', colors.primaryTextColor)}>Stay in the loop!</Text>
 				<View style = {{flexDirection: 'row'}}>
 					{clickableIcon('T', 'https://twitter.com/cuhacking')}
 					{clickableIcon('FB', 'https://www.facebook.com/cuhacking/')}
 					{clickableIcon('IG', 'https://www.instagram.com/cuhacking/')}
 				</View>
+			</View>
+		);
+	}
+
+	signInButton()
+	{
+		return (
+			<View style = {{paddingVertical: 25}}>
+				<Button
+					label = "Sign In"
+					color = {colors.primaryColor}
+					labelColor = 'white'
+					inverted = {false}
+					action = {() => {}}
+				/>
 			</View>
 		);
 	}
@@ -79,7 +95,6 @@ export default class LandingPage extends Component
 					minHeight: height + StatusBar.currentHeight
 				}
 			]}>
-				
 				<View style = {containerStyle.screenSection}>
 					<Image
 						source = {require('cuHacking/assets/images/cuHacking-logo.png')}
@@ -94,11 +109,11 @@ export default class LandingPage extends Component
 					</View>
 					<View style = {containerStyle.textBox}>
 						<Text style = {textStyle.bold(24, 'center')}>February 16th - 17th 2019</Text>
-						<Text style = {textStyle.light(24, 'center')}>Richcraft Hall</Text>
 						<Text style = {textStyle.light(24, 'center')}>Carleton University</Text>
 					</View>
 				</View>
 				<View style = {containerStyle.screenSection}>
+					{this.signInButton()}
 					{this.socialLinks()}
 				</View>
 			</View>	

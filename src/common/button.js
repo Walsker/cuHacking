@@ -2,22 +2,22 @@
 // Template:
 //	<Button
 //		label = <string>
-//      labelColor = <color>
 //		color = <color>
+//		labelColor = <color>
 //		inverted = <bool>
 //		action = <method>
 //	/>
 // --------------------------------------------------------------------------------------
 // React Native imports
 import React, {Component} from 'react';
-import {Animated, Text, TouchableWithoutFeedback, TouchableOpacity, View} from 'react-native';
+import {Animated, Platform, TouchableNativeFeedback, TouchableWithoutFeedback, Text, View} from 'react-native';
 
 // Custom imports
 import {containerStyle, textStyle, colors} from './appStyles';
 
 export default class Button extends Component
 {
-    constructor(props)
+	constructor(props)
 	{
 		super(props);
 
@@ -26,11 +26,27 @@ export default class Button extends Component
 			pressValue: new Animated.Value(0),
 			INACTIVE_VALUE: 0,
 			ACTIVE_VALUE: 1,
-			duration: 75
+			duration: 75,
+			buttonStyle: this.props.inverted ? 
+			{
+				backgroundColor: colors.spaceColor,
+				borderColor: this.props.color,
+				borderRadius: 30,
+				borderWidth: 1.5,
+				paddingVertical: 5,
+				paddingHorizontal: 35
+			}
+			:
+			{
+				backgroundColor: this.props.color,
+				borderRadius: 30,
+				paddingVertical: 5,
+				paddingHorizontal: 35
+			}
 		};
-    }
-    
-    onPressIn()
+	}
+
+	onPressIn()
 	{
 		Animated.timing(this.state.pressValue,
 		{
@@ -48,75 +64,62 @@ export default class Button extends Component
 			delay: 150
 		}).start();
 		this.props.action()
-    }
-    
-    render()
+	}
+
+	renderAndroid()
+	{
+		var rippleColor = this.props.inverted ?
+			TouchableNativeFeedback.Ripple(this.props.color, true) : TouchableNativeFeedback.Ripple(this.props.color, true);
+
+		return (
+			<View style = {containerStyle.rowBox}>
+				<View style = {{borderRadius: 30}}>
+					<TouchableNativeFeedback
+						background = {rippleColor}
+						onPress = {this.props.action}
+					>
+						<View style = {this.state.buttonStyle}>
+							<Text style = {textStyle.bold(20, 'center', this.props.inverted ? this.props.color : this.props.labelColor)}>
+								{this.props.label}
+							</Text>
+						</View>
+					</TouchableNativeFeedback>
+				</View>
+			</View>
+		);
+	}
+
+	renderiOS()
 	{
 		return (
 			<View style = {containerStyle.rowBox}>
-                <TouchableOpacity
-					style = {{alignItems: 'center', alignSelf: 'stretch', paddingVertical: 5}}
-					onPress = {this.props.action}
-				>
-                    <View style =
-                    {{
-                        backgroundColor: this.props.color,
-						paddingVertical: 5,
-						paddingHorizontal: 35,
-						elevation: 2,
-						borderRadius: 30,
-						borderWidth: 2,
-						borderColor: this.props.color
-					}}>
-                        <Text style = {[textStyle.bold(20), {color: this.props.labelColor}]}>
-							{this.props.label}
-						</Text>
-                    </View>
-                </TouchableOpacity>
-				{/* <TouchableWithoutFeedback
-					style = {{alignItems: 'center', alignSelf: 'stretch', flex: 1, paddingVertical: 5}}
-					onPressIn = {this.onPressIn.bind(this)}
-					onPressOut = {this.onRelease.bind(this)}
-				>
-					<Animated.View style = {{backgroundColor: this.props.inverted ?
-							this.state.pressValue.interpolate({
-								inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-								outputRange: [colors.spaceColor, this.props.color]
-							})
-							:
-							this.state.pressValue.interpolate({
-								inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-								outputRange: [this.props.color, colors.spaceColor]
-							}),
-						paddingVertical: 5,
-						paddingHorizontal: 35,
-						elevation: 2,
-						borderRadius: 30,
-						borderWidth: 2,
-						borderColor: this.props.color
-					}}>
-						<Animated.Text
-							style = {[
-								textStyle.bold(20),
-								{
-									color: this.props.inverted ?
-										this.state.pressValue.interpolate({
-											inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-											outputRange: [this.props.color, colors.spaceColor]
-										})
-										:
-										this.state.pressValue.interpolate({
-											inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
-											outputRange: [colors.spaceColor, this.props.color]
-										})
-								}
-							]}
-						>
-							{this.props.label}
-						</Animated.Text>
-					</Animated.View>
-				</TouchableWithoutFeedback> */}
+				<Animated.View style = {{transform: [{scale: 
+					this.state.pressValue.interpolate({
+						inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],
+						outputRange: [1, 0.85]
+					})
+				}]}}>
+					<TouchableWithoutFeedback
+						style = {{alignItems: 'center', alignSelf: 'stretch', flex: 1, paddingVertical: 5}}
+						onPressIn = {this.onPressIn.bind(this)}
+						onPressOut = {this.onRelease.bind(this)}
+					>
+						<View style = {this.state.buttonStyle}>
+							<Text style = {textStyle.bold(20, 'center', this.props.inverted ? this.props.color : this.props.labelColor)}>
+								{this.props.label}	
+							</Text>
+						</View>
+					</TouchableWithoutFeedback>
+				</Animated.View>
 			</View>
 		);
+	}
+
+	render()
+	{
+		if (Platform.OS === 'ios')
+			return this.renderiOS();
+		else
+			return this.renderAndroid();
 	}
 }
