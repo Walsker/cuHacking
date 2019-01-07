@@ -11,7 +11,7 @@ export default class ContactSection extends Component
     render()
     {
         var {height, width} = Dimensions.get('window');
-        var imageSize = width / 2;
+        var imageSize = width / 2.5;
         
         return (
             <View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor, minHeight: height + StatusBar.currentHeight + 10}]}>
@@ -21,7 +21,7 @@ export default class ContactSection extends Component
                 <Divider color = 'white'/>
                 <View style = {containerStyle.screenSection}>
 					<Image
-						source = {require('cuHacking/assets/images/cuHacking-t.png')}
+						source = {require('cuHacking/assets/images/cuHacking-logo-inverse.png')}
 						resizeMode = 'contain'
 						fadeDuration = {0}
 						style = {{width: imageSize, height: imageSize}}
