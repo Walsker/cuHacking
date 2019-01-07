@@ -4,7 +4,7 @@ import {StatusBar, View} from 'react-native';
 
 // Custom imports
 import {containerStyle} from 'cuHacking/src/common/appStyles';
-import LandingPage from 'cuHacking/src/landingScreen';
+import LandingPage from 'cuHacking/src/landingScreen/landingPage';
 
 export default class App extends Component
 {
