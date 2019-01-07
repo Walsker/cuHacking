@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
 // Custom imports
-import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 
 const MILLS_PER_WEEK = 6.048e+8;
 const MILLS_PER_DAY = 8.64e+7;
@@ -11,7 +11,7 @@ const MILLS_PER_HOUR = 3.6e+6;
 const MILLS_PER_MINUTE = 60000;
 const MILLS_PER_SECOND = 1000;
 
-export default class CountdownPage extends Component
+export default class CountdownSection extends Component
 {
 	constructor(props)
 	{

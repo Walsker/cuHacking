@@ -6,8 +6,7 @@ import {Dimensions, Image, Linking, StatusBar, Text, TouchableOpacity, View} fro
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 import {Divider} from 'cuHacking/src/common';
 
-// TODO: Add links to MLH Code of Conduct and GitHub
-export default class ContactPage extends Component
+export default class ContactSection extends Component
 {
     render()
     {
