@@ -86,5 +86,7 @@
 		<string>Roboto-Thin.ttf</string>
 		<string>Roboto-ThinItalic.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Access to your camera is needed to scan QR codes.</string>
 </dict>
 </plist>

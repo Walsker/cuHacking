@@ -10,7 +10,7 @@ const RootNavigator = createStackNavigator(
 },
 {
 	headerMode: 'none',
-	initialRouteName: "Landing"
+	initialRouteName: "SignIn"
 });
 
 export default createAppContainer(RootNavigator);
