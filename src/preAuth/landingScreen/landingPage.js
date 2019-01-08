@@ -14,7 +14,7 @@ export default class LandingPage extends Component
 		return (
 			<ScrollView showsVerticalScrollIndicator = {false} showsHorizontalScrollIndicator = {false}>
 				<LogoSection/>
-				<CountdownSection/>
+				{/* <CountdownSection/> */}
 				<ContactSection/>
 			</ScrollView>
 		);

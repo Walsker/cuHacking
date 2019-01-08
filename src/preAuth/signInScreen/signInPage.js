@@ -19,6 +19,8 @@ export default class SignInPage extends Component
         alert("Welcome!");
         console.log(code.data);
         this.setState({useCamera: false});
+
+        this.props.navigation.navigate("Main");
     }
 
     renderCamera()
@@ -28,7 +30,6 @@ export default class SignInPage extends Component
             return (
                 <QRCodeScanner
                     ref = {(node) => {this.scanner = node}}
-                    fadeIn = {false}
                     onRead = {this.processCode.bind(this)}
                     showMarker
                     markerStyle = {styles.cameraMarker}
