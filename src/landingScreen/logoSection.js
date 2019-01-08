@@ -2,11 +2,14 @@
 import React, {Component} from 'react';
 import {Dimensions, Image, Linking, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
+// React Navigation imports
+import {withNavigation} from 'react-navigation';
+
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 import {Button} from 'cuHacking/src/common';
 
-export default class LogoSection extends Component
+class LogoSection extends Component
 {
 	constructor(props)
 	{
@@ -53,10 +56,10 @@ export default class LogoSection extends Component
 				</View>
 			);
 		}
-		
-		
+
+
 		return(
-			<View style = {{paddingVertical: 25}}> 
+			<View style = {{paddingVertical: 25}}>
 				<Text style = {textStyle.light(28, 'center', colors.primaryTextColor)}>Stay in the loop!</Text>
 				<View style = {{flexDirection: 'row'}}>
 					{clickableIcon('T', 'https://twitter.com/cuhacking')}
@@ -76,7 +79,7 @@ export default class LogoSection extends Component
 					color = {colors.primaryColor}
 					labelColor = 'white'
 					inverted = {false}
-					action = {() => {}}
+					action = {() => this.props.navigation.navigate("SignIn")}
 				/>
 			</View>
 		);
@@ -116,7 +119,9 @@ export default class LogoSection extends Component
 					{this.signInButton()}
 					{this.socialLinks()}
 				</View>
-			</View>	
+			</View>
 		);
 	}
 }
+
+export default withNavigation(LogoSection);

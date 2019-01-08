@@ -9,14 +9,14 @@ import ContactSection from './contactSection';
 
 export default class LandingPage extends Component
 {
-    render()
-    {
-        return (
-            <ScrollView showsVerticalScrollIndicator = {false} showsHorizontalScrollIndicator = {false}>
-                <LogoSection/>
-                <CountdownSection/>
-                <ContactSection/>
-            </ScrollView>
-        );
-    }
+	render()
+	{
+		return (
+			<ScrollView showsVerticalScrollIndicator = {false} showsHorizontalScrollIndicator = {false}>
+				<LogoSection/>
+				<CountdownSection/>
+				<ContactSection/>
+			</ScrollView>
+		);
+	}
 }
