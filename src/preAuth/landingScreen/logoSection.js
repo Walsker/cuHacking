@@ -49,7 +49,7 @@ class LogoSection extends Component
 					>
 						<Image source = {icon}
 							resizeMode = 'contain'
-							fadeDuration = {0}
+							fadeDuration = {200}
 							style = {{width: iconSize, height: iconSize}}
 						/>
 					</TouchableOpacity>
@@ -102,7 +102,7 @@ class LogoSection extends Component
 					<Image
 						source = {require('cuHacking/assets/images/cuHacking-logo.png')}
 						resizeMode = 'contain'
-						fadeDuration = {0}
+						fadeDuration = {50}
 						style = {{width: imageSize, height: imageSize}}
 					/>
 				</View>

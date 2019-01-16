@@ -28,7 +28,7 @@ const RootNavigator = createSwitchNavigator(
     "Auth": PreAuthStack
 },
 {
-	initialRouteName: "Main"
+	initialRouteName: "Auth"
 });
 
 export default createAppContainer(RootNavigator);

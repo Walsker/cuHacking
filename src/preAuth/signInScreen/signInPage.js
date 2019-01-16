@@ -16,8 +16,7 @@ export default class SignInPage extends Component
 
 	processCode(code)
 	{
-		alert("Welcome!");
-		console.log(code.data);
+		alert("Scanned!\nData: " + code.data);
 		this.setState({useCamera: false});
 
 		this.props.navigation.navigate("Main");
