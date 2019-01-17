@@ -26,7 +26,7 @@ const RootNavigator = createSwitchNavigator(
 {
 	// "AuthLoading": AuthLoadingScreen,
     "Main": MainNavigator,
-	"Auth": PreAuthStack,
+	"PreAuth": PreAuthStack,
 	"Loading": {screen: LoadingPage}
 },
 {

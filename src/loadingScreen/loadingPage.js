@@ -13,6 +13,7 @@ import '@firebase/auth';
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
 import AUTH_TYPES from './authTypes';
+import NULL_CREDENTIALS from 'cuHacking/src/preAuth/signInScreen/nullCredentials';
 
 class LoadingPage extends Component
 {
@@ -41,6 +42,19 @@ class LoadingPage extends Component
 	{
 		console.log("Mounted");
 		
+		if (this.props.credentials == NULL_CREDENTIALS)
+			this.props.navigation.navigate("PreAuth");
+
+		// If null creds
+			// go to pre auth
+		// else
+			//go to sign in
+			// if sign in accepted
+				// go to postAuth
+			// else
+				// invalid credentials, go to sign in
+		
+		
 
 		return;
 		var qrCode = qrCodeRaw.data.split("|");
@@ -66,7 +80,7 @@ class LoadingPage extends Component
 const mapStateToProps = (state) =>
 {
 	return {
-		credentials: state.qrCode
+		credentials: state.credentials
 	};
 };
 export default connect(mapStateToProps, {setAuthStatus})(LoadingPage);

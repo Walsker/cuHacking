@@ -8,12 +8,17 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './_rootReducer';
 
+// Redux Persist imports
+import {persistReducer, persistStore} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import {PersistGate} from 'redux-persist/integration/react'
+
 // Firebase imports
 import firebase from '@firebase/app';
 import firebaseConfig from 'cuHacking/firebaseConfig';
 
 // Custom imports
-import {colors, containerStyle} from 'cuHacking/src/common/appStyles';
+import {colors} from 'cuHacking/src/common/appStyles';
 import RootNavigator from './_rootNavigator';
 
 export default class App extends Component
@@ -26,19 +31,29 @@ export default class App extends Component
 
 	render()
 	{
-		const store = createStore(rootReducer);
+		const persistConfig = {
+			key: 'root',
+			storage,
+			whitelist: ['signInReducers']
+		};
+		const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+		const store = createStore(persistedReducer);
+		const persistor = persistStore(store);
 
 		return(
 			<SafeAreaView style = {styles.safeView}>
+				<StatusBar
+					translucent
+					animated = {true}
+					backgroundColor = "rgba(0, 0, 0, 0.2)"
+				/>
 				<Provider store = {store}>
-					<View style = {styles.default}>
-						<StatusBar
-							translucent
-							animated = {true}
-							backgroundColor = "rgba(0, 0, 0, 0.2)"
-						/>
-						<RootNavigator/>
-					</View>
+					<PersistGate loading = {<View style = {{flex: 1, backgroundColor: 'blue'}}/>} persistor = {persistor}>
+						<View style = {styles.default}>			
+							<RootNavigator/>
+						</View>
+					</PersistGate>
 				</Provider>
 			</SafeAreaView>
 		);
