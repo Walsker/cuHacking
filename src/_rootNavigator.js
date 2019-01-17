@@ -1,13 +1,13 @@
 // React Navigation imports
 import {createAppContainer, createStackNavigator, createSwitchNavigator, createBottomTabNavigator} from 'react-navigation';
-import {LandingPage, SignInPage, LoadingPage} from 'cuHacking/src/preAuth';
+import {LandingPage, SignInPage} from 'cuHacking/src/preAuth';
+import LoadingPage from 'cuHacking/src/loadingScreen/loadingPage';
 import {UpdatesPage, MapPage, TeamsPage, DisplayIDPage} from 'cuHacking/src/postAuth';
 
 const PreAuthStack = createStackNavigator(
 {
 	"Landing": {screen: LandingPage},
-	"SignIn": {screen: SignInPage},
-	"Loading": {screen: LoadingPage}
+	"SignIn": {screen: SignInPage}
 },
 {
 	headerMode: 'none',
@@ -26,10 +26,11 @@ const RootNavigator = createSwitchNavigator(
 {
 	// "AuthLoading": AuthLoadingScreen,
     "Main": MainNavigator,
-    "Auth": PreAuthStack
+	"Auth": PreAuthStack,
+	"Loading": {screen: LoadingPage}
 },
 {
-	initialRouteName: "Auth"
+	initialRouteName: "Loading"
 });
 
 export default createAppContainer(RootNavigator);
