@@ -16,10 +16,10 @@ export default class SignInPage extends Component
 
 	processCode(code)
 	{
-		alert("Scanned!\nData: " + code.data);
 		this.setState({useCamera: false});
 
-		this.props.navigation.navigate("Main");
+		// Using navigation props for now, before redux is implemented
+		this.props.navigation.navigate("Loading", {qrCode: code});
 	}
 
 	renderCamera()

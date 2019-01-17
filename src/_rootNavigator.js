@@ -1,12 +1,13 @@
 // React Navigation imports
 import {createAppContainer, createStackNavigator, createSwitchNavigator, createBottomTabNavigator} from 'react-navigation';
-import {LandingPage, SignInPage} from 'cuHacking/src/preAuth';
+import {LandingPage, SignInPage, LoadingPage} from 'cuHacking/src/preAuth';
 import {UpdatesPage, MapPage, TeamsPage, DisplayIDPage} from 'cuHacking/src/postAuth';
 
 const PreAuthStack = createStackNavigator(
 {
 	"Landing": {screen: LandingPage},
-	"SignIn": {screen: SignInPage}
+	"SignIn": {screen: SignInPage},
+	"Loading": {screen: LoadingPage}
 },
 {
 	headerMode: 'none',
