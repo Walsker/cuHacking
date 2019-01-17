@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {Alert, AsyncStorage, StyleSheet, Text, View} from 'react-native';
 
 // Redux imports
+import {connect} from 'react-redux';
+import {setAuthStatus} from './actions';
 
 // Firebase imports
 import firebase from '@firebase/app';
@@ -10,8 +12,9 @@ import '@firebase/auth';
 
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
+import AUTH_TYPES from './authTypes';
 
-export default class LoadingPage extends Component
+class LoadingPage extends Component
 {
 	authenticationFailed()
 	{
@@ -31,56 +34,23 @@ export default class LoadingPage extends Component
 
 		// Attempting to sign in the user
 		firebase.auth().signInWithEmailAndPassword(email, password).then().catch(createAccount);
-		// this.props.navigation.navigate("Main");
+		// this.props.navigation.navigate("Main"); // TODO: wait until promise returns okay
 	}
 
-	fetchCredentials()
-	{
-		retrieveQRCode = async () =>
-		{
-			try
-			{
-				console.log("Attemping to fetch data....");
-				const value = await AsyncStorage.getItem('credentials');
-				
-				if (value !== null)
-				{
-					// We have data!!
-					console.log("Data Retrieved", value);
-					return value;
-				}
-				else 
-				{
-					console.log("Data is null");
-					return null
-				}
-			}
-			catch (error)
-			{
-				console.log("Error in fetch", error);
-				return error;
-			}
-		}
-
-		console.log(retrieveQRCode());
-	}
 	componentDidMount()
 	{
-		// const { navigation } = this.props;
-		// const qrCodeRaw = navigation.getParam('qrCode', {qrCode: 'none'});
-
-		// var qrCode = qrCodeRaw.data.split("|");
-
-		// if (qrCode[0] == "Zs2UtedQrvfJzDpXQ7WR6aeEBi33")
-		// {
-		// 	console.log(qrCode);
-		// 	this.authenticate(qrCode[1], qrCode[2]);
-		// }
-		// else this.authenticationFailed();
-
 		console.log("Mounted");
-		AsyncStorage.setItem('credentials', "QR CODE");
-		this.fetchCredentials();
+		
+
+		return;
+		var qrCode = qrCodeRaw.data.split("|");
+
+		if (qrCode[0] == "Zs2UtedQrvfJzDpXQ7WR6aeEBi33")
+		{
+			console.log(qrCode);
+			this.authenticate(qrCode[1], qrCode[2]);
+		}
+		else this.authenticationFailed();
 	}
 
 	render()
@@ -93,13 +63,22 @@ export default class LoadingPage extends Component
 	}
 }
 
+const mapStateToProps = (state) =>
+{
+	return {
+		credentials: state.qrCode
+	};
+};
+export default connect(mapStateToProps, {setAuthStatus})(LoadingPage);
+
+
 const styles = StyleSheet.create(
+{
+	default:
 	{
-		default:
-		{
-			flex: 1,
-			backgroundColor: colors.primaryColor,
-			justifyContent: 'center',
-			alignItems: 'center'
-		},
-	});
+		flex: 1,
+		backgroundColor: colors.primaryColor,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+});

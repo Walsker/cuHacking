@@ -3,10 +3,14 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
+// Redux imports
+import {connect} from 'react-redux';
+import {setCredentials} from './actions';
+
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
 
-export default class SignInPage extends Component
+class SignInPage extends Component
 {
 	constructor(props)
 	{
@@ -53,6 +57,9 @@ export default class SignInPage extends Component
 		);
 	}
 }
+
+export default connect(null, {setCredentials})(SignInPage);
+
 
 const styles = StyleSheet.create(
 {

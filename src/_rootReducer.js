@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import authenticationStatus from './loadingScreen/reducers';
+import loadingReducers from './loadingScreen/reducers';
+import signInReducers from './preAuth/signInScreen/reducers'
 
 export default combineReducers({
-    ...authenticationStatus
+    ...loadingReducers,
+    ...signInReducers
 });
