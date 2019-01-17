@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Alert, AsyncStorage, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Alert, StyleSheet, View} from 'react-native';
 
 // Redux imports
 import {connect} from 'react-redux';
@@ -46,13 +46,13 @@ class LoadingPage extends Component
 			this.props.navigation.navigate("PreAuth");
 
 		// If null creds
-			// go to pre auth
+			// go to pre auth // done
 		// else
-			//go to sign in
+			// attempt to authenticate
 			// if sign in accepted
 				// go to postAuth
 			// else
-				// invalid credentials, go to sign in
+				// invalid credentials, go to preAuth
 		
 		
 
@@ -71,7 +71,10 @@ class LoadingPage extends Component
 	{
 		return (
 			<View style = {styles.default}>
-				<Text style = {textStyle.regular(32, 'center', 'white')}>loading...</Text>
+				<ActivityIndicator
+					size = 'large'
+					color = 'white'
+				/>
 			</View>
 		);
 	}

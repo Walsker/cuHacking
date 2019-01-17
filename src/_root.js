@@ -49,7 +49,7 @@ export default class App extends Component
 					backgroundColor = "rgba(0, 0, 0, 0.2)"
 				/>
 				<Provider store = {store}>
-					<PersistGate loading = {<View style = {{flex: 1, backgroundColor: 'blue'}}/>} persistor = {persistor}>
+					<PersistGate loading = {<View style = {styles.safeView}/>} persistor = {persistor}>
 						<View style = {styles.default}>			
 							<RootNavigator/>
 						</View>
