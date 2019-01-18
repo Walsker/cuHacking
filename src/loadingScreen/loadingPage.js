@@ -44,15 +44,15 @@ class LoadingPage extends Component
 		
 		if (this.props.credentials == NULL_CREDENTIALS)
 			this.props.navigation.navigate("PreAuth");
-
-		// If null creds
-			// go to pre auth // done
-		// else
+		else
+		{
+			console.log(this.props.credentials);
 			// attempt to authenticate
 			// if sign in accepted
 				// go to postAuth
 			// else
 				// invalid credentials, go to preAuth
+		}		
 		
 		
 
@@ -82,6 +82,7 @@ class LoadingPage extends Component
 
 const mapStateToProps = (state) =>
 {
+	console.log("LOADING::", state.credentials);
 	return {
 		credentials: state.credentials
 	};

@@ -34,12 +34,13 @@ export default class App extends Component
 		const persistConfig = {
 			key: 'root',
 			storage,
-			whitelist: ['signInReducers']
+			blacklist: ['signInReducers']
 		};
 		const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 		const store = createStore(persistedReducer);
 		const persistor = persistStore(store);
+		// persistor.purge();
 
 		return(
 			<SafeAreaView style = {styles.safeView}>

@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Alert, StyleSheet, Text, View} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // Redux imports
@@ -9,6 +9,7 @@ import {setCredentials} from './actions';
 
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
+import AUTH_KEY from 'cuHacking/authKey';
 
 class SignInPage extends Component
 {
@@ -22,9 +23,24 @@ class SignInPage extends Component
 	{
 		this.setState({useCamera: false});
 
-		// Using navigation props for now, before redux is implemented
-		this.props.navigation.navigate("Loading", {qrCode: code});
-	}
+		var data = code.data.split("|");
+		
+		if (data[0] != AUTH_KEY)
+		{
+			Alert.alert(
+				"Invalid QR Code",
+				"Please scan your personal code provided via email.",
+				[{text: 'OK', onPress: () => this.setState({useCamera: true})}],
+				{cancelable: false}
+			);
+		}
+		else
+		{
+			this.props.setCredentials(data);
+			this.props.navigation.navigate("Loading");
+		}
+
+	}//Zs2UtedQrvfJzDpXQ7WR6aeEBi33|walskerw@gmail.com|uidCod
 
 	renderCamera()
 	{
@@ -33,6 +49,7 @@ class SignInPage extends Component
 			return (
 				<QRCodeScanner
 					ref = {(node) => {this.scanner = node}}
+					fadeIn = {false}
 					onRead = {this.processCode.bind(this)}
 					showMarker
 					markerStyle = {styles.cameraMarker}
@@ -40,7 +57,7 @@ class SignInPage extends Component
 				/>
 			);
 		}
-		else return <View/>;
+		else return <ActivityIndicator color = {colors.primaryColor} size = 'large'/>;
 	}
 
 	render()
@@ -74,6 +91,7 @@ const styles = StyleSheet.create(
 	cameraSpace:
 	{
 		flex: 0.9,
+		justifyContent: 'center',
 		backgroundColor: colors.primarySpaceColor
 	},
 	camera: {height: '100%'},
