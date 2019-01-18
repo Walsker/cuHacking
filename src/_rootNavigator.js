@@ -7,10 +7,7 @@ import {createAppContainer, createStackNavigator, createSwitchNavigator, createB
 // Routes
 import {LandingPage, SignInPage} from 'cuHacking/src/preAuth';
 import LoadingPage from 'cuHacking/src/loadingScreen/loadingPage';
-import {AboutPage, BadgePage, MapPage, SchedulePage, UpdatesPage} from 'cuHacking/src/postAuth';
-
-// Custom imports
-import TabNavigator from './postAuth/tabNavigator';
+import {AboutPage, BadgePage, MapPage, SchedulePage, UpdatesPage, TabNavigator} from 'cuHacking/src/postAuth';
 
 const PreAuthStack = createStackNavigator(
 {
