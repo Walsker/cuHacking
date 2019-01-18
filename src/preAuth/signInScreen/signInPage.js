@@ -18,15 +18,20 @@ class SignInPage extends Component
 		super(props);
 		this.state = {useCamera: true};
 	}
-
+	
+	// A method for processing the scanned QR code
 	processCode(code)
 	{
+		// Disabling the camera
 		this.setState({useCamera: false});
 
+		// Extracting the data from the QR code
 		var data = code.data.split("|");
 		
-		if (data[0] != AUTH_KEY)
+		// Checking if the QR code is in the correct format
+		if (data[0] != AUTH_KEY || (data[1] == null || data[2] == null))
 		{
+			// Displaying an error message
 			Alert.alert(
 				"Invalid QR Code",
 				"Please scan your personal code provided via email.",
@@ -36,11 +41,11 @@ class SignInPage extends Component
 		}
 		else
 		{
+			// Saving the QR code to the device and moving to the loading screen
 			this.props.setCredentials(data);
 			this.props.navigation.navigate("Loading");
 		}
-
-	}//Zs2UtedQrvfJzDpXQ7WR6aeEBi33|walskerw@gmail.com|uidCod
+	}
 
 	renderCamera()
 	{

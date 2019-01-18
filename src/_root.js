@@ -51,7 +51,7 @@ export default class App extends Component
 				/>
 				<Provider store = {store}>
 					<PersistGate loading = {<View style = {styles.safeView}/>} persistor = {persistor}>
-						<View style = {styles.default}>			
+						<View style = {styles.default}>
 							<RootNavigator/>
 						</View>
 					</PersistGate>
