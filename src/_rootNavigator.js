@@ -2,7 +2,7 @@
 import {createAppContainer, createStackNavigator, createSwitchNavigator, createBottomTabNavigator} from 'react-navigation';
 import {LandingPage, SignInPage} from 'cuHacking/src/preAuth';
 import LoadingPage from 'cuHacking/src/loadingScreen/loadingPage';
-import {UpdatesPage, MapPage, TeamsPage, DisplayIDPage} from 'cuHacking/src/postAuth';
+import {AboutPage, BadgePage, MapPage, SchedulePage, UpdatesPage} from 'cuHacking/src/postAuth';
 
 const PreAuthStack = createStackNavigator(
 {
@@ -13,18 +13,18 @@ const PreAuthStack = createStackNavigator(
 	headerMode: 'none',
 	initialRouteName: "Landing"
 });
-	
+
 const MainNavigator = createBottomTabNavigator(
 {
 	"Updates": UpdatesPage,
 	"Map": MapPage,
-	"Teams": TeamsPage,
-	"Badge": DisplayIDPage
+	"Badge": BadgePage,
+	"Schedule": SchedulePage,
+	"About": AboutPage
 });
 
 const RootNavigator = createSwitchNavigator(
 {
-	// "AuthLoading": AuthLoadingScreen,
     "Main": MainNavigator,
 	"PreAuth": PreAuthStack,
 	"Loading": {screen: LoadingPage}

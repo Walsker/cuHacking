@@ -1,6 +1,7 @@
-import UpdatesPage from './updatesScreen/updatesPage';
+import AboutPage from './aboutScreen/aboutPage.js'
+import BadgePage from './badgeScreen/badgePage';
 import MapPage from './mapScreen/mapPage';
-import TeamsPage from './teamsScreen/teamsPage';
-import DisplayIDPage from './displayIDPage';
+import SchedulePage from './scheduleScreen/schedulePage';
+import UpdatesPage from './updatesScreen/updatesPage';
 
-export {UpdatesPage, MapPage, TeamsPage, DisplayIDPage};
+export {AboutPage, BadgePage, MapPage, SchedulePage, UpdatesPage};

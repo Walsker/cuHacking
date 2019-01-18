@@ -5,13 +5,13 @@ import {StyleSheet, Text, View} from 'react-native';
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
 
-export default class TeamsPage extends Component
+export default class BadgePage extends Component
 {
 	render()
 	{
 		return (
 			<View style = {styles.default}>
-				<Text>"THE TEAM BUILDER INTERFACE"</Text>
+				<Text>"Display the QR CODE here"</Text>
 			</View>
 		);
 	}
