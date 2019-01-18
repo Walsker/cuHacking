@@ -49,17 +49,7 @@ class LoadingPage extends Component
 		// Checking if credentials have been saved to the device
 		if (email == NULL_CREDENTIALS.email || password == NULL_CREDENTIALS.password)
 			this.props.navigation.navigate("PreAuth");
-		else
-		{
-			// console.log("Not null!: ", this.props.credentials, NULL_CREDENTIALS);
-			this.authenticate();
-			// attempt to authenticate
-			// if sign in accepted
-				// go to postAuth
-			// else
-				// delete credentials
-				// invalid credentials, go to preAuth
-		}		
+		else this.authenticate();	
 	}
 
 	render()
