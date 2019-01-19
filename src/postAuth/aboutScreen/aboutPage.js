@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
 
 // Custom imports
-import {colors, textStyle} from 'cuHacking/src/common/appStyles';
+import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 import {Button} from 'cuHacking/src/common';
 
 // TODO: add refresh (re-fetch from firebase) button
@@ -32,7 +32,7 @@ class AboutPage extends Component
 	render()
 	{
 		return (
-			<View style = {styles.default}>
+			<View style = {containerStyle.tabPage}>
 				<Text>About page and sponsors</Text>
 				<Button
 					label = "Sign out"
@@ -49,13 +49,7 @@ class AboutPage extends Component
 export default connect(null, {signOut})(AboutPage);
 
 
-const styles = StyleSheet.create(
+const localStyle = StyleSheet.create(
 {
-	default:
-	{
-		flex: 1,
-		backgroundColor: colors.primarySpaceColor,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
+
 });

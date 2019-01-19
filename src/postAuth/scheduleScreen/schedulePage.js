@@ -4,26 +4,21 @@ import {StyleSheet, Text, View} from 'react-native';
 
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
+import { containerStyle } from '../../common/appStyles';
 
 export default class SchedulePage extends Component
 {
 	render()
 	{
 		return (
-			<View style = {styles.default}>
+			<View style = {containerStyle.tabPage}>
 				<Text>"THE TEAM BUILDER INTERFACE"</Text>
 			</View>
 		);
 	}
 }
 
-const styles = StyleSheet.create(
+const localStyle = StyleSheet.create(
 {
-	default:
-	{
-		flex: 1,
-		backgroundColor: colors.primarySpaceColor,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
+
 });

@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {setCredentials} from './actions';
 
 // Custom imports
-import {colors, textStyle} from 'cuHacking/src/common/appStyles';
+import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
 import AUTH_KEY from 'cuHacking/authKey';
 
 class SignInPage extends Component
@@ -57,8 +57,8 @@ class SignInPage extends Component
 					fadeIn = {false}
 					onRead = {this.processCode.bind(this)}
 					showMarker
-					markerStyle = {styles.cameraMarker}
-					cameraStyle = {styles.camera}
+					markerStyle = {localStyle.cameraMarker}
+					cameraStyle = {localStyle.camera}
 				/>
 			);
 		}
@@ -68,12 +68,12 @@ class SignInPage extends Component
 	render()
 	{
 		return (
-			<View style = {styles.default}>
+			<View style = {containerStyle.default}>
 				<StatusBar barStyle = 'light-content'/>
-				<View style = {styles.cameraSpace}>
+				<View style = {localStyle.cameraSpace}>
 					{this.renderCamera()}
 				</View>
-				<View style = {styles.prompt}>
+				<View style = {localStyle.prompt}>
 					<Text style = {textStyle.light(24, 'center', 'white')}>Please scan your QR ID code.</Text>
 				</View>
 			</View>
@@ -84,9 +84,8 @@ class SignInPage extends Component
 export default connect(null, {setCredentials})(SignInPage);
 
 
-const styles = StyleSheet.create(
+const localStyle = StyleSheet.create(
 {
-	default: {flex: 1},
 	prompt:
 	{
 		flex: 0.1,
