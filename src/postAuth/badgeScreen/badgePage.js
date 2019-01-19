@@ -24,12 +24,14 @@ class BadgePage extends Component
 					<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{firstName}</Text>
 					<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{lastName}</Text>
 				</View>
-				<QRCode
-					value = {BADGE_KEY + "|" + id}
-					size = {width * 0.8}
-					color = {colors.primaryColor}
-					backgroundColor = {colors.lightSpaceColor}
-				/>
+				<View style = {localStyle.codeDisplay}>
+					<QRCode
+						value = {BADGE_KEY + "|" + id}
+						size = {width * 0.8}
+						color = {colors.primaryColor}
+						backgroundColor = {colors.lightSpaceColor}
+					/>
+				</View>
 				<View style = {localStyle.textBox}>
 					<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{school}</Text>
 					<Text style = {textStyle.regular(42, 'center', colors.primaryTextColor)}>{program}</Text>
@@ -54,4 +56,13 @@ const localStyle = StyleSheet.create(
 	{
 		paddingVertical: 50
 	},
+	codeDisplay:
+	{
+		backgroundColor: colors.lightSpaceColor,
+		borderColor: colors.dividerColor,
+		borderRadius: 10,
+		borderWidth: 1,
+		elevation: 1,
+		padding: 10
+	}
 });

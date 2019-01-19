@@ -28,7 +28,7 @@ class TabNavigator extends Component
 				width: 25,
 				height: 25,
 				backgroundColor: 'transparent',
-				borderColor: colors.secondaryTextColor,
+				borderColor: colors.dividerColor,
 				borderWidth: 1
 			}
 		});
@@ -94,7 +94,7 @@ class TabNavigator extends Component
 					<View style = {{alignItems: 'center'}}>
 						{isActive ? icon.active : icon.inactive}
 						<Text style = {{
-							paddingVertical: 5,
+							paddingVertical: 3,
 							...textStyle.light(12, 'center', isActive ? colors.primaryColor : colors.secondaryTextColor)
 						}}>
 							{title}
@@ -118,11 +118,13 @@ class TabNavigator extends Component
 				<View style = {localStyle.badgeArcBack}/>
 				<View style = {localStyle.background}/>
 				<View style = {localStyle.badgeArcFront}/>
-				{this.createButton(this.createMockIcon(), "Updates", () => this.navigateTo("Updates"))}
-				{this.createButton(this.createMockIcon(), "Map", () => this.navigateTo("Map"))}
-				{this.createButton(this.createMockBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
-				{this.createButton(this.createMockIcon(), "Schedule", () => this.navigateTo("Schedule"))}
-				{this.createButton(this.createMockIcon(), "About", () => this.navigateTo("About"))}
+				<View style = {localStyle.buttonContainer}>
+					{this.createButton(this.createMockIcon(), "Updates", () => this.navigateTo("Updates"))}
+					{this.createButton(this.createMockIcon(), "Map", () => this.navigateTo("Map"))}
+					{this.createButton(this.createMockBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
+					{this.createButton(this.createMockIcon(), "Schedule", () => this.navigateTo("Schedule"))}
+					{this.createButton(this.createMockIcon(), "About", () => this.navigateTo("About"))}
+				</View>
 			</View>
 		);
 	}
@@ -142,9 +144,13 @@ const localStyle = StyleSheet.create(
 	default:
 	{
 		flex: 0.075,
-		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	buttonContainer:
+	{
+		flexDirection: 'row',
+		elevation: 10
 	},
 	background:
 	{
@@ -153,20 +159,23 @@ const localStyle = StyleSheet.create(
 		borderColor: colors.dividerColor,
 		borderTopWidth: .75,
 		position: 'absolute',
+		elevation: 10,
 		width: '100%',
 		height: '100%'
 	},
 	badgeArcBack:
 	{
 		position: 'absolute',
+		backgroundColor: colors.lightSpaceColor,
 		// backgroundColor: 'blue',
 		borderTopWidth: 1,
 		borderColor: colors.dividerColor,
 		borderWidth: 1,
 		borderRadius: 33,
+		elevation: 10,
 		top: -10,
 		width: 66,
-		height: 66,
+		height: 66
 	},
 	badgeArcFront:
 	{
@@ -174,6 +183,7 @@ const localStyle = StyleSheet.create(
 		backgroundColor: colors.lightSpaceColor,
 		// backgroundColor: 'blue',
 		borderRadius: 32,
+		elevation: 10,
 		top: -9,
 		width: 64,
 		height: 64
@@ -183,10 +193,5 @@ const localStyle = StyleSheet.create(
 		flex: 1,
 		alignSelf: 'stretch',
 		justifyContent: 'flex-end',
-	},
-	tabBarText:
-	{
-		...textStyle.light(12, 'center', colors.secondaryTextColor),
-		paddingVertical: 5
 	}
 });
