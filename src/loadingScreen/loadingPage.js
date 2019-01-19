@@ -12,17 +12,23 @@ import firebase from 'firebase';
 
 // Custom imports
 import {colors} from 'cuHacking/src/common/appStyles';
+import {Button} from 'cuHacking/src/common';
 import NULL_CREDENTIALS from 'cuHacking/src/preAuth/signInScreen/nullCredentials';
 
 class LoadingPage extends Component
 {
+	constructor(props)
+	{
+		super(props);
+		this.state = {waitingForConnection: false}
+	}
+
 	displayError(type)
 	{
-		this.props.signOut();
-
 		switch (type)
 		{
 			case "Auth Failure":
+				this.props.signOut();
 				Alert.alert(
 					"Authentication Failed",
 					"Scan your QR ID code again.\n\nIf this persists, please contact <support email> for help",
@@ -32,6 +38,7 @@ class LoadingPage extends Component
 				return;
 			
 			case "Fetch Failure":
+				this.props.signOut();
 				Alert.alert(
 					"Something went wrong",
 					"Scan your QR ID code again.\n\nIf this persists, please contact <support email> for help",
@@ -39,7 +46,24 @@ class LoadingPage extends Component
 					{cancelable: false}
 				);
 				return;
+
+			case "No Connection":
+				Alert.alert(
+					"No Connection",
+					"Please connect to the internet to continue",
+					[{text: 'OK', onPress: () => this.setState({waitingForConnection: true})}],
+					{cancelable: false}
+				);
+				return;
 		}
+	}
+
+	authFailure(error)
+	{
+		if (error.code == 'auth/network-request-failed')
+			this.displayError("No Connection");
+		else
+			this.displayError("Auth Failure");
 	}
 
 	authSuccess()
@@ -56,15 +80,21 @@ class LoadingPage extends Component
 
 	authenticate()
 	{
+		// No longer waiting for a connection
+		this.setState({waitingForConnection: false});
+
 		// Retrieving the credentials from state
 		var {email, password} = this.props.credentials;
 
 		// Sending the authentication request to firebase
-		firebase.auth().signInWithEmailAndPassword(email, password).then(this.authSuccess.bind(this)).catch(() => this.displayError("Auth Failure"));
+		firebase.auth().signInWithEmailAndPassword(email, password).then(this.authSuccess.bind(this)).catch((error) => this.authFailure(error));
 	}
 
 	componentDidMount()
 	{
+		// Signing out just to be sure
+		firebase.auth().signOut();
+
 		// Retrieving the credentials from state
 		var {email, password} = this.props.credentials;
 
@@ -78,10 +108,19 @@ class LoadingPage extends Component
 	{
 		return (
 			<View style = {styles.default}>
-				<ActivityIndicator
-					size = 'large'
-					color = 'white'
-				/>
+				{this.state.waitingForConnection ? 
+					<Button
+						label = "Try again"
+						color = 'white'
+						inverted = {true}
+						action = {this.authenticate.bind(this)}
+					/>
+					:
+					<ActivityIndicator
+						size = 'large'
+						color = 'white'
+					/>
+				}
 			</View>
 		);
 	}
