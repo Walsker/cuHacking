@@ -1,10 +1,10 @@
 import * as ACTION_TYPES from './actionTypes';
 
 // Creates an action that deletes the saved credentials
-export const deleteCredentials = () =>
+export const signOut = () =>
 {
 	return {
-		type: ACTION_TYPES.DELETE_CREDENTIALS,
+		type: ACTION_TYPES.SIGN_OUT,
 		payload: null
 	};
 }

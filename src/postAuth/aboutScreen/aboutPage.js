@@ -4,7 +4,7 @@ import {Alert, StyleSheet, Text, View} from 'react-native';
 
 // Redux import
 import {connect} from 'react-redux';
-import {deleteCredentials} from 'cuHacking/src/preAuth/signInScreen/actions';
+import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
 
 // Custom imports
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
@@ -21,7 +21,7 @@ class AboutPage extends Component
 				{text: 'No', onPress: () => {}},
 				{text: 'Yes', onPress: () => 
 				{
-					this.props.deleteCredentials();
+					this.props.signOut();
 					this.props.navigation.navigate("Loading");
 				}}
 			]
@@ -34,7 +34,7 @@ class AboutPage extends Component
 			<View style = {styles.default}>
 				<Text>About page and sponsors</Text>
 				<Button
-					label = "Log out"
+					label = "Sign out"
 					color = 'red'
 					labelColor = 'white'
 					inverted = {false}
@@ -45,7 +45,7 @@ class AboutPage extends Component
 	}
 }
 
-export default connect(null, {deleteCredentials})(AboutPage);
+export default connect(null, {signOut})(AboutPage);
 
 
 const styles = StyleSheet.create(

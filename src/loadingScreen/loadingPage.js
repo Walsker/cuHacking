@@ -4,7 +4,7 @@ import {ActivityIndicator, Alert, StyleSheet, View} from 'react-native';
 
 // Redux imports
 import {connect} from 'react-redux';
-import {deleteCredentials} from 'cuHacking/src/preAuth/signInScreen/actions';
+import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
 
 // Firebase imports
 import firebase from '@firebase/app';
@@ -18,7 +18,7 @@ class LoadingPage extends Component
 {
 	authFailure()
 	{
-		this.props.deleteCredentials();
+		this.props.signOut();
 		Alert.alert(
 			"Authentication Failed",
 			"Scan your QR ID code again.\n\nIf this persists, please contact <support email> for help",
@@ -72,7 +72,7 @@ const mapStateToProps = (state) =>
 		credentials: state.credentials
 	};
 };
-export default connect(mapStateToProps, {deleteCredentials})(LoadingPage);
+export default connect(mapStateToProps, {signOut})(LoadingPage);
 
 
 const styles = StyleSheet.create(

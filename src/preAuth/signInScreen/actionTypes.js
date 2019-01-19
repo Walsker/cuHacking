@@ -1,2 +1,2 @@
-export const DELETE_CREDENTIALS = "deleteCredentials";
+export const SIGN_OUT = "signOut";
 export const SET_CREDENTIALS = "setCredentials";
