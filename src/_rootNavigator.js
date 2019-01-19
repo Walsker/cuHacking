@@ -39,7 +39,7 @@ const RootNavigator = createSwitchNavigator(
 	"Loading": {screen: LoadingPage}
 },
 {
-	initialRouteName: "Main"
+	initialRouteName: "Loading"
 });
 
 export default createAppContainer(RootNavigator);

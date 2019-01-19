@@ -10,8 +10,9 @@ import rootReducer from './_rootReducer';
 
 // Redux Persist imports
 import {persistReducer, persistStore} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import {PersistGate} from 'redux-persist/integration/react'
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 // Firebase imports
 import firebase from '@firebase/app';
@@ -34,7 +35,8 @@ export default class App extends Component
 		const persistConfig = {
 			key: 'root',
 			storage,
-			blacklist: ['signInReducers']
+			whitelist: ['signInReducers'],
+			stateReconciler: autoMergeLevel2
 		};
 		const persistedReducer = persistReducer(persistConfig, rootReducer);
 

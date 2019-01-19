@@ -10,6 +10,7 @@ import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
 import {colors, textStyle} from 'cuHacking/src/common/appStyles';
 import {Button} from 'cuHacking/src/common';
 
+// TODO: add refresh (re-fetch from firebase) button
 class AboutPage extends Component
 {
 	signOut()
