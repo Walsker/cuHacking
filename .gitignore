@@ -58,3 +58,4 @@ buck-out/
 # Custom
 firebaseConfig.js
 authKey.js
+badgeKey.js

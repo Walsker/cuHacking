@@ -40,6 +40,14 @@ export const containerStyle = StyleSheet.create(
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	tabPage:
+	{
+		flex: 1,
+		backgroundColor: colors.lightSpaceColor,
+		paddingHorizontal: 10,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
 	textBox:
 	{
 		marginVertical: 15,
