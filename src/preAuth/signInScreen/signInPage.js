@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {ActivityIndicator, Alert, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Alert, StatusBar, StyleSheet, Text, View} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // Redux imports
@@ -69,6 +69,7 @@ class SignInPage extends Component
 	{
 		return (
 			<View style = {styles.default}>
+				<StatusBar barStyle = 'light-content'/>
 				<View style = {styles.cameraSpace}>
 					{this.renderCamera()}
 				</View>

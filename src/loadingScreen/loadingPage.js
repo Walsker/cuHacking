@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {ActivityIndicator, Alert, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, Alert, StatusBar, StyleSheet, View} from 'react-native';
 
 // Redux imports
 import {connect} from 'react-redux';
@@ -108,6 +108,7 @@ class LoadingPage extends Component
 	{
 		return (
 			<View style = {styles.default}>
+				<StatusBar barStyle = 'light-content'/>
 				{this.state.waitingForConnection ? 
 					<Button
 						label = "Try again"

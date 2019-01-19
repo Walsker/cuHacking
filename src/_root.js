@@ -39,7 +39,8 @@ export default class App extends Component
 				<StatusBar
 					translucent
 					animated = {true}
-					backgroundColor = "rgba(0, 0, 0, 0.2)"
+					barStyle = 'dark-content'
+					backgroundColor = 'transparent'
 				/>
 				<Provider store = {store}>
 					<PersistGate loading = {<View style = {styles.safeView}/>} persistor = {persistor}>
