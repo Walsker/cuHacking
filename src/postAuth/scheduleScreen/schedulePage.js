@@ -12,7 +12,7 @@ export default class SchedulePage extends Component
 	{
 		return (
 			<View style = {containerStyle.tabPage}>
-				<Text>"THE TEAM BUILDER INTERFACE"</Text>
+				<Text>The event schedule.</Text>
 			</View>
 		);
 	}

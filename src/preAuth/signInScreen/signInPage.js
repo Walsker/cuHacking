@@ -74,7 +74,7 @@ class SignInPage extends Component
 					{this.renderCamera()}
 				</View>
 				<View style = {localStyle.prompt}>
-					<Text style = {textStyle.light(24, 'center', 'white')}>Please scan your QR ID code.</Text>
+					<Text style = {textStyle.light(20, 'center', 'white')}>Please scan your invitation QR code.</Text>
 				</View>
 			</View>
 		);

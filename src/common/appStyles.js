@@ -8,7 +8,8 @@ export const colors =
 	lightSpaceColor: '#FAFAFA',
 	darkSpaceColor: '#222222',
 	primaryTextColor: '#212121',
-	secondaryTextColor: '#757575'
+	secondaryTextColor: '#757575',
+	dividerColor: '#AFAFAF'
 }
 
 export const containerStyle = StyleSheet.create(

@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 // Redux imports
 import {connect} from 'react-redux';
@@ -19,17 +19,17 @@ class TabNavigator extends Component
 			{
 				width: 25,
 				height: 25,
-				backgroundColor: 'white',
-				borderColor: 'white',
-				borderWidth: 2
+				backgroundColor: colors.primaryColor,
+				borderColor: colors.primaryColor,
+				borderWidth: 0
 			},
 			inactive:
 			{
 				width: 25,
 				height: 25,
 				backgroundColor: 'transparent',
-				borderColor: 'white',
-				borderWidth: 2
+				borderColor: colors.secondaryTextColor,
+				borderWidth: 1
 			}
 		});
 
@@ -45,43 +45,64 @@ class TabNavigator extends Component
 		{
 			active:
 			{
-				width: 40,
-				height: 40,
-				backgroundColor: 'white',
-				borderColor: 'white',
-				borderWidth: 2,
-				borderRadius: 20
+				width: 55,
+				height: 55,
+				tintColor: colors.primaryColor
 			},
 			inactive:
 			{
-				width: 40,
-				height: 40,
-				backgroundColor: 'transparent',
-				borderColor: 'white',
-				borderWidth: 2,
-				borderRadius: 20
+				width: 55,
+				height: 55,
+				tintColor: colors.primaryTextColor
 			}
 		});
 
 		return {
-			inactive: <View style = {iconStyle.inactive}/>,
-			active: <View style = {iconStyle.active}/>
+			inactive: <Image
+				source = {require('cuHacking/assets/images/cuHacking-logo-inverse.png')}
+				resizeMode = 'contain'
+				fadeDuration = {0}
+				style = {iconStyle.inactive}
+			/>,
+			active: <Image
+				source = {require('cuHacking/assets/images/cuHacking-logo-inverse.png')}
+				resizeMode = 'contain'
+				fadeDuration = {0}
+				style = {iconStyle.active}
+			/>
 		};
 	}
 
 	createButton(icon, title, action)
 	{
-		return (
-			<TouchableOpacity
-				onPress = {action}
-				style = {styles.tabBarIcon}
-			>
+		if (title == "Badge")
+		{
+			return <TouchableOpacity onPress = {action} style = {[localStyle.tabBarIcon, {justifyContent: 'center', top: -8}]}>
 				<View style = {{alignItems: 'center'}}>
 					{this.props.selectedTab == title ? icon.active : icon.inactive}
-					<Text style = {styles.tabBarText}>{title}</Text>
 				</View>
-			</TouchableOpacity>
-		);
+			</TouchableOpacity>;
+		}
+		else
+		{
+			var isActive = (this.props.selectedTab == title);
+			return (
+				<TouchableOpacity
+					onPress = {action}
+					style = {localStyle.tabBarIcon}
+				>
+					<View style = {{alignItems: 'center'}}>
+						{isActive ? icon.active : icon.inactive}
+						<Text style = {{
+							paddingVertical: 5,
+							...textStyle.light(12, 'center', isActive ? colors.primaryColor : colors.secondaryTextColor)
+						}}>
+							{title}
+						</Text>
+					</View>
+				</TouchableOpacity>
+			);
+		}
 	}
 
 	navigateTo(pageTitle)
@@ -93,8 +114,10 @@ class TabNavigator extends Component
 	render()
 	{
 		return (
-			<View style = {styles.default}>
-				<View style = {styles.badgeArc}/>
+			<View style = {localStyle.default}>
+				<View style = {localStyle.badgeArcBack}/>
+				<View style = {localStyle.background}/>
+				<View style = {localStyle.badgeArcFront}/>
 				{this.createButton(this.createMockIcon(), "Updates", () => this.navigateTo("Updates"))}
 				{this.createButton(this.createMockIcon(), "Map", () => this.navigateTo("Map"))}
 				{this.createButton(this.createMockBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
@@ -114,24 +137,46 @@ const mapStateToProps = (state) =>
 export default connect(mapStateToProps, {switchTab})(TabNavigator);
 
 
-const styles = StyleSheet.create(
+const localStyle = StyleSheet.create(
 {
 	default:
 	{
 		flex: 0.075,
 		flexDirection: 'row',
-		backgroundColor: colors.primaryColor,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
-	badgeArc:
+	background:
 	{
-		backgroundColor: colors.primaryColor,
+		backgroundColor: colors.lightSpaceColor,
 		// backgroundColor: 'blue',
+		borderColor: colors.dividerColor,
+		borderTopWidth: .75,
 		position: 'absolute',
-		width: 90,
-		height: 90,
-		borderRadius: 45
+		width: '100%',
+		height: '100%'
+	},
+	badgeArcBack:
+	{
+		position: 'absolute',
+		// backgroundColor: 'blue',
+		borderTopWidth: 1,
+		borderColor: colors.dividerColor,
+		borderWidth: 1,
+		borderRadius: 33,
+		top: -10,
+		width: 66,
+		height: 66,
+	},
+	badgeArcFront:
+	{
+		position: 'absolute',
+		backgroundColor: colors.lightSpaceColor,
+		// backgroundColor: 'blue',
+		borderRadius: 32,
+		top: -9,
+		width: 64,
+		height: 64
 	},
 	tabBarIcon:
 	{
@@ -141,7 +186,7 @@ const styles = StyleSheet.create(
 	},
 	tabBarText:
 	{
-		...textStyle.light(12, 'center', 'white'),
+		...textStyle.light(12, 'center', colors.secondaryTextColor),
 		paddingVertical: 5
 	}
 });

@@ -14,7 +14,7 @@ export default class ContactSection extends Component
 		var imageSize = width / 2.5;
 
 		return (
-			<View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor, minHeight: height + StatusBar.currentHeight + 10}]}>
+			<View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor, minHeight: height}]}>
 				<View style = {containerStyle.textBox}>
 					<Text style = {textStyle.bold(42, 'center', 'white')}>Contact Us</Text>
 				</View>

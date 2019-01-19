@@ -11,7 +11,7 @@ export default class UpdatesPage extends Component
 	{
 		return (
 			<View style = {containerStyle.tabPage}>
-				<Text>"LIVE UPDATES THAT WERE SENT OUT AS PUSH NOTIFICATIONS ARE DISPLAYED HERE IN REVERSE CHRONOLOGICAL ORDER"</Text>
+				<Text>A display for event updates.</Text>
 			</View>
 		);
 	}

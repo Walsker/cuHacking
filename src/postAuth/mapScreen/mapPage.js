@@ -11,7 +11,7 @@ export default class MapPage extends Component
 	{
 		return (
 			<View style = {containerStyle.tabPage}>
-				<Text>"MAP GOES HERE"</Text>
+				<Text>An interactive map.</Text>
 			</View>
 		);
 	}

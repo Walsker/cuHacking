@@ -27,7 +27,7 @@ class BadgePage extends Component
 				<QRCode
 					value = {BADGE_KEY + "|" + id}
 					size = {width * 0.8}
-					color = {colors.primaryTextColor}
+					color = {colors.primaryColor}
 					backgroundColor = {colors.lightSpaceColor}
 				/>
 				<View style = {localStyle.textBox}>
