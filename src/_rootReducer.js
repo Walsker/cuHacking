@@ -1,13 +1,26 @@
 // Redux imports
 import {combineReducers} from 'redux';
 
+// Redux Persist imports
+import {persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 // Reducer imports
 import loadingReducers from './loadingScreen/reducers';
 import signInReducers from './preAuth/signInScreen/reducers'
 import tabNavReducers from './postAuth/tabNavigation/reducers'
 
-export default combineReducers({
+const rootPersistConfig =
+{
+	key: 'root',
+	storage,
+	whitelist: ['credentials']
+};
+
+const rootReducer = combineReducers({
 	...loadingReducers,
 	...signInReducers,
 	...tabNavReducers
 });
+
+export default persistReducer(rootPersistConfig, rootReducer);
