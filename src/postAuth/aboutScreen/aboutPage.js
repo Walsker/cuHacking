@@ -36,7 +36,7 @@ class AboutPage extends Component
 				<Text>About page and sponsors</Text>
 				<Button
 					label = "Sign out"
-					color = 'red'
+					color = {colors.primaryColor}
 					labelColor = 'white'
 					inverted = {false}
 					action = {this.signOut.bind(this)}
