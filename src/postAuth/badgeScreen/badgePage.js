@@ -10,7 +10,7 @@ import QRCode from 'react-native-qrcode-svg';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
-import BADGE_KEY from 'cuHacking/badgeKey';
+import BADGE_KEY from 'cuHacking/$badge';
 
 class BadgePage extends Component
 {

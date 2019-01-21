@@ -123,7 +123,7 @@ class TabNavigator extends Component
 					{this.createButton(this.createMockIcon(), "Map", () => this.navigateTo("Map"))}
 					{this.createButton(this.createMockBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
 					{this.createButton(this.createMockIcon(), "Schedule", () => this.navigateTo("Schedule"))}
-					{this.createButton(this.createMockIcon(), "About", () => this.navigateTo("About"))}
+					{this.createButton(this.createMockIcon(), "More", () => this.navigateTo("More"))}
 				</View>
 			</View>
 		);

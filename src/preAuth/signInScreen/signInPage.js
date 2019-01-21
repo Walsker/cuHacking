@@ -9,7 +9,7 @@ import {setCredentials} from './actions';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
-import AUTH_KEY from 'cuHacking/authKey';
+import INVITE_KEY from 'cuHacking/$invite';
 
 class SignInPage extends Component
 {
@@ -29,7 +29,7 @@ class SignInPage extends Component
 		var data = code.data.split("|");
 		
 		// Checking if the QR code is in the correct format
-		if (data[0] != AUTH_KEY || (data[1] == null || data[2] == null))
+		if (data[0] != INVITE_KEY || (data[1] == null || data[2] == null))
 		{
 			// Displaying an error message
 			Alert.alert(

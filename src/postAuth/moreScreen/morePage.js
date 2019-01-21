@@ -11,7 +11,7 @@ import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles'
 import {Button} from 'cuHacking/src/common';
 
 // TODO: add refresh (re-fetch from firebase) button
-class AboutPage extends Component
+class MorePage extends Component
 {
 	signOut()
 	{
@@ -33,7 +33,7 @@ class AboutPage extends Component
 	{
 		return (
 			<View style = {containerStyle.tabPage}>
-				<Text>About page and sponsors</Text>
+				<Text>More page</Text>
 				<Button
 					label = "Sign out"
 					color = {colors.primaryColor}
@@ -46,7 +46,7 @@ class AboutPage extends Component
 	}
 }
 
-export default connect(null, {signOut})(AboutPage);
+export default connect(null, {signOut})(MorePage);
 
 
 const localStyle = StyleSheet.create(
