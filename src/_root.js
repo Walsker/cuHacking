@@ -17,7 +17,7 @@ import firebase from '@firebase/app';
 import firebaseConfig from 'cuHacking/firebaseConfig';
 
 // Custom imports
-import {colors} from 'cuHacking/src/common/appStyles';
+import {colors, containerStyle} from 'cuHacking/src/common/appStyles';
 import RootNavigator from './_rootNavigator';
 
 export default class App extends Component
@@ -35,7 +35,7 @@ export default class App extends Component
 		// persistor.purge();
 
 		return(
-			<SafeAreaView style = {styles.safeView}>
+			<SafeAreaView style = {localStyle.background}>
 				<StatusBar
 					translucent
 					animated = {true}
@@ -43,8 +43,8 @@ export default class App extends Component
 					backgroundColor = 'transparent'
 				/>
 				<Provider store = {store}>
-					<PersistGate loading = {<View style = {styles.safeView}/>} persistor = {persistor}>
-						<View style = {styles.default}>
+					<PersistGate loading = {<View style = {localStyle.background}/>} persistor = {persistor}>
+						<View style = {containerStyle.default}>
 							<RootNavigator/>
 						</View>
 					</PersistGate>
@@ -54,10 +54,9 @@ export default class App extends Component
 	}
 }
 
-const styles = StyleSheet.create(
+const localStyle = StyleSheet.create(
 {
-	default: {flex: 1},
-	safeView: {flex: 1, backgroundColor: colors.primaryColor}
+	background: {flex: 1, backgroundColor: colors.primaryColor}
 });
 
 // This disables the timer warning as a result of using the web sdk of firebase. Keep checking for a fix for this
