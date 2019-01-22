@@ -7,8 +7,8 @@ import storage from 'redux-persist/lib/storage';
 
 // Reducer imports
 import loadingReducers from './loadingScreen/reducers';
-import signInReducers from './preAuth/signInScreen/reducers'
-import tabNavReducers from './postAuth/tabNavigation/reducers'
+import signInReducers from './preAuth/signInScreen/reducers';
+import tabNavReducers from './postAuth/tabNavigation/reducers';
 
 const rootPersistConfig =
 {

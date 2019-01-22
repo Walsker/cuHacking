@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, StatusBar, Platform} from 'react-native';
-import {colors} from './appStyles';
 
 export default class AndroidBar extends Component
 {

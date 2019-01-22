@@ -75,7 +75,7 @@ class LoadingPage extends Component
 		}
 
 		// Retrieving account information from firebase
-		firebase.database().ref("/hackers/hackerPW").once('value').then((snapshot) => toMainApp(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
+		firebase.database().ref("/hackers/" + this.props.credentials.password).once('value').then((snapshot) => toMainApp(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
 	}
 
 	authenticate()
@@ -107,7 +107,7 @@ class LoadingPage extends Component
 	render()
 	{
 		return (
-			<View style = {styles.default}>
+			<View style = {localStyle.default}>
 				<StatusBar barStyle = 'light-content'/>
 				{this.state.waitingForConnection ? 
 					<Button
@@ -138,7 +138,7 @@ const mapStateToProps = (state) =>
 export default connect(mapStateToProps, {saveHackerInfo, signOut})(LoadingPage);
 
 
-const styles = StyleSheet.create(
+const localStyle = StyleSheet.create(
 {
 	default:
 	{
