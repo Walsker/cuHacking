@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Alert, Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 // Redux import
 import {connect} from 'react-redux';
@@ -30,10 +30,21 @@ class MorePage extends Component
 
 	render()
 	{
+		var {width} = Dimensions.get('window');
+		var imageSize = width / 1.75;
+
 		return (
 			<View style = {containerStyle.tabPage}>
 				<AndroidBar/>
 				<ScrollView contentContainerStyle = {localStyle.pageLayout}>
+					<View style = {[localStyle.pageSection, {alignItems: 'center'}]}>
+						<Image
+							source = {require('cuHacking/assets/images/cuHacking-logo.png')}
+							resizeMode = 'contain'
+							fadeDuration = {50}
+							style = {{width: imageSize, height: imageSize}}
+						/>
+					</View>
 					<View style = {localStyle.pageSection}>
 						<Text style = {textStyle.bold(72, 'center')}>cuHacking</Text>
 						<Text style = {textStyle.light(36, 'center', colors.primaryColor)}>Hacker App</Text>
@@ -41,11 +52,10 @@ class MorePage extends Component
 					<View style = {localStyle.pageSection}>
 						<Divider color = {colors.dividerColor}/>
 						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>Created by Wal Wal</Text>
-						<Divider color = {colors.dividerColor}/>
-					</View>
-					<Divider color = {colors.dividerColor}/>
-					<View style = {localStyle.pageSection}>
 						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>v1.0</Text>
+						{/* <Divider color = {colors.dividerColor}/>
+					</View>
+					<View style = {localStyle.pageSection}> */}
 					</View>
 					<View style = {localStyle.pageSection}>
 						<Button
@@ -56,6 +66,8 @@ class MorePage extends Component
 							action = {this.signOut.bind(this)}
 						/>
 					</View>
+					<Divider color = {colors.dividerColor}/>
+
 				</ScrollView>
 			</View>
 		);
