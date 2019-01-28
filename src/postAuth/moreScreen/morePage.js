@@ -53,9 +53,6 @@ class MorePage extends Component
 						<Divider color = {colors.dividerColor}/>
 						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>Created by Wal Wal</Text>
 						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>v1.0</Text>
-						{/* <Divider color = {colors.dividerColor}/>
-					</View>
-					<View style = {localStyle.pageSection}> */}
 					</View>
 					<View style = {localStyle.pageSection}>
 						<Button
