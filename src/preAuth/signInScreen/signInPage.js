@@ -9,6 +9,7 @@ import {setCredentials} from './actions';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {CameraMarker} from './components';
 import INVITE_KEY from 'cuHacking/$invite';
 
 class SignInPage extends Component
@@ -16,26 +17,36 @@ class SignInPage extends Component
 	constructor(props)
 	{
 		super(props);
-		this.state = {useCamera: true};
+
+		this.scannerRef = React.createRef();
+		this.state = {scanStatus: 'IDLE', useCamera: true};
 	}
 	
-	// A method for processing the scanned QR code
 	processCode(code)
 	{
-		// Disabling the camera
-		this.setState({useCamera: false});
+		// Indicating that the code is being processed
+		this.setState({scanStatus: 'LOADING'});
 
 		// Extracting the data from the QR code
 		var data = code.data.split("|");
 		
+		const reactivate = () =>
+		{
+			this.setState({scanStatus: 'IDLE'});
+			this.scannerRef.current.reactivate();
+		}
+		
 		// Checking if the QR code is in the correct format
 		if (data[0] != INVITE_KEY || (data[1] == null || data[2] == null))
 		{
+			// Indicating that the scan failed
+			this.setState({scanStatus: 'FAILURE'});
+
 			// Displaying an error message
 			Alert.alert(
 				"Invalid QR Code",
 				"Please scan your personal code provided via email.",
-				[{text: 'OK', onPress: () => this.setState({useCamera: true})}],
+				[{text: 'OK', onPress: reactivate}],
 				{cancelable: false}
 			);
 		}
@@ -43,26 +54,9 @@ class SignInPage extends Component
 		{
 			// Saving the QR code to the device and moving to the loading screen
 			this.props.setCredentials(data);
+			this.setState({scanStatus: 'IDLE'})
 			this.props.navigation.navigate("Loading");
 		}
-	}
-
-	renderCamera()
-	{
-		if (this.state.useCamera)
-		{
-			return (
-				<QRCodeScanner
-					ref = {(node) => {this.scanner = node}}
-					fadeIn = {false}
-					onRead = {this.processCode.bind(this)}
-					showMarker
-					markerStyle = {localStyle.cameraMarker}
-					cameraStyle = {localStyle.camera}
-				/>
-			);
-		}
-		else return <ActivityIndicator color = {colors.primaryColor} size = 'large'/>;
 	}
 
 	render()
@@ -71,10 +65,17 @@ class SignInPage extends Component
 			<View style = {containerStyle.default}>
 				<StatusBar barStyle = 'light-content'/>
 				<View style = {localStyle.cameraSpace}>
-					{this.renderCamera()}
+					<QRCodeScanner
+						ref = {this.scannerRef}
+						fadeIn = {false}
+						onRead = {this.processCode.bind(this)}
+						showMarker
+						customMarker = {<CameraMarker mode = {this.state.scanStatus}/>}
+						cameraStyle = {localStyle.camera}
+					/>
 				</View>
 				<View style = {localStyle.prompt}>
-					<Text style = {textStyle.light(20, 'center', 'white')}>Please scan your invitation QR code.</Text>
+					<Text style = {textStyle.light(24, 'center', 'white')}>Please scan your invite code.</Text>
 				</View>
 			</View>
 		);
@@ -99,6 +100,5 @@ const localStyle = StyleSheet.create(
 		justifyContent: 'center',
 		backgroundColor: colors.primarySpaceColor
 	},
-	camera: {height: '100%'},
-	cameraMarker: {borderColor: 'white'}
+	camera: {height: '100%'}
 });
