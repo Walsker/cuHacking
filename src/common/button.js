@@ -72,7 +72,7 @@ export default class Button extends Component
 			TouchableNativeFeedback.Ripple(this.props.color, true) : TouchableNativeFeedback.Ripple(this.props.color, true);
 
 		return (
-			<View style = {containerStyle.rowBox}>
+			<View style = {{alignSelf: 'center'}}>
 				<View style = {{borderRadius: 30}}>
 					<TouchableNativeFeedback
 						background = {rippleColor}
@@ -92,7 +92,7 @@ export default class Button extends Component
 	renderiOS()
 	{
 		return (
-			<View style = {containerStyle.rowBox}>
+			<View style = {{alignSelf: 'center'}}>
 				<Animated.View style = {{transform: [{scale: 
 					this.state.pressValue.interpolate({
 						inputRange: [this.state.INACTIVE_VALUE, this.state.ACTIVE_VALUE],

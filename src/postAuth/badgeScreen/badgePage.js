@@ -10,8 +10,10 @@ import QRCode from 'react-native-qrcode-svg';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {AndroidBar} from 'cuHacking/src/common';
 import BADGE_KEY from 'cuHacking/$badge';
 
+// TODO: Add refresh control to go back to loading screen
 class BadgePage extends Component
 {
 	render()
@@ -20,21 +22,24 @@ class BadgePage extends Component
 		var {width} = Dimensions.get("window");
 		return (
 			<View style = {containerStyle.tabPage}>
-				<View style = {localStyle.textBox}>
-					<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{firstName}</Text>
-					<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{lastName}</Text>
-				</View>
-				<View style = {localStyle.codeDisplay}>
-					<QRCode
-						value = {BADGE_KEY + "|" + id}
-						size = {width * 0.8}
-						color = {colors.primaryColor}
-						backgroundColor = {colors.lightSpaceColor}
-					/>
-				</View>
-				<View style = {localStyle.textBox}>
-					<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{school}</Text>
-					<Text style = {textStyle.regular(42, 'center', colors.primaryTextColor)}>{program}</Text>
+				<AndroidBar/>
+				<View style = {localStyle.pageLayout}>
+					<View>
+						<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{firstName}</Text>
+						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{lastName}</Text>
+					</View>
+					<View style = {localStyle.codeDisplay}>
+						<QRCode
+							value = {BADGE_KEY + "|" + id}
+							size = {width * 0.8}
+							color = {colors.primaryColor}
+							backgroundColor = {colors.lightSpaceColor}
+						/>
+					</View>
+					<View>
+						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{school}</Text>
+						<Text style = {textStyle.regular(42, 'center', colors.primaryTextColor)}>{program}</Text>
+					</View>
 				</View>
 			</View>
 		);
@@ -52,14 +57,18 @@ export default connect(mapStateToProps)(BadgePage);
 
 const localStyle = StyleSheet.create(
 {
-	textBox:
+	pageLayout:
 	{
-		paddingVertical: 50
+		flex: 1,
+		justifyContent: 'space-evenly'
 	},
 	codeDisplay:
 	{
 		backgroundColor: colors.lightSpaceColor,
 		borderColor: colors.dividerColor,
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
 		borderRadius: 10,
 		borderWidth: 1,
 		elevation: 1,

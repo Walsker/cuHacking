@@ -15,20 +15,6 @@ export const colors =
 export const containerStyle = StyleSheet.create(
 {
 	default: {flex: 1},
-	// inputArea:
-	// {
-	// 	justifyContent: 'center',
-	// 	alignSelf: 'stretch'
-	// },
-	// inputBox:
-	// {
-	// 	backgroundColor: 'rgba(0, 0, 0, 0.8)',
-	// 	paddingVertical: 10,
-	// 	paddingHorizontal: 15,
-	// 	marginVertical: 10,
-	// 	marginHorizontal: 25,
-	// 	borderRadius: 10
-	// },
 	screen:
 	{
 		flex: 1,
@@ -46,22 +32,8 @@ export const containerStyle = StyleSheet.create(
 		flex: 1,
 		backgroundColor: colors.lightSpaceColor,
 		paddingHorizontal: 10,
-		justifyContent: 'center',
 		alignItems: 'center'
-	},
-	// textBox:
-	// {
-	// 	marginVertical: 15,
-	// 	marginHorizontal: 20
-	// },
-	// timeUnitBox1:
-	// {
-	// 	marginHorizontal: 20
-	// },
-	// timeUnitBox2:
-	// {
-	// 	marginHorizontal: 15
-	// }
+	}
 });
 
 const createFont = (size, alignment, color) =>

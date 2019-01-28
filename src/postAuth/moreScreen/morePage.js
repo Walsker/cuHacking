@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 // Redux import
 import {connect} from 'react-redux';
@@ -8,9 +8,8 @@ import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
 
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
-import {Button} from 'cuHacking/src/common';
+import {AndroidBar, Button, Divider} from 'cuHacking/src/common';
 
-// TODO: add refresh (re-fetch from firebase) button
 class MorePage extends Component
 {
 	signOut()
@@ -33,14 +32,31 @@ class MorePage extends Component
 	{
 		return (
 			<View style = {containerStyle.tabPage}>
-				<Text>More page</Text>
-				<Button
-					label = "Sign out"
-					color = {colors.primaryColor}
-					labelColor = 'white'
-					inverted = {false}
-					action = {this.signOut.bind(this)}
-				/>
+				<AndroidBar/>
+				<ScrollView contentContainerStyle = {localStyle.pageLayout}>
+					<View style = {localStyle.pageSection}>
+						<Text style = {textStyle.bold(72, 'center')}>cuHacking</Text>
+						<Text style = {textStyle.light(36, 'center', colors.primaryColor)}>Hacker App</Text>
+					</View>
+					<View style = {localStyle.pageSection}>
+						<Divider color = {colors.dividerColor}/>
+						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>Created by Wal Wal</Text>
+						<Divider color = {colors.dividerColor}/>
+					</View>
+					<Divider color = {colors.dividerColor}/>
+					<View style = {localStyle.pageSection}>
+						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>v1.0</Text>
+					</View>
+					<View style = {localStyle.pageSection}>
+						<Button
+							label = "Sign out"
+							color = {colors.primaryColor}
+							labelColor = 'white'
+							inverted = {false}
+							action = {this.signOut.bind(this)}
+						/>
+					</View>
+				</ScrollView>
 			</View>
 		);
 	}
@@ -51,5 +67,15 @@ export default connect(null, {signOut})(MorePage);
 
 const localStyle = StyleSheet.create(
 {
-
+	pageLayout:
+	{
+		flex: 1,
+		paddingTop: 25,
+		justifyContent: 'flex-start'
+	},
+	pageSection:
+	{
+		marginVertical: 10,
+		justifyContent: 'center'
+	}
 });
