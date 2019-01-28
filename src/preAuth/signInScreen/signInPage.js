@@ -21,7 +21,7 @@ class SignInPage extends Component
 		this.scannerRef = React.createRef();
 		this.state = {scanStatus: 'IDLE', useCamera: true};
 	}
-	
+
 	processCode(code)
 	{
 		// Indicating that the code is being processed
@@ -29,13 +29,13 @@ class SignInPage extends Component
 
 		// Extracting the data from the QR code
 		var data = code.data.split("|");
-		
+
 		const reactivate = () =>
 		{
 			this.setState({scanStatus: 'IDLE'});
 			this.scannerRef.current.reactivate();
 		}
-		
+
 		// Checking if the QR code is in the correct format
 		if (data[0] != INVITE_KEY || (data[1] == null || data[2] == null))
 		{

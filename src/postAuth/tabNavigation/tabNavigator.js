@@ -1,6 +1,7 @@
 // React Native imports
 import React, {Component} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Redux imports
 import {connect} from 'react-redux';
@@ -11,35 +12,23 @@ import {colors, textStyle} from 'cuHacking/src/common/appStyles';
 
 class TabNavigator extends Component
 {
-	createMockIcon()
+	createIcon(name)
 	{
-		var iconStyle = StyleSheet.create(
-		{
-			active:
-			{
-				width: 25,
-				height: 25,
-				backgroundColor: colors.primaryColor,
-				borderColor: colors.primaryColor,
-				borderWidth: 0
-			},
-			inactive:
-			{
-				width: 25,
-				height: 25,
-				backgroundColor: 'transparent',
-				borderColor: colors.dividerColor,
-				borderWidth: 1
-			}
-		});
-
 		return {
-			inactive: <View style = {iconStyle.inactive}/>,
-			active: <View style = {iconStyle.active}/>
+			inactive: <Icon
+				name = {name}
+				size = {30}
+				color = {colors.secondaryTextColor}
+			/>,
+			active: <Icon
+				name = {name}
+				size = {30}
+				color = {colors.primaryColor}
+			/>
 		};
 	}
 
-	createMockBadgeIcon()
+	createBadgeIcon()
 	{
 		var iconStyle = StyleSheet.create(
 		{
@@ -119,11 +108,11 @@ class TabNavigator extends Component
 				<View style = {localStyle.background}/>
 				<View style = {localStyle.badgeArcFront}/>
 				<View style = {localStyle.buttonContainer}>
-					{this.createButton(this.createMockIcon(), "Updates", () => this.navigateTo("Updates"))}
-					{this.createButton(this.createMockIcon(), "Map", () => this.navigateTo("Map"))}
-					{this.createButton(this.createMockBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
-					{this.createButton(this.createMockIcon(), "Schedule", () => this.navigateTo("Schedule"))}
-					{this.createButton(this.createMockIcon(), "More", () => this.navigateTo("More"))}
+					{this.createButton(this.createIcon('notifications'), "Updates", () => this.navigateTo("Updates"))}
+					{this.createButton(this.createIcon('map'), "Map", () => this.navigateTo("Map"))}
+					{this.createButton(this.createBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
+					{this.createButton(this.createIcon('event-note'), "Schedule", () => this.navigateTo("Schedule"))}
+					{this.createButton(this.createIcon('menu'), "More", () => this.navigateTo("More"))}
 				</View>
 			</View>
 		);
@@ -155,7 +144,6 @@ const localStyle = StyleSheet.create(
 	background:
 	{
 		backgroundColor: colors.lightSpaceColor,
-		// backgroundColor: 'blue',
 		borderColor: colors.dividerColor,
 		borderTopWidth: .75,
 		position: 'absolute',
@@ -167,7 +155,6 @@ const localStyle = StyleSheet.create(
 	{
 		position: 'absolute',
 		backgroundColor: colors.lightSpaceColor,
-		// backgroundColor: 'blue',
 		borderTopWidth: 1,
 		borderColor: colors.dividerColor,
 		borderWidth: 1,
@@ -181,7 +168,6 @@ const localStyle = StyleSheet.create(
 	{
 		position: 'absolute',
 		backgroundColor: colors.lightSpaceColor,
-		// backgroundColor: 'blue',
 		borderRadius: 32,
 		elevation: 10,
 		top: -9,
