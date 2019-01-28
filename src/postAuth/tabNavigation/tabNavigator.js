@@ -109,9 +109,9 @@ class TabNavigator extends Component
 				<View style = {localStyle.badgeArcFront}/>
 				<View style = {localStyle.buttonContainer}>
 					{this.createButton(this.createIcon('notifications'), "Updates", () => this.navigateTo("Updates"))}
-					{this.createButton(this.createIcon('map'), "Map", () => this.navigateTo("Map"))}
+					{/* {this.createButton(this.createIcon('map'), "Map", () => this.navigateTo("Map"))} */}
 					{this.createButton(this.createBadgeIcon(), "Badge", () => this.navigateTo("Badge"))}
-					{this.createButton(this.createIcon('event-note'), "Schedule", () => this.navigateTo("Schedule"))}
+					{/* {this.createButton(this.createIcon('event-note'), "Schedule", () => this.navigateTo("Schedule"))} */}
 					{this.createButton(this.createIcon('menu'), "More", () => this.navigateTo("More"))}
 				</View>
 			</View>
@@ -139,7 +139,8 @@ const localStyle = StyleSheet.create(
 	buttonContainer:
 	{
 		flexDirection: 'row',
-		elevation: 10
+		elevation: 10,
+		// justifyContent: 'space-evenly'
 	},
 	background:
 	{
