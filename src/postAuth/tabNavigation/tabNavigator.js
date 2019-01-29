@@ -66,7 +66,7 @@ class TabNavigator extends Component
 	{
 		if (title == "Badge")
 		{
-			return <TouchableOpacity onPress = {action} style = {[localStyle.tabBarIcon, {justifyContent: 'center', top: -8}]}>
+			return <TouchableOpacity onPress = {action} style = {[localStyle.tabBarIcon, {flex: 0.3, justifyContent: 'center', top: -8}]}>
 				<View style = {{alignItems: 'center'}}>
 					{this.props.selectedTab == title ? icon.active : icon.inactive}
 				</View>
@@ -140,6 +140,7 @@ const localStyle = StyleSheet.create(
 	{
 		flexDirection: 'row',
 		elevation: 10,
+		paddingHorizontal: 25
 		// justifyContent: 'space-evenly'
 	},
 	background:
@@ -177,8 +178,8 @@ const localStyle = StyleSheet.create(
 	},
 	tabBarIcon:
 	{
-		flex: 1,
-		alignSelf: 'stretch',
+		flex: 0.5,
+		// alignSelf: 'stretch',
 		justifyContent: 'flex-end',
 	}
 });

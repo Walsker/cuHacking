@@ -41,7 +41,7 @@ class MorePage extends Component
 						<Image
 							source = {require('cuHacking/assets/images/cuHacking-logo.png')}
 							resizeMode = 'contain'
-							fadeDuration = {50}
+							fadeDuration = {0}
 							style = {{width: imageSize, height: imageSize}}
 						/>
 					</View>
