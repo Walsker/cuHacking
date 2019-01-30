@@ -12,6 +12,26 @@ import {AndroidBar, Button, Divider} from 'cuHacking/src/common';
 
 class MorePage extends Component
 {
+	constructor(props)
+	{
+		super(props);
+		this.state = {scrolled: false};
+	}
+
+	scrollToggle(event)
+	{
+		if (event.nativeEvent.contentOffset.y != 0)
+		{
+			if (!this.state.scrolled)
+				this.setState({scrolled: true})					
+		}
+		else
+		{
+			if (this.state.scrolled)
+				this.setState({scrolled: false})
+		}
+	}
+
 	signOut()
 	{
 		Alert.alert(
@@ -35,7 +55,7 @@ class MorePage extends Component
 
 		return (
 			<View style = {containerStyle.tabPage}>
-				<AndroidBar/>
+				<AndroidBar color = {colors.lightSpaceColor} lifted = {this.state.scrolled}/>
 				<ScrollView contentContainerStyle = {localStyle.pageLayout}>
 					<View style = {[localStyle.pageSection, {alignItems: 'center'}]}>
 						<Image
@@ -64,7 +84,9 @@ class MorePage extends Component
 						/>
 					</View>
 					<Divider color = {colors.dividerColor}/>
-
+					<View style = {localStyle.pageSection}>
+						<Text style = {textStyle.bold(65, 'center')}>Sponsors</Text>
+					</View>
 				</ScrollView>
 			</View>
 		);
