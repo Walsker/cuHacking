@@ -31,7 +31,6 @@ export const containerStyle = StyleSheet.create(
 	{
 		flex: 1,
 		backgroundColor: colors.lightSpaceColor,
-		paddingHorizontal: 10,
 		alignItems: 'center'
 	}
 });

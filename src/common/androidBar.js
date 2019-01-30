@@ -35,7 +35,6 @@ export default class AndroidBar extends Component
 		else
 			barStyle = this.state.styles.default;
 
-		console.log(barStyle);
 		return(
 			<View style = {barStyle}/>
 		);

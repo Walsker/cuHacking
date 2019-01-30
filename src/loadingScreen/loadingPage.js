@@ -128,9 +128,7 @@ class LoadingPage extends Component
 }
 
 const mapStateToProps = (state) =>
-{
-	console.log("MAP: ", state.credentials);
-	
+{	
 	return {
 		credentials: state.credentials
 	};

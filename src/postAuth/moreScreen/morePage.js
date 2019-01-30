@@ -56,7 +56,12 @@ class MorePage extends Component
 		return (
 			<View style = {containerStyle.tabPage}>
 				<AndroidBar color = {colors.lightSpaceColor} lifted = {this.state.scrolled}/>
-				<ScrollView contentContainerStyle = {localStyle.pageLayout}>
+				<ScrollView 
+					style = {localStyle.scrollBody}
+					contentContainerStyle = {localStyle.scrollContent}
+					showsVerticalScrollIndicator = {false}
+					onScroll = {this.scrollToggle.bind(this)}
+				>
 					<View style = {[localStyle.pageSection, {alignItems: 'center'}]}>
 						<Image
 							source = {require('cuHacking/assets/images/cuHacking-logo.png')}
@@ -74,7 +79,7 @@ class MorePage extends Component
 						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>Created by Wal Wal</Text>
 						<Text style = {textStyle.light(16, 'center', colors.secondaryTextColor)}>v1.0</Text>
 					</View>
-					<View style = {localStyle.pageSection}>
+					<View style = {localStyle.scrollSection}>
 						<Button
 							label = "Sign out"
 							color = {colors.primaryColor}
@@ -83,9 +88,9 @@ class MorePage extends Component
 							action = {this.signOut.bind(this)}
 						/>
 					</View>
-					<Divider color = {colors.dividerColor}/>
-					<View style = {localStyle.pageSection}>
-						<Text style = {textStyle.bold(65, 'center')}>Sponsors</Text>
+					<Divider color = {colors.lightSpaceColor}/>
+					<View style = {localStyle.darkPage}>
+
 					</View>
 				</ScrollView>
 			</View>
@@ -98,15 +103,20 @@ export default connect(null, {signOut})(MorePage);
 
 const localStyle = StyleSheet.create(
 {
-	pageLayout:
+	scrollBody: {alignSelf: 'stretch'},
+	scrollContent:
 	{
-		flex: 1,
 		paddingTop: 25,
-		justifyContent: 'flex-start'
+		justifyContent: 'center'
 	},
-	pageSection:
+	scrollSection:
 	{
 		marginVertical: 10,
 		justifyContent: 'center'
+	},
+	darkPage:
+	{
+		backgroundColor: colors.darkSpaceColor,
+		height: 200
 	}
 });

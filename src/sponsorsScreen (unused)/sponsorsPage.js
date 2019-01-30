@@ -120,7 +120,6 @@ export default class SponsorsPage extends Component
 	createMicroImage(image, url)
 	{
 		let size = this.state.screenWidth / 1.5;
-		// console.log(size);
 		let hyperlink = url ?
 			() => Linking.openURL(url).catch(() => this.hyperlinkError())
 			: () => {};
