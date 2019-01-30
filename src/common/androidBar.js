@@ -29,7 +29,7 @@ export default class AndroidBar extends Component
 
 	render()
 	{
-		var barStyle;
+		let barStyle;
 		if (this.props.lifted)
 			barStyle = this.state.styles.lifted;
 		else

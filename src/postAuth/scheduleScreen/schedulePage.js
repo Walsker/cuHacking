@@ -30,9 +30,6 @@ export default class SchedulePage extends Component
 
 	render()
 	{
-		let content = [];
-		for (let i = 0; i < 1000; i++)
-			content.push(<Text key = {i}>The event schedule.</Text>)
 		return (
 			<View style = {containerStyle.tabPage}>
 				<AndroidBar color = {colors.lightSpaceColor} lifted = {this.state.scrolled}/>
@@ -42,7 +39,7 @@ export default class SchedulePage extends Component
 					showsVerticalScrollIndicator = {false}
 					onScroll = {this.scrollToggle.bind(this)}
 				>
-					{content}
+
 				</ScrollView>
 			</View>
 		);

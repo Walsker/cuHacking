@@ -18,8 +18,8 @@ class BadgePage extends Component
 {
 	render()
 	{
-		var {firstName, lastName, school, program, id} = this.props.hackerObject;
-		var {width} = Dimensions.get("window");
+		let {firstName, lastName, school, program, id} = this.props.hackerObject;
+		let {width} = Dimensions.get("window");
 		return (
 			<View style = {containerStyle.tabPage}>
 				<AndroidBar/>

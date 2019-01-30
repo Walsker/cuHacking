@@ -11,7 +11,7 @@ export default class SponsorsPage extends Component
 	{
 		super(props);
 		
-		var {height, width} = Dimensions.get('window');
+		let {height, width} = Dimensions.get('window');
 		this.state = 
 		{
 			screenWidth: width,
@@ -61,9 +61,9 @@ export default class SponsorsPage extends Component
 
 	createImageTier(logos)
 	{
-		var logoHeight = this.state.screenHeight / 4;
-		var logoWidth = this.state.screenWidth / 1.2;
-		var logosOnTier = logos.length;
+		let logoHeight = this.state.screenHeight / 4;
+		let logoWidth = this.state.screenWidth / 1.2;
+		let logosOnTier = logos.length;
 
 		const createImage = (logo) =>
 		{
@@ -83,7 +83,7 @@ export default class SponsorsPage extends Component
 			);
 		}
 
-		var tier = [];
+		let tier = [];
 		for (i in logos)
 			tier[i] = createImage(logos[i]);
 
@@ -96,12 +96,12 @@ export default class SponsorsPage extends Component
 
 	createMegaImage(image, url, customHeight)
 	{
-		var size = this.state.screenWidth / 1.2;
+		let size = this.state.screenWidth / 1.2;
 		dimensions = {width: this.state.screenWidth / 1.2};
 		if (customHeight)
 			dimensions.height = customHeight;
 
-		var hyperlink = url ?
+		let hyperlink = url ?
 			() => Linking.openURL(url).catch(err => console.error('Could not open link', err))
 			: () => {};
 
@@ -119,9 +119,9 @@ export default class SponsorsPage extends Component
 
 	createMicroImage(image, url)
 	{
-		var size = this.state.screenWidth / 1.5;
+		let size = this.state.screenWidth / 1.5;
 		// console.log(size);
-		var hyperlink = url ?
+		let hyperlink = url ?
 			() => Linking.openURL(url).catch(() => this.hyperlinkError())
 			: () => {};
 

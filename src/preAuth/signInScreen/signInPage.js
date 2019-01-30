@@ -28,7 +28,7 @@ class SignInPage extends Component
 		this.setState({scanStatus: 'LOADING'});
 
 		// Extracting the data from the QR code
-		var data = code.data.split("|");
+		let data = code.data.split("|");
 
 		const reactivate = () =>
 		{

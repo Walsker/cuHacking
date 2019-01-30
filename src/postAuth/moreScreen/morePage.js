@@ -30,8 +30,8 @@ class MorePage extends Component
 
 	render()
 	{
-		var {width} = Dimensions.get('window');
-		var imageSize = width / 1.75;
+		let {width} = Dimensions.get('window');
+		let imageSize = width / 1.75;
 
 		return (
 			<View style = {containerStyle.tabPage}>

@@ -30,7 +30,7 @@ class TabNavigator extends Component
 
 	createBadgeIcon()
 	{
-		var iconStyle = StyleSheet.create(
+		let iconStyle = StyleSheet.create(
 		{
 			active:
 			{
@@ -74,7 +74,7 @@ class TabNavigator extends Component
 		}
 		else
 		{
-			var isActive = (this.props.selectedTab == title);
+			let isActive = (this.props.selectedTab == title);
 			return (
 				<TouchableOpacity
 					onPress = {action}

@@ -10,8 +10,8 @@ export default class ContactSection extends Component
 {
 	render()
 	{
-		var {height, width} = Dimensions.get('window');
-		var imageSize = width / 2.5;
+		let {height, width} = Dimensions.get('window');
+		let imageSize = width / 2.5;
 
 		return (
 			<View style = {[containerStyle.screen, {backgroundColor: colors.darkSpaceColor, minHeight: height}]}>

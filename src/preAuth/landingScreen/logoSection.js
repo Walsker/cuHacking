@@ -25,7 +25,7 @@ class LogoSection extends Component
 	{
 		const clickableIcon = (platform, hyperlink) =>
 		{
-			var icon;
+			let icon;
 			const iconSize = 50;
 
 			switch (platform)
@@ -87,8 +87,8 @@ class LogoSection extends Component
 
 	render()
 	{
-		var {height, width} = Dimensions.get('window');
-		var imageSize = width / 1.75;
+		let {height, width} = Dimensions.get('window');
+		let imageSize = width / 1.75;
 
 		return (
 			<View style = {[

@@ -32,14 +32,14 @@ export default class CountdownSection extends Component
 		const padNumber = (number) => number < 10 ? '0' + number : '' + number;
 		const calculateTimeRemaining = () =>
 		{
-			var today = Date.now();
-			var millsUntilhackDay = this.state.hackDay.getTime() - today;
+			let today = Date.now();
+			let millsUntilhackDay = this.state.hackDay.getTime() - today;
 
-			var weeksUntilHackDay = padNumber(Math.floor(millsUntilhackDay / MILLS_PER_WEEK));
-			var daysUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK)) / MILLS_PER_DAY));
-			var hoursUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK) - (daysUntilHackDay * MILLS_PER_DAY)) / MILLS_PER_HOUR));
-			var minutesUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK) - (daysUntilHackDay * MILLS_PER_DAY) - (hoursUntilHackDay * MILLS_PER_HOUR)) / MILLS_PER_MINUTE));
-			var secondsUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK) - (daysUntilHackDay * MILLS_PER_DAY) - (hoursUntilHackDay * MILLS_PER_HOUR) - (minutesUntilHackDay * MILLS_PER_MINUTE)) / MILLS_PER_SECOND));
+			let weeksUntilHackDay = padNumber(Math.floor(millsUntilhackDay / MILLS_PER_WEEK));
+			let daysUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK)) / MILLS_PER_DAY));
+			let hoursUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK) - (daysUntilHackDay * MILLS_PER_DAY)) / MILLS_PER_HOUR));
+			let minutesUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK) - (daysUntilHackDay * MILLS_PER_DAY) - (hoursUntilHackDay * MILLS_PER_HOUR)) / MILLS_PER_MINUTE));
+			let secondsUntilHackDay = padNumber(Math.floor((millsUntilhackDay - (weeksUntilHackDay * MILLS_PER_WEEK) - (daysUntilHackDay * MILLS_PER_DAY) - (hoursUntilHackDay * MILLS_PER_HOUR) - (minutesUntilHackDay * MILLS_PER_MINUTE)) / MILLS_PER_SECOND));
 
 			this.setState({weeksUntilHackDay, daysUntilHackDay, hoursUntilHackDay, minutesUntilHackDay, secondsUntilHackDay});
 		}

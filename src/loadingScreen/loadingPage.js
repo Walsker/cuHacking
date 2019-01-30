@@ -68,7 +68,7 @@ class LoadingPage extends Component
 
 	authSuccess()
 	{
-		var toMainApp = (hackerObject) =>
+		let toMainApp = (hackerObject) =>
 		{
 			this.props.saveHackerInfo(hackerObject);
 			this.props.navigation.navigate("Main");
@@ -84,7 +84,7 @@ class LoadingPage extends Component
 		this.setState({waitingForConnection: false});
 
 		// Retrieving the credentials from state
-		var {email, password} = this.props.credentials;
+		let {email, password} = this.props.credentials;
 
 		// Sending the authentication request to firebase
 		firebase.auth().signInWithEmailAndPassword(email, password).then(this.authSuccess.bind(this)).catch((error) => this.authFailure(error));
@@ -96,7 +96,7 @@ class LoadingPage extends Component
 		firebase.auth().signOut();
 
 		// Retrieving the credentials from state
-		var {email, password} = this.props.credentials;
+		let {email, password} = this.props.credentials;
 
 		// Checking if credentials have been saved to the device
 		if (email == NULL_CREDENTIALS.email || password == NULL_CREDENTIALS.password)
