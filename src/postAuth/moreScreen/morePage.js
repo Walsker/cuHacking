@@ -20,7 +20,8 @@ class MorePage extends Component
 			scrolled: false,
 			innovapostLogo:
 			{
-
+				image: require('cuHacking/assets/images/sponsors/innovapost.png'),
+				link: 'https://innovapost.com/'
 			},
 			// ------------------------------------------------------------------------------------
 			cseLogo:
@@ -153,7 +154,7 @@ class MorePage extends Component
 							<Text style = {textStyle.bold(64, 'center', 'white')}>Sponsors</Text>
 						</View>
 						<View style = {localStyle.scrollSection}>
-							<Text style = {textStyle.light(16, 'center')}>InnovapostLogo</Text>
+							{this.createLogo(this.state.innovapostLogo.image, this.state.innovapostLogo.link, imageSize)}
 						</View>
 						<Divider color = {colors.dividerColor}/>
 						<View style = {localStyle.scrollSection}>
