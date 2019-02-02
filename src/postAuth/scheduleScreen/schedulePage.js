@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 // Custom imports
-import {colors, containerStyle} from 'cuHacking/src/common/appStyles';
-import {AndroidBar} from 'cuHacking/src/common';
+import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
+import {AndroidBar, Divider} from 'cuHacking/src/common';
 
 export default class SchedulePage extends Component
 {
@@ -28,6 +28,43 @@ export default class SchedulePage extends Component
 		}
 	}
 
+	createHourStamp(hour) // 24h time
+	{
+		let timeString = "";
+
+		if (hour >= 12)
+			timeString = (hour == 12 ? hour : hour - 12) + ":00 p.m.";
+		else
+			timeString = (hour == 0 ? 12 : hour) + ":00 a.m.";
+
+		return (
+			<View style = {localStyle.hourStamp}>
+				<Text style = {textStyle.bold(21, 'left', colors.secondaryTextColor)}>{timeString}</Text>
+			</View>
+		);
+	}
+
+	renderSchedule()
+	{
+		return (
+			
+			<View>
+				<View style = {localStyle.dayStamp}>
+					<Text style = {textStyle.bold(21, 'left', colors.primaryColor)}>February 16th</Text>
+					<View style = {{height: 2, width: '100%', backgroundColor: colors.primaryColor}}/>
+				</View>
+				{this.createHourStamp(22)}
+				{this.createHourStamp(23)}
+				<View style = {localStyle.dayStamp}>
+					<Text style = {textStyle.bold(21, 'left', colors.primaryColor)}>February 17th</Text>
+					<View style = {{height: 2, width: '100%', backgroundColor: colors.primaryColor}}/>
+				</View>
+				{this.createHourStamp(0)}
+				{this.createHourStamp(1)}
+			</View>
+		);
+	}
+
 	render()
 	{
 		return (
@@ -39,7 +76,15 @@ export default class SchedulePage extends Component
 					showsVerticalScrollIndicator = {false}
 					onScroll = {this.scrollToggle.bind(this)}
 				>
-
+					<View style = {localStyle.lightPage}>
+						<View style = {localStyle.scrollSection}>
+							<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>Schedule</Text>
+						</View>
+						<Divider color = {colors.dividerColor}/>
+						<View style = {localStyle.scrollSection}>
+							{this.renderSchedule()}
+						</View>
+					</View>
 				</ScrollView>
 			</View>
 		);
@@ -48,13 +93,30 @@ export default class SchedulePage extends Component
 
 const localStyle = StyleSheet.create(
 {
-	scrollBody:
-	{
-		alignSelf: 'stretch'
-	},
+	scrollBody: {alignSelf: 'stretch'},
 	scrollContent:
 	{
-		height: 5000,
 		justifyContent: 'center'
+	},
+	scrollSection:
+	{
+		marginVertical: 10,
+		justifyContent: 'center'
+	},
+	lightPage:
+	{
+		paddingTop: 25,
+		elevation: 15,
+		backgroundColor: colors.lightSpaceColor
+	},
+	hourStamp:
+	{
+		paddingLeft: 30,
+		paddingBottom: 10
+	},
+	dayStamp:
+	{
+		// paddingLeft: 30,
+		paddingBottom: 10
 	}
 });
