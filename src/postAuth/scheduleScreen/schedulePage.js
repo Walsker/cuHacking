@@ -81,8 +81,11 @@ export default class SchedulePage extends Component
 							<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>Schedule</Text>
 						</View>
 						<Divider color = {colors.dividerColor}/>
-						<View style = {localStyle.scrollSection}>
+						{/* <View style = {localStyle.scrollSection}>
 							{this.renderSchedule()}
+						</View> */}
+						<View style = {localStyle.scrollSection}>
+							<Text style = {textStyle.regular(16, 'center')}>W.I.P</Text>
 						</View>
 					</View>
 				</ScrollView>
