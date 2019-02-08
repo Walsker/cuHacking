@@ -34,7 +34,7 @@ class SignInPage extends Component
 		{
 			this.setState({scanStatus: 'IDLE'});
 			this.scannerRef.current.reactivate();
-		}
+		};
 
 		// Checking if the QR code is in the correct format
 		if (data[0] != INVITE_KEY || (data[1] == null || data[2] == null))

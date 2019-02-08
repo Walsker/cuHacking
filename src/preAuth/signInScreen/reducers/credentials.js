@@ -3,6 +3,7 @@ import NULL_CREDENTIALS from '../nullCredentials';
 
 export default (prevState = NULL_CREDENTIALS, action) => 
 {
+    console.log("creds");
     switch (action.type)
     {
         case SIGN_OUT:

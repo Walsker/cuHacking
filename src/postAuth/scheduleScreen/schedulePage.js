@@ -2,11 +2,14 @@
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
+// Redux imports
+import {connect} from 'react-redux';
+
 // Custom imports
 import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles';
-import {AndroidBar, Divider} from 'cuHacking/src/common';
+import {AndroidBar} from 'cuHacking/src/common';
 
-export default class SchedulePage extends Component
+class SchedulePage extends Component
 {
 	constructor(props)
 	{
@@ -110,19 +113,16 @@ export default class SchedulePage extends Component
 	{
 		let hourString = "";
 		let meridiem = "";
-		// let timeString = "";
 
 		if (hour >= 12)
 		{
 			hourString = (hour == 12 ? hour : hour - 12);
 			meridiem = "pm"
-			// timeString = (hour == 12 ? hour : hour - 12) + ":00 p.m.";
 		}
 		else
 		{
 			hourString = (hour == 0 ? 12 : hour);
 			meridiem = "am";
-			// timeString = (hour == 0 ? 12 : hour) + ":00 a.m.";
 		}
 
 		return (
@@ -188,7 +188,7 @@ export default class SchedulePage extends Component
 
 	renderSchedule()
 	{
-		const padNumber = (num) => { return (num < 10 ? '0' + num : num) };
+		const padNumber = num => (num < 10 ? '0' + num : num);
 
 		let scheduleComponent = [];
 
@@ -202,10 +202,10 @@ export default class SchedulePage extends Component
 				for (let min = 0; min < 60; ++min)
 				{
 					let key = day + '-' + padNumber(hour) + '-' + padNumber(min);
-					if (this.state.eventList[key])
+					if (this.props.eventList[key])
 					{
-						console.log("AHA! ", this.state.eventList[key]);
-						for (event in this.state.eventList[key])
+						console.log("AHA! ", this.props.eventList[key]);
+						for (event in this.props.eventList[key])
 						{
 							if (!dayPlaced)
 							{
@@ -213,7 +213,7 @@ export default class SchedulePage extends Component
 								dayPlaced = true;
 							}
 	
-							eventsInHour.push(this.createEvent(this.state.eventList[key][event]))
+							eventsInHour.push(this.createEvent(this.props.eventList[key][event]))
 						}
 					}
 				}
@@ -263,6 +263,15 @@ export default class SchedulePage extends Component
 		);
 	}
 }
+const mapStateToProps = (state) =>
+{
+	console.log("Event List: ", state.eventList);
+	return {
+		eventList: state.eventList
+	};
+};
+export default connect(mapStateToProps)(SchedulePage);
+
 
 const localStyle = StyleSheet.create(
 {

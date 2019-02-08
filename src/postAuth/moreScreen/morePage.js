@@ -117,7 +117,7 @@ class MorePage extends Component
 
 	createLogo(image, url, size)
 	{
-		let hyperlink = () => Linking.openURL(url).catch(err => console.error('Could not open link', err))
+		let hyperlink = () => Linking.openURL(url).catch(err => console.error('Could not open link', err));
 
 		return (
 			<TouchableOpacity

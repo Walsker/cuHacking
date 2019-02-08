@@ -10,11 +10,11 @@ const NULL_HACKER_INFO =
     program: "",
     email: "",
     phone: ""
-}
+};
 
 export default (prevState = NULL_HACKER_INFO, action) =>
 {
-    switch(action.type)
+    switch (action.type)
     {
         case SAVE_HACKER_INFO:
             return action.payload;
@@ -25,4 +25,4 @@ export default (prevState = NULL_HACKER_INFO, action) =>
         default:
             return prevState;
     }
-}
+};

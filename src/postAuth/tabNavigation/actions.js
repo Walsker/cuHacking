@@ -7,4 +7,4 @@ export const switchTab = (targetTab) =>
         type: ACTION_TYPES.SWITCH_TAB,
         payload: targetTab
     };
-}
+};

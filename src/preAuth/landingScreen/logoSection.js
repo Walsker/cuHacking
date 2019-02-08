@@ -55,8 +55,7 @@ class LogoSection extends Component
 					</TouchableOpacity>
 				</View>
 			);
-		}
-
+		};
 
 		return(
 			<View style = {{paddingVertical: 25}}>

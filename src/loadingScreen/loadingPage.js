@@ -6,6 +6,7 @@ import {ActivityIndicator, Alert, StatusBar, StyleSheet, View} from 'react-nativ
 import {connect} from 'react-redux';
 import {saveHackerInfo} from './actions';
 import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
+import {updateSchedule} from 'cuHacking/src/postAuth/scheduleScreen/actions';
 
 // Firebase imports
 import firebase from 'firebase';
@@ -68,14 +69,20 @@ class LoadingPage extends Component
 
 	authSuccess()
 	{
-		let toMainApp = (hackerObject) =>
+		const toMainApp = (hackerObject, schedule) =>
 		{
 			this.props.saveHackerInfo(hackerObject);
+			this.props.updateSchedule(schedule);
 			this.props.navigation.navigate("Main");
-		}
+		};
+
+		const retrieveSchedule = (hackerObject) =>
+		{
+			firebase.database().ref("/schedule").once('value').then((snapshot) => toMainApp(hackerObject, snapshot.val())).catch(() => this.displayError("Fetch Failure"));
+		};
 
 		// Retrieving account information from firebase
-		firebase.database().ref("/hackers/" + this.props.credentials.password).once('value').then((snapshot) => toMainApp(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
+		firebase.database().ref("/hackers/" + this.props.credentials.password).once('value').then((snapshot) => retrieveSchedule(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
 	}
 
 	authenticate()
@@ -133,7 +140,7 @@ const mapStateToProps = (state) =>
 		credentials: state.credentials
 	};
 };
-export default connect(mapStateToProps, {saveHackerInfo, signOut})(LoadingPage);
+export default connect(mapStateToProps, {saveHackerInfo, signOut, updateSchedule})(LoadingPage);
 
 
 const localStyle = StyleSheet.create(

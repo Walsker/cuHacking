@@ -15,4 +15,4 @@ export default (prevState = INTIAL_SELECTION, action) =>
         default:
             return prevState;
     }
-}
+};

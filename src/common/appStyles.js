@@ -10,7 +10,7 @@ export const colors =
 	primaryTextColor: '#212121',
 	secondaryTextColor: '#757575',
 	dividerColor: '#AFAFAF'
-}
+};
 
 export const containerStyle = StyleSheet.create(
 {
@@ -69,4 +69,4 @@ export const textStyle =
 	{
 		return Object.assign({fontFamily: 'Roboto-Italic'}, createFont(size, alignment, color));
 	}
-}
+};

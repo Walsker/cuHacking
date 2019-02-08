@@ -124,7 +124,7 @@ const mapStateToProps = (state) =>
 	return {
 		selectedTab: state.selectedTab
 	};
-}
+};
 export default connect(mapStateToProps, {switchTab})(TabNavigator);
 
 

@@ -7,4 +7,4 @@ export const saveHackerInfo = (hackerObject) =>
         type: ACTION_TYPES.SAVE_HACKER_INFO,
         payload: hackerObject
     };
-}
+};

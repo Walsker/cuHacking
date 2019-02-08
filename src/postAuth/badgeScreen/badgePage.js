@@ -51,7 +51,7 @@ const mapStateToProps = (state) =>
 	return {
 		hackerObject: state.hackerInfo
 	};
-}
+};
 export default connect(mapStateToProps)(BadgePage);
 
 

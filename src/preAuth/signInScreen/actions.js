@@ -7,7 +7,7 @@ export const signOut = () =>
 		type: ACTION_TYPES.SIGN_OUT,
 		payload: null
 	};
-}
+};
 
 // Creates an action that saves the provided credentials
 export const setCredentials = (qrCode) =>
