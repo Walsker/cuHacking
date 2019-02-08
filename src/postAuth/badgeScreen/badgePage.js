@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 // Redux imports
 import {connect} from 'react-redux';
@@ -13,9 +13,13 @@ import {colors, containerStyle, textStyle} from 'cuHacking/src/common/appStyles'
 import {AndroidBar} from 'cuHacking/src/common';
 import BADGE_KEY from 'cuHacking/$badge';
 
-// TODO: Add refresh control to go back to loading screen
 class BadgePage extends Component
 {
+	onRefresh()
+	{
+		this.props.navigation.navigate("Loading");
+	}
+
 	render()
 	{
 		let {firstName, lastName, school, program, id} = this.props.hackerObject;
@@ -23,7 +27,10 @@ class BadgePage extends Component
 		return (
 			<View style = {containerStyle.tabPage}>
 				<AndroidBar/>
-				<View style = {localStyle.pageLayout}>
+				<ScrollView
+					contentContainerStyle = {localStyle.pageLayout}
+					refreshControl = {<RefreshControl colors = {[colors.primaryColor]} onRefresh={this.onRefresh.bind(this)}/>}
+				>
 					<View>
 						<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{firstName}</Text>
 						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{lastName}</Text>
@@ -40,7 +47,7 @@ class BadgePage extends Component
 						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{school}</Text>
 						<Text style = {textStyle.regular(42, 'center', colors.primaryTextColor)}>{program}</Text>
 					</View>
-				</View>
+				</ScrollView>
 			</View>
 		);
 	}
