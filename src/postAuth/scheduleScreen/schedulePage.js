@@ -11,7 +11,74 @@ export default class SchedulePage extends Component
 	constructor(props)
 	{
 		super(props);
-		this.state = {scrolled: false};
+		this.state = {
+			scrolled: false,
+			eventList:
+			{
+				"16-08-00":	// DD-HH-MM (Day Hour Minute)
+				{
+					0:
+					{
+						title: "Registration",
+						startTime: {hour: 8, minute: 0},
+						endTime: {hour: 10, minute: 0},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					},
+					2:
+					{
+						title: "Registration",
+						startTime: {hour: 8, minute: 0},
+						endTime: {hour: 10, minute: 0},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					},
+					3:
+					{
+						title: "Registration",
+						startTime: {hour: 8, minute: 0},
+						endTime: {hour: 10, minute: 0},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					},
+					4:
+					{
+						title: "Registration",
+						startTime: {hour: 8, minute: 0},
+						endTime: {hour: 10, minute: 0},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					},
+					5:
+					{
+						title: "Registration",
+						startTime: {hour: 8, minute: 0},
+						endTime: {hour: 10, minute: 0},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					},
+					6:
+					{
+						title: "Registration",
+						startTime: {hour: 8, minute: 0},
+						endTime: {hour: 10, minute: 0},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					},
+				},
+				"17-16-00":	// DD-HH-MM (Day Hour Minute)
+				{
+					0:
+					{
+						title: "Closing Ceremonies",
+						startTime: {hour: 16, minute: 0},
+						endTime: {hour: 18, minute: 30},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					}
+				}
+			}
+		};
 	}
 
 	scrollToggle(event)
@@ -30,37 +97,133 @@ export default class SchedulePage extends Component
 
 	createHourStamp(hour) // 24h time
 	{
-		let timeString = "";
+		let hourString = "";
+		let meridiem = "";
+		// let timeString = "";
 
 		if (hour >= 12)
-			timeString = (hour == 12 ? hour : hour - 12) + ":00 p.m.";
+		{
+			hourString = (hour == 12 ? hour : hour - 12);
+			meridiem = "pm"
+			// timeString = (hour == 12 ? hour : hour - 12) + ":00 p.m.";
+		}
 		else
-			timeString = (hour == 0 ? 12 : hour) + ":00 a.m.";
+		{
+			hourString = (hour == 0 ? 12 : hour);
+			meridiem = "am";
+			// timeString = (hour == 0 ? 12 : hour) + ":00 a.m.";
+		}
 
 		return (
-			<View style = {localStyle.hourStamp}>
-				<Text style = {textStyle.bold(21, 'left', colors.secondaryTextColor)}>{timeString}</Text>
+			<View key = {Date.now().toString()} style = {localStyle.hourStamp}>
+				<Text style = {textStyle.bold(24, 'center', colors.primaryTextColor)}>{hourString}</Text>
+				<View style = {{marginTop: -10}}>
+					<Text style = {textStyle.light(18, 'center', colors.secondaryTextColor)}>{meridiem}</Text>
+				</View>
+			</View>
+		);
+	}
+
+	createDayStamp(day)
+	{
+		return (
+			<View key = {Date.now().toString()} style = {localStyle.dayStamp}>
+				<Text style = {textStyle.bold(21, 'left', colors.primaryColor)}>February {day}th</Text>
+				<View style = {localStyle.dayDivider}/>
+			</View>
+		);
+	}
+
+	createEvent(eventObject)
+	{
+		let {startTime, endTime} = eventObject;
+		const formatTime = (hour, minute) =>
+		{
+			let timeString = "";
+			let postMeridiem = false;
+
+			if (hour == 0 || hour == 12)
+			{
+				timeString += "12";
+				if (hour == 12) postMeridiem = true;
+			}
+			else if (hour < 12)
+				timeString += hour;
+			else
+			{
+				timeString += (hour - 12);
+				postMeridiem = true;
+			}
+			
+			if (minute) timeString += (":" + minute);
+			
+			if (postMeridiem)
+				timeString += "pm";
+			else
+				timeString += "am";
+
+			return timeString;
+		};
+
+		return (
+			<View key = {Date.now().toString()} style = {localStyle.eventTile}>
+				<Text style = {textStyle.bold(21, 'left', 'white')}>{eventObject.title}</Text>
+				<Text style = {textStyle.regular(18, 'left', 'white')}>
+					{formatTime(startTime.hour, startTime.minute)} - {formatTime(endTime.hour, endTime.minute)} | {eventObject.location}
+				</Text>
 			</View>
 		);
 	}
 
 	renderSchedule()
 	{
+		const padNumber = (num) => { return (num < 10 ? '0' + num : num) };
+
+		let scheduleComponent = [];
+
+		for (let day = 16; day < 18; ++day)
+		{
+			let dayPlaced = false;
+			for (let hour = 0; hour < 24; ++hour)
+			{
+				let eventsInHour = [];
+
+				for (let min = 0; min < 60; ++min)
+				{
+					let key = day + '-' + padNumber(hour) + '-' + padNumber(min);
+					if (this.state.eventList[key])
+					{
+						console.log("AHA! ", this.state.eventList[key]);
+						for (event in this.state.eventList[key])
+						{
+							if (!dayPlaced)
+							{
+								scheduleComponent.push(this.createDayStamp(day));
+								dayPlaced = true;
+							}
+	
+							eventsInHour.push(this.createEvent(this.state.eventList[key][event]))
+						}
+					}
+				}
+
+				if (eventsInHour.length != 0)
+				{
+					scheduleComponent.push(
+						<View style = {localStyle.hourSection}>
+							{this.createHourStamp(hour)}
+							<View style = {localStyle.tileWrapper}>
+								{eventsInHour}
+							</View>
+						</View>
+					);
+				}
+			}
+		}
+
 		return (
-			
 			<View>
-				<View style = {localStyle.dayStamp}>
-					<Text style = {textStyle.bold(21, 'left', colors.primaryColor)}>February 16th</Text>
-					<View style = {{height: 2, width: '100%', backgroundColor: colors.primaryColor}}/>
-				</View>
-				{this.createHourStamp(22)}
-				{this.createHourStamp(23)}
-				<View style = {localStyle.dayStamp}>
-					<Text style = {textStyle.bold(21, 'left', colors.primaryColor)}>February 17th</Text>
-					<View style = {{height: 2, width: '100%', backgroundColor: colors.primaryColor}}/>
-				</View>
-				{this.createHourStamp(0)}
-				{this.createHourStamp(1)}
+				{scheduleComponent}
 			</View>
 		);
 	}
@@ -80,12 +243,8 @@ export default class SchedulePage extends Component
 						<View style = {localStyle.scrollSection}>
 							<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>Schedule</Text>
 						</View>
-						<Divider color = {colors.dividerColor}/>
-						{/* <View style = {localStyle.scrollSection}>
-							{this.renderSchedule()}
-						</View> */}
 						<View style = {localStyle.scrollSection}>
-							<Text style = {textStyle.regular(16, 'center')}>W.I.P</Text>
+							{this.renderSchedule()}
 						</View>
 					</View>
 				</ScrollView>
@@ -114,12 +273,41 @@ const localStyle = StyleSheet.create(
 	},
 	hourStamp:
 	{
-		paddingLeft: 30,
-		paddingBottom: 10
+		marginVertical: 10,
+		marginHorizontal: 25
 	},
 	dayStamp:
 	{
-		// paddingLeft: 30,
-		paddingBottom: 10
+		margin: 10,
+		marginTop: 15
+	},
+	dayDivider:
+	{
+		height: 2,
+		width: '100%',
+		backgroundColor: colors.primaryColor,
+		borderColor: colors.primaryColor,
+		borderRadius: 1,
+		borderWidth: 1
+	},
+	hourSection:
+	{
+		flexDirection: 'row',
+		alignSelf: 'stretch'
+	},
+	tileWrapper:
+	{
+		flex: 1,
+		flexDirection: 'column'
+	},
+	eventTile:
+	{
+		flex: 1,
+		marginRight: 20,
+		marginVertical: 5,
+		padding: 10,
+		backgroundColor: colors.primaryColor,
+		borderRadius: 5,
+		elevation: 2
 	}
 });
