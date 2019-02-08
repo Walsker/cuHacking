@@ -65,7 +65,7 @@ const localStyle = StyleSheet.create(
 	codeDisplay:
 	{
 		backgroundColor: colors.lightSpaceColor,
-		borderColor: colors.dividerColor,
+		borderColor: colors.dividerColor + "22",
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',

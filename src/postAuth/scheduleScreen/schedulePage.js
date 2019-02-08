@@ -66,6 +66,17 @@ export default class SchedulePage extends Component
 						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
 					},
 				},
+				"16-12-00":	// DD-HH-MM (Day Hour Minute)
+				{
+					0:
+					{
+						title: "Another Event",
+						startTime: {hour: 12, minute: 30},
+						endTime: {hour: 13, minute: 30},
+						location: "Atrium",
+						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
+					}
+				},
 				"17-16-00":	// DD-HH-MM (Day Hour Minute)
 				{
 					0:
@@ -293,7 +304,7 @@ const localStyle = StyleSheet.create(
 	hourSection:
 	{
 		flexDirection: 'row',
-		alignSelf: 'stretch'
+		marginTop: 10,
 	},
 	tileWrapper:
 	{

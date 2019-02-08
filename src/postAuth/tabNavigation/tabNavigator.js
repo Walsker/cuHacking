@@ -146,7 +146,7 @@ const localStyle = StyleSheet.create(
 	background:
 	{
 		backgroundColor: colors.lightSpaceColor,
-		borderColor: colors.dividerColor,
+		borderColor: colors.dividerColor + "33",
 		borderTopWidth: .75,
 		position: 'absolute',
 		elevation: 10,
@@ -157,8 +157,7 @@ const localStyle = StyleSheet.create(
 	{
 		position: 'absolute',
 		backgroundColor: colors.lightSpaceColor,
-		borderTopWidth: 1,
-		borderColor: colors.dividerColor,
+		borderColor: colors.dividerColor + "11",
 		borderWidth: 1,
 		borderRadius: 33,
 		elevation: 10,
