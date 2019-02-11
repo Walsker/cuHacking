@@ -234,7 +234,6 @@ const localStyle = StyleSheet.create(
 	},
 	lightPage:
 	{
-		// paddingTop: 25,
 		elevation: 15,
 		backgroundColor: colors.lightSpaceColor
 	},

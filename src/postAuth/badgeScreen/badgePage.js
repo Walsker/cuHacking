@@ -22,7 +22,6 @@ class BadgePage extends Component
 
 	render()
 	{
-		let {firstName, lastName, school, program, id} = this.props.hackerObject;
 		let {width} = Dimensions.get("window");
 		return (
 			<View style = {containerStyle.tabPage}>
@@ -32,20 +31,20 @@ class BadgePage extends Component
 					refreshControl = {<RefreshControl colors = {[colors.primaryColor]} onRefresh={this.onRefresh.bind(this)}/>}
 				>
 					<View>
-						<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{firstName}</Text>
-						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{lastName}</Text>
+						<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{this.props.name.first}</Text>
+						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{this.props.name.last}</Text>
 					</View>
 					<View style = {localStyle.codeDisplay}>
 						<QRCode
-							value = {BADGE_KEY + "|" + id}
+							value = {BADGE_KEY + "|" + this.props.email}
 							size = {width * 0.8}
 							color = {colors.primaryColor}
 							backgroundColor = {colors.lightSpaceColor}
 						/>
 					</View>
 					<View>
-						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{school}</Text>
-						<Text style = {textStyle.regular(42, 'center', colors.primaryTextColor)}>{program}</Text>
+						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{this.props.school}</Text>
+						<Text style = {textStyle.regular(42, 'center', colors.primaryTextColor)}>{this.props.program}</Text>
 					</View>
 				</ScrollView>
 			</View>
@@ -54,10 +53,9 @@ class BadgePage extends Component
 }
 
 const mapStateToProps = (state) =>
-{
-	return {
-		hackerObject: state.hackerInfo
-	};
+{	
+	let {name, email, school, program} = state.hackerInfo;
+	return {name, email, school, program};
 };
 export default connect(mapStateToProps)(BadgePage);
 

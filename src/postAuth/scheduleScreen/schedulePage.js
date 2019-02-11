@@ -202,10 +202,10 @@ class SchedulePage extends Component
 				for (let min = 0; min < 60; ++min)
 				{
 					let key = day + '-' + padNumber(hour) + '-' + padNumber(min);
-					if (this.props.eventList[key])
+					if (this.state.eventList[key])
 					{
-						console.log("AHA! ", this.props.eventList[key]);
-						for (event in this.props.eventList[key])
+						console.log("AHA! ", this.state.eventList[key]);
+						for (event in this.state.eventList[key])
 						{
 							if (!dayPlaced)
 							{
@@ -213,7 +213,7 @@ class SchedulePage extends Component
 								dayPlaced = true;
 							}
 	
-							eventsInHour.push(this.createEvent(this.props.eventList[key][event]))
+							eventsInHour.push(this.createEvent(this.state.eventList[key][event]))
 						}
 					}
 				}

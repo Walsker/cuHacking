@@ -21,7 +21,11 @@ class LoadingPage extends Component
 	constructor(props)
 	{
 		super(props);
-		this.state = {waitingForConnection: false}
+		this.state = 
+		{
+			firestore: firebase.firestore(),
+			waitingForConnection: false
+		}
 	}
 
 	displayError(type)
@@ -32,7 +36,7 @@ class LoadingPage extends Component
 				this.props.signOut();
 				Alert.alert(
 					"Authentication Failed",
-					"Scan your QR ID code again.\n\nIf this persists, please contact <support email> for help",
+					"Scan your QR ID code again.\n\nIf this persists, please contact an organizer for help",
 					[{text: 'OK', onPress: () => this.props.navigation.navigate("Landing")}],
 					{cancelable: false}
 				);
@@ -41,8 +45,18 @@ class LoadingPage extends Component
 			case "Fetch Failure":
 				this.props.signOut();
 				Alert.alert(
-					"Something went wrong",
-					"Scan your QR ID code again.\n\nIf this persists, please contact <support email> for help",
+					"Could Not Retrieve Data",
+					"Scan your QR ID code again.\n\nIf this persists, please contact an organizer for help",
+					[{text: 'OK', onPress: () => this.props.navigation.navigate("Landing")}],
+					{cancelable: false}
+				);
+				return;
+
+			case "Profile Undefined":
+				this.props.signOut();
+				Alert.alert(
+					"Profile Not Found",
+					"Scan your QR ID code again.\n\nIf this persists, please contact an organizer for help",
 					[{text: 'OK', onPress: () => this.props.navigation.navigate("Landing")}],
 					{cancelable: false}
 				);
@@ -69,20 +83,30 @@ class LoadingPage extends Component
 
 	authSuccess()
 	{
+		// Creating a reference to the user's profile
+		const profileRef = this.state.firestore.collection("hackers").doc(this.props.credentials.email);
+
 		const toMainApp = (hackerObject, schedule) =>
 		{
 			this.props.saveHackerInfo(hackerObject);
-			this.props.updateSchedule(schedule);
+			// this.props.updateSchedule(schedule);
 			this.props.navigation.navigate("Main");
 		};
 
 		const retrieveSchedule = (hackerObject) =>
 		{
 			firebase.database().ref("/schedule").once('value').then((snapshot) => toMainApp(hackerObject, snapshot.val())).catch(() => this.displayError("Fetch Failure"));
+			// TODO: use firestore
 		};
 
 		// Retrieving account information from firebase
-		firebase.database().ref("/hackers/" + this.props.credentials.password).once('value').then((snapshot) => retrieveSchedule(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
+		// firebase.database().ref("/hackers/" + this.props.credentials.password).once('value').then((snapshot) => retrieveSchedule(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
+		profileRef.get().then(document => {
+			if (document.exists)
+				toMainApp(document.data(), {});
+			else
+				this.displayError("Profile Undefined");
+		}).catch(error => this.displayError("Fetch Failure"));
 	}
 
 	authenticate()
