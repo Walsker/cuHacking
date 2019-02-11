@@ -43,10 +43,11 @@ class LoadingPage extends Component
 				return;
 			
 			case "Fetch Failure":
+				this.props.signOut();
 				Alert.alert(
 					"Could Not Retrieve Data",
-					"Feel free to try again.\n\nIf this persists, please contact an organizer for help",
-					[{text: 'OK', onPress: () => this.setState({waitingForConnection: true})}],
+					"Scan your QR ID code again.\n\nIf this persists, please contact an organizer for help",
+					[{text: 'OK', onPress: () => this.props.navigation.navigate("Landing")}],
 					{cancelable: false}
 				);
 				return;
@@ -87,9 +88,8 @@ class LoadingPage extends Component
 
 		const toMainApp = (hackerObject, schedule) =>
 		{
-			console.log("Hacker: ", hackerObject);
 			this.props.saveHackerInfo(hackerObject);
-			// this.props.updateSchedule(schedule);
+			this.props.updateSchedule(schedule);
 			this.props.navigation.navigate("Main");
 		};
 
@@ -100,20 +100,26 @@ class LoadingPage extends Component
 			{
 				let events = [];
 				snapshot.forEach(document => events.push(document.data()));
-				// snapshot.forEach(document => console.log(document.id, document.data()));
-				console.log(events);
-				toMainApp(hackerObject, {});
-			}).catch(error => this.displayError("Fetch Failure"));
+				toMainApp(hackerObject, events);
+			}).catch(error =>
+			{
+				console.log("Tried to get schedule", error);
+				this.displayError("Fetch Failure");
+			});
 		};
 
 		// Retrieving account information from firebase
 		profileRef.get().then(document => {
 			if (document.exists)
-				// retrieveSchedule(document.data());
-				toMainApp(document.data(), {});
+				retrieveSchedule(document.data());
+				// toMainApp(document.data(), {});
 			else
 				this.displayError("Profile Undefined");
-		}).catch(error => this.displayError("Fetch Failure"));
+		}).catch(error =>
+		{
+			console.log("Tried to get account info", error);
+			this.displayError("Fetch Failure");
+		});
 	}
 
 	authenticate()

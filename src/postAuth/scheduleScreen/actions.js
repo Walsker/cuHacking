@@ -4,8 +4,12 @@ import * as ACTION_TYPES from './actionTypes';
 export const updateSchedule = (newEventList) =>
 {
 	console.log("Incoming: ", newEventList);
+	
+	// Sorting Schedule
+	let events = newEventList.sort((x, y) => x.start.valueOf() - y.start.valueOf());
+	console.log("Sorted: ", events);
 	return {
 		type: ACTION_TYPES.UPDATE_SCHEDULE,
-		payload: newEventList
+		payload: events
 	};
 };

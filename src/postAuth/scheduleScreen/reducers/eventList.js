@@ -1,6 +1,6 @@
 import {UPDATE_SCHEDULE} from '../actionTypes';
 
-export default (prevState = {}, action) =>
+export default (prevState = [], action) =>
 {
 	switch (action.type)
 	{

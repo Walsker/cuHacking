@@ -12,10 +12,6 @@ import rootReducer from './_rootReducer';
 import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react'
 
-// Firebase imports
-// import firebase from '@firebase/app';
-// import firebaseConfig from 'cuHacking/firebaseConfig';
-
 // Custom imports
 import {colors, containerStyle} from 'cuHacking/src/common/appStyles';
 import RootNavigator from './_rootNavigator';
@@ -25,7 +21,6 @@ export default class App extends Component
 	componentDidMount()
 	{
 		SplashScreen.hide();
-		// firebase.initializeApp(firebaseConfig);
 	}
 
 	render()

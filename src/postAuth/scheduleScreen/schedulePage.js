@@ -16,82 +16,7 @@ class SchedulePage extends Component
 		super(props);
 		this.state = {
 			scrolled: false,
-			eventList:
-			{
-				"16-08-00":	// DD-HH-MM (Day Hour Minute)
-				{
-					0:
-					{
-						title: "Registration",
-						startTime: {hour: 8, minute: 0},
-						endTime: {hour: 10, minute: 0},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					},
-					2:
-					{
-						title: "Registration",
-						startTime: {hour: 8, minute: 0},
-						endTime: {hour: 10, minute: 0},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					},
-					3:
-					{
-						title: "Registration",
-						startTime: {hour: 8, minute: 0},
-						endTime: {hour: 10, minute: 0},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					},
-					4:
-					{
-						title: "Registration",
-						startTime: {hour: 8, minute: 0},
-						endTime: {hour: 10, minute: 0},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					},
-					5:
-					{
-						title: "Registration",
-						startTime: {hour: 8, minute: 0},
-						endTime: {hour: 10, minute: 0},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					},
-					6:
-					{
-						title: "Registration",
-						startTime: {hour: 8, minute: 0},
-						endTime: {hour: 10, minute: 0},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					},
-				},
-				"16-12-00":	// DD-HH-MM (Day Hour Minute)
-				{
-					0:
-					{
-						title: "Another Event",
-						startTime: {hour: 12, minute: 30},
-						endTime: {hour: 13, minute: 30},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					}
-				},
-				"17-16-00":	// DD-HH-MM (Day Hour Minute)
-				{
-					0:
-					{
-						title: "Closing Ceremonies",
-						startTime: {hour: 16, minute: 0},
-						endTime: {hour: 18, minute: 30},
-						location: "Atrium",
-						description: "A longer, more thorough description of the event. May also have interesting links, tell hackers what to bring, or perhaps tell a joke."
-					}
-				}
-			}
+			scheduleComponents: [<View/>]
 		};
 	}
 
@@ -126,7 +51,7 @@ class SchedulePage extends Component
 		}
 
 		return (
-			<View key = {Date.now().toString()} style = {localStyle.hourStamp}>
+			<View key = {"Hour: " + hour} style = {localStyle.hourStamp}>
 				<Text style = {textStyle.bold(24, 'center', colors.primaryTextColor)}>{hourString}</Text>
 				<View style = {{marginTop: -10}}>
 					<Text style = {textStyle.light(18, 'center', colors.secondaryTextColor)}>{meridiem}</Text>
@@ -138,7 +63,7 @@ class SchedulePage extends Component
 	createDayStamp(day)
 	{
 		return (
-			<View key = {Date.now().toString()} style = {localStyle.dayStamp}>
+			<View key = {"Day: " + day} style = {localStyle.dayStamp}>
 				<Text style = {textStyle.bold(21, 'left', colors.primaryColor)}>February {day}th</Text>
 				<View style = {localStyle.dayDivider}/>
 			</View>
@@ -147,7 +72,7 @@ class SchedulePage extends Component
 
 	createEvent(eventObject)
 	{
-		let {startTime, endTime} = eventObject;
+		console.log("event: ", eventObject);
 		const formatTime = (hour, minute) =>
 		{
 			let timeString = "";
@@ -177,10 +102,13 @@ class SchedulePage extends Component
 		};
 
 		return (
-			<View key = {Date.now().toString()} style = {localStyle.eventTile}>
+			<View 
+				key = {"Event: " + eventObject.title}
+				style = {localStyle.eventTile}
+			>
 				<Text style = {textStyle.bold(21, 'left', 'white')}>{eventObject.title}</Text>
 				<Text style = {textStyle.regular(18, 'left', 'white')}>
-					{formatTime(startTime.hour, startTime.minute)} - {formatTime(endTime.hour, endTime.minute)} | {eventObject.location}
+					{formatTime(eventObject.start.getHours(), eventObject.start.getMinutes())} - {formatTime(eventObject.end.getHours(), eventObject.end.getMinutes())} | {eventObject.location}
 				</Text>
 			</View>
 		);
@@ -188,53 +116,95 @@ class SchedulePage extends Component
 
 	renderSchedule()
 	{
-		const padNumber = num => (num < 10 ? '0' + num : num);
+		// Containers for the schedule components
+		let scheduleComponents = [];
+		let eventsInHour = [];
 
-		let scheduleComponent = [];
+		// Keeping track of the date of the last event
+		let currentDay = -1;
+		let currentHour = 0; // 24 hour time
 
-		for (let day = 16; day < 18; ++day)
+		// Generating all the event components
+		for (event of this.props.eventList)
 		{
-			let dayPlaced = false;
-			for (let hour = 0; hour < 24; ++hour)
+			// Checking if we need to define a new day
+			if (currentDay != event.start.getDate())
 			{
-				let eventsInHour = [];
-
-				for (let min = 0; min < 60; ++min)
-				{
-					let key = day + '-' + padNumber(hour) + '-' + padNumber(min);
-					if (this.state.eventList[key])
-					{
-						console.log("AHA! ", this.state.eventList[key]);
-						for (event in this.state.eventList[key])
-						{
-							if (!dayPlaced)
-							{
-								scheduleComponent.push(this.createDayStamp(day));
-								dayPlaced = true;
-							}
-	
-							eventsInHour.push(this.createEvent(this.state.eventList[key][event]))
-						}
-					}
-				}
-
+				// Adding all the previous hour's events to the schedule
 				if (eventsInHour.length != 0)
 				{
-					scheduleComponent.push(
-						<View style = {localStyle.hourSection}>
-							{this.createHourStamp(hour)}
+					scheduleComponents.push(
+						<View 
+							key = {currentDay + " " + currentHour}
+							style = {localStyle.hourSection}
+						>
+							{this.createHourStamp(currentHour)}
 							<View style = {localStyle.tileWrapper}>
 								{eventsInHour}
 							</View>
 						</View>
 					);
 				}
+				
+				// Clearing the previous hour's component list
+				eventsInHour = [];
+
+				// Setting the new current day and resetting the hour
+				currentDay = event.start.getDate();
+				currentHour = 0;
+
+				// Adding a date component
+				scheduleComponents.push(this.createDayStamp(currentDay));
 			}
+
+			if (currentHour != event.start.getHours())
+			{
+				// Adding all the previous hour's events to the schedule
+				if (eventsInHour.length != 0)
+				{
+					scheduleComponents.push(
+						<View 
+							key = {currentDay + " " + currentHour}
+							style = {localStyle.hourSection}
+						>
+							{this.createHourStamp(currentHour)}
+							<View style = {localStyle.tileWrapper}>
+								{eventsInHour}
+							</View>
+						</View>
+					);
+				}
+				
+				// Clearing the previous hour's component list
+				eventsInHour = [];
+
+				// Setting the currentHour
+				currentHour = event.start.getHours();
+			}
+			
+			// Adding the event to the current hour group
+			eventsInHour.push(this.createEvent(event));
+		}
+
+		// Pushing the last events to the schedule component list
+		if (eventsInHour.length != 0)
+		{
+			scheduleComponents.push(
+				<View 
+					key = {currentDay + " " + currentHour}
+					style = {localStyle.hourSection}
+				>
+					{this.createHourStamp(currentHour)}
+					<View style = {localStyle.tileWrapper}>
+						{eventsInHour}
+					</View>
+				</View>
+			);
 		}
 
 		return (
 			<View>
-				{scheduleComponent}
+				{scheduleComponents}
 			</View>
 		);
 	}
@@ -265,7 +235,6 @@ class SchedulePage extends Component
 }
 const mapStateToProps = (state) =>
 {
-	console.log("Event List: ", state.eventList);
 	return {
 		eventList: state.eventList
 	};
