@@ -9,7 +9,7 @@ import {signOut} from 'cuHacking/src/preAuth/signInScreen/actions';
 import {updateSchedule} from 'cuHacking/src/postAuth/scheduleScreen/actions';
 
 // Firebase imports
-import firebase from 'firebase';
+import firebase from 'react-native-firebase';
 
 // Custom imports
 import {colors} from 'cuHacking/src/common/appStyles';
@@ -43,11 +43,10 @@ class LoadingPage extends Component
 				return;
 			
 			case "Fetch Failure":
-				this.props.signOut();
 				Alert.alert(
 					"Could Not Retrieve Data",
-					"Scan your QR ID code again.\n\nIf this persists, please contact an organizer for help",
-					[{text: 'OK', onPress: () => this.props.navigation.navigate("Landing")}],
+					"Feel free to try again.\n\nIf this persists, please contact an organizer for help",
+					[{text: 'OK', onPress: () => this.setState({waitingForConnection: true})}],
 					{cancelable: false}
 				);
 				return;
@@ -88,6 +87,7 @@ class LoadingPage extends Component
 
 		const toMainApp = (hackerObject, schedule) =>
 		{
+			console.log("Hacker: ", hackerObject);
 			this.props.saveHackerInfo(hackerObject);
 			// this.props.updateSchedule(schedule);
 			this.props.navigation.navigate("Main");
@@ -95,14 +95,21 @@ class LoadingPage extends Component
 
 		const retrieveSchedule = (hackerObject) =>
 		{
-			firebase.database().ref("/schedule").once('value').then((snapshot) => toMainApp(hackerObject, snapshot.val())).catch(() => this.displayError("Fetch Failure"));
-			// TODO: use firestore
+			// Retrieving the schedule from firebaes
+			this.state.firestore.collection("events").get().then(snapshot => 
+			{
+				let events = [];
+				snapshot.forEach(document => events.push(document.data()));
+				// snapshot.forEach(document => console.log(document.id, document.data()));
+				console.log(events);
+				toMainApp(hackerObject, {});
+			}).catch(error => this.displayError("Fetch Failure"));
 		};
 
 		// Retrieving account information from firebase
-		// firebase.database().ref("/hackers/" + this.props.credentials.password).once('value').then((snapshot) => retrieveSchedule(snapshot.val())).catch(() => this.displayError("Fetch Failure"));
 		profileRef.get().then(document => {
 			if (document.exists)
+				// retrieveSchedule(document.data());
 				toMainApp(document.data(), {});
 			else
 				this.displayError("Profile Undefined");

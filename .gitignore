@@ -59,3 +59,4 @@ buck-out/
 firebaseConfig.js
 $invite.js
 $badge.js
+android/app/google-services.json

@@ -22,6 +22,8 @@ class BadgePage extends Component
 
 	render()
 	{
+		let firstName = this.props.name ? this.props.name.first : "N/A";
+		let lastName = this.props.name ? this.props.name.last : "N/A";
 		let {width} = Dimensions.get("window");
 		return (
 			<View style = {containerStyle.tabPage}>
@@ -31,8 +33,8 @@ class BadgePage extends Component
 					refreshControl = {<RefreshControl colors = {[colors.primaryColor]} onRefresh={this.onRefresh.bind(this)}/>}
 				>
 					<View>
-						<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{this.props.name.first}</Text>
-						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{this.props.name.last}</Text>
+						<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>{firstName}</Text>
+						<Text style = {textStyle.light(24, 'center', colors.primaryTextColor)}>{lastName}</Text>
 					</View>
 					<View style = {localStyle.codeDisplay}>
 						<QRCode

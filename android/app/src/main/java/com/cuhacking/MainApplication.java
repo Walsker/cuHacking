@@ -3,6 +3,9 @@ package com.cuhacking;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import org.reactnative.camera.RNCameraPackage;
@@ -28,11 +31,14 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new VectorIconsPackage(),
-            new SvgPackage(),
-            new RNCameraPackage(),
-            new RNGestureHandlerPackage(),
-            new SplashScreenReactPackage()
+          new RNFirebasePackage(),
+          new RNFirebaseFirestorePackage(),
+          new RNFirebaseAuthPackage(),
+          new VectorIconsPackage(),
+          new SvgPackage(),
+          new RNCameraPackage(),
+          new RNGestureHandlerPackage(),
+          new SplashScreenReactPackage()
       );
     }
 

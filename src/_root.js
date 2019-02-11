@@ -13,8 +13,8 @@ import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react'
 
 // Firebase imports
-import firebase from '@firebase/app';
-import firebaseConfig from 'cuHacking/firebaseConfig';
+// import firebase from '@firebase/app';
+// import firebaseConfig from 'cuHacking/firebaseConfig';
 
 // Custom imports
 import {colors, containerStyle} from 'cuHacking/src/common/appStyles';
@@ -25,7 +25,7 @@ export default class App extends Component
 	componentDidMount()
 	{
 		SplashScreen.hide();
-		firebase.initializeApp(firebaseConfig);
+		// firebase.initializeApp(firebaseConfig);
 	}
 
 	render()
@@ -56,9 +56,9 @@ export default class App extends Component
 
 const localStyle = StyleSheet.create(
 {
-	background: {flex: 1, backgroundColor: colors.primaryColor}
+	background:
+	{
+		flex: 1, 
+		backgroundColor: colors.primaryColor
+	}
 });
-
-// This disables all warnings (but mainly the timer warning as a result of using the web sdk of firebase). Keep checking for a fix for this
-console.disableYellowBox = true;
-console.warn('YellowBox is disabled.');
