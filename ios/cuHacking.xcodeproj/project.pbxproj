@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -47,6 +48,7 @@
 		2FA87343D965431A845EBCE1 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CB74748A8084BC8B8E8CA3A /* Montserrat-LightItalic.ttf */; };
 		349E493CC223423F863693CE /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A23430900FE43BF955AB5C5 /* libRNCamera.a */; };
 		395F8FDE112F4E07AE2792BF /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D746061FCC646609285CCAA /* Montserrat-MediumItalic.ttf */; };
+		3A1792EA221387F300C82E41 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB3128922131A2800E88956 /* libReactNativePermissions.a */; };
 		3AB312412213108300E88956 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3AB312822213153400E88956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AB312812213153400E88956 /* GoogleService-Info.plist */; };
 		3AB312832213153400E88956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AB312812213153400E88956 /* GoogleService-Info.plist */; };
@@ -547,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A1792EA221387F300C82E41 /* libReactNativePermissions.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
