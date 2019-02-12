@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {ActivityIndicator, Alert, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {Alert, Platform, StatusBar, StyleSheet, Text, View} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // Redux imports
@@ -61,9 +61,10 @@ class SignInPage extends Component
 
 	render()
 	{
+		let adaptiveStatusBar = Platform.OS === 'ios' ? <StatusBar hidden = {true}/> : <StatusBar barStyle = 'light-content'/>;
 		return (
 			<View style = {containerStyle.default}>
-				<StatusBar barStyle = 'light-content'/>
+				{adaptiveStatusBar}
 				<View style = {localStyle.cameraSpace}>
 					<QRCodeScanner
 						ref = {this.scannerRef}
