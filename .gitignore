@@ -56,7 +56,6 @@ buck-out/
 *.jsbundle
 
 # Custom
-firebaseConfig.js
 $invite.js
 $badge.js
 android/app/google-services.json
