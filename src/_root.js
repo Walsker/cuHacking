@@ -54,6 +54,6 @@ const localStyle = StyleSheet.create(
 	background:
 	{
 		flex: 1, 
-		backgroundColor: colors.primaryColor
+		backgroundColor: colors.primarySpaceColor
 	}
 });
