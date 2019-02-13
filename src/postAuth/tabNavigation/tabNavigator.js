@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Redux imports
@@ -104,6 +104,7 @@ class TabNavigator extends Component
 	{
 		return (
 			<View style = {localStyle.default}>
+				<StatusBar barStyle = 'light-content'/>
 				<View style = {localStyle.badgeArcBack}/>
 				<View style = {localStyle.background}/>
 				<View style = {localStyle.badgeArcFront}/>
