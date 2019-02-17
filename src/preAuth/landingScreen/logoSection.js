@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {Dimensions, Image, Linking, StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, Linking, Platform, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 // React Navigation imports
 import {withNavigation} from 'react-navigation';
@@ -88,13 +88,14 @@ class LogoSection extends Component
 	{
 		let {height, width} = Dimensions.get('window');
 		let imageSize = width / 1.75;
+		let padding = Platform.OS == 'ios' ? 0 : StatusBar.currentHeight;
 
 		return (
 			<View style = {[
 				containerStyle.screen,
 				{
 					backgroundColor: colors.primarySpaceColor,
-					minHeight: height + StatusBar.currentHeight
+					minHeight: height + padding
 				}
 			]}>
 				<View style = {containerStyle.screenSection}>

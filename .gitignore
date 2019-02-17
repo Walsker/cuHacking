@@ -59,3 +59,4 @@ buck-out/
 $invite.js
 $badge.js
 android/app/google-services.json
+ios/cuHacking/GoogleService-Info.plist

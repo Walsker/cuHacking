@@ -151,7 +151,7 @@ class MorePage extends Component
 				>
 					<View style = {localStyle.lightPage}>
 						<View style = {localStyle.banner}>
-							<Text style = {textStyle.bold(64, 'center', 'white')}>Sponsors</Text>
+							<Text style = {textStyle.regular(48, 'center', colors.primaryTextColor)}>Sponsors</Text>
 						</View>
 						<View style = {localStyle.scrollSection}>
 							{this.createLogo(this.state.innovapostLogo.image, this.state.innovapostLogo.link, imageSize)}
@@ -244,9 +244,10 @@ const localStyle = StyleSheet.create(
 	},
 	banner:
 	{
-		marginVertical: 10,
-		paddingVertical: 5,
+		marginBottom: 10,
+		marginTop: 35,
+		// paddingVertical: 5,
 		justifyContent: 'center',
-		backgroundColor: colors.primaryColor
+		// backgroundColor: colors.primaryColor
 	}
 });

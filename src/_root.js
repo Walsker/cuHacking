@@ -1,6 +1,6 @@
 // React Native imports
 import React, {Component} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {Platform, SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
 // Redux imports
@@ -34,7 +34,7 @@ export default class App extends Component
 				<StatusBar
 					translucent
 					animated = {true}
-					barStyle = 'dark-content'
+					barStyle = {Platform.OS === 'ios' ? 'light-content' : 'dark-content'}
 					backgroundColor = 'transparent'
 				/>
 				<Provider store = {store}>
